@@ -1,1 +1,12 @@
-<p>request works!</p>
+<h1>Requests</h1>
+<span *ngIf="!(errorMsg == '')">{{errorMsg}}</span>
+<div *ngFor="let r of requests">
+    {{r.requestId}} <br />
+    {{r.status}} <br />
+    {{r.orderTime}} <br />
+    {{r.endTime}} <br />
+    {{r.totalPrice}} <br />
+    {{r.customer}} <br />
+    {{r.vendor}} <br />
+    <hr />
+</div>
