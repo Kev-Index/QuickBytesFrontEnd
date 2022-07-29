@@ -12,6 +12,8 @@ import { RequestComponent } from './components/request/request.component';
 import { RequestComboComponent } from './components/request-combo/request-combo.component';
 import { RequestItemComponent } from './components/request-item/request-item.component';
 import { VendorComponent } from './components/vendor/vendor.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,10 @@ import { VendorComponent } from './components/vendor/vendor.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
