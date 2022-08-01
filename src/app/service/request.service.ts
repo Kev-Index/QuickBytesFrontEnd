@@ -8,12 +8,18 @@ import { Request } from "../model/request.model";
 })
 export class RequestService {
  getRequestsApi:string;
+ getPostApi:string;
 
  constructor(private http:HttpClient) {
     this.getRequestsApi = 'http://localhost:8989/requests';
+    this.getPostApi = 'http://localhost:8989/request';
  }
 
  fetchRequests():Observable<Request[]> {
     return this.http.get<Request[]>(this.getRequestsApi);
+ }
+
+ postRequest(request:Request):Observable<any> {
+    return this.http.post<any>(this.getPostApi,request,);
  }
 }
