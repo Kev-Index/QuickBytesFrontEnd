@@ -19,7 +19,7 @@ export class RequestService {
     return this.http.get<Request[]>(this.getRequestsApi);
  }
 
- postRequest(request:Request):Observable<any> {
-    return this.http.post<any>(this.getPostApi,request,);
+ postRequest(request:Request,vendorId:number,customerId:number):Observable<any> {
+    return this.http.post<any>(this.getPostApi+"/"+vendorId+"/"+customerId,request);
  }
 }

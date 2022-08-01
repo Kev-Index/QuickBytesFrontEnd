@@ -13,7 +13,6 @@ export class RequestComponent implements OnInit {
   requestForm:FormGroup;
   errorMsg:string;
   requests:Request[];
-  request:Request;
   message:string;
 
   constructor(private requestService:RequestService) { }
@@ -21,12 +20,12 @@ export class RequestComponent implements OnInit {
   ngOnInit(): void {
     this.message='';
     this.requestForm = new FormGroup({
-      vendorId: new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z ]+$/)]),
-      customerId: new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z ]+$/)]),
-      totalPrice: new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z ]+$/)]),
-      status: new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z ]+$/)]),
-      orderTime: new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z ]+$/)]),
-      endTime: new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z ]+$/)])
+      vendorId: new FormControl('', [Validators.required, Validators.pattern(/^[0-9]+$/)]),
+      customerId: new FormControl('', [Validators.required, Validators.pattern(/^[0-9]+$/)]),
+      totalPrice: new FormControl('', [Validators.required, Validators.pattern(/^[0-9.]+$/)]),
+      status: new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z_ ]+$/)]),
+      orderTime: new FormControl('', [Validators.required, Validators.pattern(/^[0-9-]+$/)]),
+      endTime: new FormControl('', [Validators.required, Validators.pattern(/^[0-9-]+$/)])
     });
     
     this.errorMsg='';
@@ -39,13 +38,20 @@ export class RequestComponent implements OnInit {
   }
 
   onFormSubmit() {
-    this.request = this.requestForm.value;
-    this.requestService.postRequest(this.request).subscribe({
+    let request:Request={
+      totalPrice:this.requestForm.value.totalPrice,
+      status:this.requestForm.value.status,
+      orderTime:this.requestForm.value.orderTime,
+      endTime:this.requestForm.value.endTime
+    };
+
+    this.requestService.postRequest(request,this.requestForm.value.vendorId,this.requestForm.value.customerId).subscribe({
       next: (data) => {
         this.message="Category added successfully...";
       },
       error: (e) => {
         this.errorMsg="Category not added successfully...";
+        console.log(e);
       }
     })
   }
