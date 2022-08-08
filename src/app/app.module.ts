@@ -19,6 +19,7 @@ import { LoginComponent } from './auth/component/login/login.component';
 import { LogoutComponent } from './auth/component/logout/logout.component';
 import { PasswordResetComponent } from './auth/component/password-reset/password-reset.component';
 import { UsernameVerifyComponent } from './auth/component/username-verify/username-verify.component';
+import { SignupComponent } from './auth/component/signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { UsernameVerifyComponent } from './auth/component/username-verify/userna
     LoginComponent,
     LogoutComponent,
     UsernameVerifyComponent,
-    PasswordResetComponent
+    PasswordResetComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
