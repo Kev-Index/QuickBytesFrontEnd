@@ -14,6 +14,7 @@ import { RequestItemComponent } from './components/request-item/request-item.com
 import { VendorComponent } from './components/vendor/vendor.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { VendorListComponent } from './components/vendor-list/vendor-list.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { HttpClientModule } from '@angular/common/http';
     RequestComponent,
     RequestComboComponent,
     RequestItemComponent,
-    VendorComponent
+    VendorComponent,
+    VendorListComponent
   ],
   imports: [
     BrowserModule,
