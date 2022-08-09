@@ -20,6 +20,11 @@ import { LogoutComponent } from './auth/component/logout/logout.component';
 import { PasswordResetComponent } from './auth/component/password-reset/password-reset.component';
 import { UsernameVerifyComponent } from './auth/component/username-verify/username-verify.component';
 import { SignupComponent } from './auth/component/signup/signup.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatButtonModule} from '@angular/material/button';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 
 @NgModule({
   declarations: [
@@ -45,7 +50,12 @@ import { SignupComponent } from './auth/component/signup/signup.component';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatButtonModule,
+    MatButtonToggleModule
   ],
   providers: [],
   bootstrap: [AppComponent]

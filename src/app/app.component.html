@@ -1,29 +1,31 @@
-<div class = "navbar">
-<span>
-    <a routerLink="/dashboard">Dashboard</a> &nbsp;&nbsp;&nbsp;
-    <a routerLink="/customer">Customer</a> &nbsp;&nbsp;&nbsp;
-    <a routerLink="/vendor">Vendor</a> &nbsp;&nbsp;&nbsp;
-    <a routerLink="/admin">Admin</a> &nbsp;&nbsp;&nbsp;
-    <a routerLink="/item">Item</a> &nbsp;&nbsp;&nbsp;
-    <a routerLink="/combo">Combo</a> &nbsp;&nbsp;&nbsp;
-    <a routerLink="/item-combo">Item Combo</a> &nbsp;&nbsp;&nbsp;
-    <a routerLink="/request">Request</a> &nbsp;&nbsp;&nbsp;
-    <a routerLink="/request-item">Request Item</a> &nbsp;&nbsp;&nbsp;
-    <a routerLink="/item-combo">Request Combo</a> &nbsp;&nbsp;&nbsp;
-    <a routerLink="/signup">Sign Up</a> &nbsp;&nbsp;&nbsp;
-    <a routerLink="/username-verify">Verify Username</a> &nbsp;&nbsp;&nbsp;
-</span>
-</div>
+<mat-sidenav-container id="sidenav-container" (backdropClick)="sidenav.close()">
+  <mat-sidenav id="sidenav-slider" class="navbar" #sidenav (keydown.escape)="sidenav.close()" disableClose>
+    <p><button mat-button (click)="sidenav.close()">Close X</button></p> 
+    <br />
+    <p><a routerLink="/dashboard" (click)="close('QuickBytes')">Dashboard</a></p>
+    <p><a routerLink="/customer" (click)="close('Customer')">Customer</a></p>
+    <p><a routerLink="/vendor" (click)="close('Vendor')">Vendor</a></p>
+    <p><a routerLink="/admin" (click)="close('Admin')">Admin</a></p>
+    <p><a routerLink="/item" (click)="close('Item')">Item</a></p>
+    <p><a routerLink="/combo" (click)="close('Combo')">Combo</a></p>
+    <p><a routerLink="/item-combo" (click)="close('Item Combo')">Item Combo</a></p>
+    <p><a routerLink="/request" (click)="close('Request')">Request</a></p>
+    <p><a routerLink="/request-item" (click)="close('Request Item')">Request Item</a></p>
+    <p><a routerLink="/item-combo" (click)="close('Request Combo')">Request Combo</a></p>
+    <p><a routerLink="/signup" (click)="close('Sign Up')">Sign Up</a> <br />
+    <p><a routerLink="/username-verify" (click)="close('Verify Username')">Verify Username</a></p>
+  </mat-sidenav>
 
-<h1>Welcome to Quickbytes</h1>
-<h2>Are you a:</h2>
-<button>Customer</button>
-<br /><br />
-<button>Vendor</button>
-<br /><br />
-<button>Admin</button>
-<br /><br />
+  <mat-sidenav-content>
 
-<div>
-    <router-outlet></router-outlet>
-</div>
+    <mat-toolbar id="header">
+        <button mat-button (click)="sidenav.open()">&#9776;</button>
+        <p id="title" class="mat-h1">{{title}}</p>
+    </mat-toolbar>
+
+    <div id="body">
+        <router-outlet></router-outlet>
+    </div>
+
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -18,6 +18,7 @@ import { VendorComponent } from './components/vendor/vendor.component';
 
 const routes: Routes = [
   {path:'' , component: DashboardComponent},
+  {path:'dashboard' , component: DashboardComponent},
   {path:'admin' , component: AdminComponent},
   {path:'combo' , component: ComboComponent},
   {path:'customer' , component: CustomerComponent},
