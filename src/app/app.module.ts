@@ -14,6 +14,7 @@ import { RequestItemComponent } from './components/request-item/request-item.com
 import { VendorComponent } from './components/vendor/vendor.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { VendorListComponent } from './components/vendor-list/vendor-list.component';
 import { DashboardComponent } from './auth/component/dashboard/dashboard.component';
 import { LoginComponent } from './auth/component/login/login.component';
 import { LogoutComponent } from './auth/component/logout/logout.component';
@@ -25,6 +26,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatButtonModule} from '@angular/material/button';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
+
 
 @NgModule({
   declarations: [
@@ -38,6 +40,7 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
     RequestComboComponent,
     RequestItemComponent,
     VendorComponent,
+    VendorListComponent
     DashboardComponent,
     LoginComponent,
     LogoutComponent,

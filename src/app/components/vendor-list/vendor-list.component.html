@@ -1,0 +1,7 @@
+<h2>Items</h2>
+
+<div *ngFor="let v of vendors">
+    Name: {{v.name}} <br>
+    <a routerLink="/item/vendor/{{v.vendorId}}">view items</a>
+  <hr>
+</div>
