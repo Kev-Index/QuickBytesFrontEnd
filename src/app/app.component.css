@@ -1,0 +1,25 @@
+#sidenav-container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+#sidenav-slider {
+    width: 200px;
+    padding: 25px;
+}
+
+#sidenav-content {
+    margin-left: 25px;
+}
+
+#title {
+    margin-left: 25px;
+    align-self: flex-end;
+}
+
+#body {
+    margin: 25px;
+}
