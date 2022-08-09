@@ -7,3 +7,10 @@ export class Item {
     price:number;
     quantity:number;
 }
+
+export class ItemDto{
+    itemId: number;
+    name:string;
+    price:number;
+    quantity:number;
+}

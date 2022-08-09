@@ -1,5 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
+
+
+const routes: Routes = [
+
+
 import { DashboardComponent } from './auth/component/dashboard/dashboard.component';
 import { LoginComponent } from './auth/component/login/login.component';
 import { LogoutComponent } from './auth/component/logout/logout.component';
@@ -15,13 +21,13 @@ import { RequestComboComponent } from './components/request-combo/request-combo.
 import { RequestItemComponent } from './components/request-item/request-item.component';
 import { RequestComponent } from './components/request/request.component';
 import { VendorComponent } from './components/vendor/vendor.component';
+import { VendorListComponent } from './components/vendor-list/vendor-list.component';
 
 const routes: Routes = [
   {path:'' , component: DashboardComponent},
   {path:'admin' , component: AdminComponent},
   {path:'combo' , component: ComboComponent},
   {path:'customer' , component: CustomerComponent},
-  {path:'item' , component: ItemComponent},
   {path:'item-combo' , component: ItemComboComponent},
   {path:'request' , component: RequestComponent},
   {path:'request-combo' , component: RequestComboComponent},
@@ -31,11 +37,15 @@ const routes: Routes = [
   {path:'logout' , component: LogoutComponent},
   {path:'signup' , component: SignupComponent},
   {path:'username-verify' , component: UsernameVerifyComponent},
-  {path:'password-reset' , component: PasswordResetComponent},
+  {path:'password-reset' , component: PasswordResetComponent}, 
+  {path:'items/:vendorId', component:ItemComponent},
+  {path:'vendors', component:VendorListComponent},
+
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
+
 export class AppRoutingModule { }
