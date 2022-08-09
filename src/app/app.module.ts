@@ -40,7 +40,7 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
     RequestComboComponent,
     RequestItemComponent,
     VendorComponent,
-    VendorListComponent
+    VendorListComponent,
     DashboardComponent,
     LoginComponent,
     LogoutComponent,

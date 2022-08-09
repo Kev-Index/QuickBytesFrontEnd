@@ -1,11 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
-
-
-const routes: Routes = [
-
-
 import { DashboardComponent } from './auth/component/dashboard/dashboard.component';
 import { LoginComponent } from './auth/component/login/login.component';
 import { LogoutComponent } from './auth/component/logout/logout.component';
