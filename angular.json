@@ -93,7 +93,8 @@
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css",
               "src/styles.css",
-              "src/app/app.component.css"
+              "src/app/app.component.css",
+              "src/app/components/customer-cart-page/customer-cart-page.component.css"
             ],
             "scripts": []
           }
