@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AdminComponent } from './components/admin/admin.component';
@@ -26,6 +25,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatButtonModule} from '@angular/material/button';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import { AddItemComponent } from './components/add-item/add-item.component';
 
 
 @NgModule({
@@ -46,7 +46,8 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
     LogoutComponent,
     UsernameVerifyComponent,
     PasswordResetComponent,
-    SignupComponent
+    SignupComponent,
+    AddItemComponent
   ],
   imports: [
     BrowserModule,

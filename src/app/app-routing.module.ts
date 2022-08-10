@@ -16,6 +16,7 @@ import { RequestItemComponent } from './components/request-item/request-item.com
 import { RequestComponent } from './components/request/request.component';
 import { VendorComponent } from './components/vendor/vendor.component';
 import { VendorListComponent } from './components/vendor-list/vendor-list.component';
+import { AddItemComponent } from './components/add-item/add-item.component';
 
 const routes: Routes = [
   {path:'' , component: DashboardComponent},
@@ -34,6 +35,7 @@ const routes: Routes = [
   {path:'username-verify' , component: UsernameVerifyComponent},
   {path:'password-reset' , component: PasswordResetComponent}, 
   {path:'items/:vendorId', component:ItemComponent},
+  {path:'item/:vendorId', component:AddItemComponent},
   {path:'vendors', component:VendorListComponent},
 
 ];
