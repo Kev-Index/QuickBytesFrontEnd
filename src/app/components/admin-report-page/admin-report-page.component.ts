@@ -28,7 +28,8 @@ export class AdminReportPageComponent implements OnInit {
 
   vendors: Vendor[];
   reportTypes: String[] = [this.TOTAL_PROFIT, this.MOST_POPULAR_ITEMS, this.ORDERS_COMPLETED,
-                          this.TOTAL_PROFIT + " + " + this.MOST_POPULAR_ITEMS, this.MOST_POPULAR_ITEMS + " + " + this.ORDERS_COMPLETED,
+                          this.TOTAL_PROFIT + " + " + this.MOST_POPULAR_ITEMS, 
+                          this.MOST_POPULAR_ITEMS + " + " + this.ORDERS_COMPLETED,
                           this.TOTAL_PROFIT + " + " + this.MOST_POPULAR_ITEMS + " + " + this.ORDERS_COMPLETED];
 
   /**
