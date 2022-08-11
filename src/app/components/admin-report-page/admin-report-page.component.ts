@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 import { MatStepper } from '@angular/material/stepper';
 import { Vendor } from 'src/app/model/vendor.model';
 import { VendorService } from 'src/app/service/vendor.service';
-import { ChartConfiguration, ChartOptions, ChartType } from 'chart.js';
+import { ChartConfiguration, ChartOptions } from 'chart.js';
 
 @Component({
   selector: 'app-admin-report-page',
