@@ -1,1 +1,22 @@
-<p>login works!</p>
+<h1>Login</h1>
+{{message}}
+<form (submit)="onFormSubmit()" [formGroup]="loginForm">
+
+  <label>Enter UserName: </label>
+  <input type="text" name="username"
+        formControlName="username">
+  <br /><br />
+
+  <label>Enter Password </label>
+  <input type="password" name="password"
+        formControlName="password">
+
+  <br /><br />
+  <input type="submit" value="Login"
+        [disabled]="!loginForm.valid">
+
+
+</form>
+
+<br /><br />
+<a routerLink="/password-reset">Password Reset</a>
