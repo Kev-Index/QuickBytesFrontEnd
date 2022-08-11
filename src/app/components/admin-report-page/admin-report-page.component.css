@@ -5,3 +5,17 @@
 .tab-content {
     margin-top: 25px;
 }
+
+.report {
+    display: flex;
+    width: 25%;
+}
+
+#reportBlock {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    padding: 25px;
+    align-items: center;
+    justify-content: space-around;
+}

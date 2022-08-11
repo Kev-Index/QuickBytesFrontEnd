@@ -41,3 +41,34 @@
       </div>
     </mat-step>
 </mat-vertical-stepper>
+<div id="reportBlock">
+
+  <!-- Total Profit Per Item | Pie Chart -->
+  <canvas baseChart class="report"
+    [type]="'pie'"
+    [datasets]="pieChartDatasets"
+    [labels]="pieChartLabels"
+    [options]="pieChartOptions"
+    [plugins]="pieChartPlugins"
+    [legend]="pieChartLegend">
+  </canvas>
+
+  <!-- Most Popular Items | Doughnut Chart -->
+  <canvas baseChart class="report"
+    [labels]="doughnutChartLabels"
+    [datasets]="doughnutChartDatasets"
+    [options]="doughnutChartOptions"
+    [legend]="true"
+    [type]="'doughnut'">
+  </canvas>
+
+  <!-- Orders Completed Per Day | Bar Chart -->
+  <canvas baseChart class="report"
+    [data]="barChartData"
+    [options]="barChartOptions"
+    [plugins]="barChartPlugins"
+    [legend]="barChartLegend"
+    [type]="'bar'">
+  </canvas>
+
+</div>
