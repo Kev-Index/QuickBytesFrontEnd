@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Vendor } from '../model/vendor.model';
@@ -13,6 +13,13 @@ export class VendorService {
   }
 
   getVendors():Observable<Vendor[]> {
-    return this.http.get<Vendor[]>(this.getVendorsApi);
+    let httpOptions={
+      headers : new HttpHeaders({
+        'Content-type': 'application/json',
+        'Authorization' : 'basic ' + localStorage.getItem('credentials')
+      })
+    };
+
+    return this.http.get<Vendor[]>(this.getVendorsApi,httpOptions);
   }
 }

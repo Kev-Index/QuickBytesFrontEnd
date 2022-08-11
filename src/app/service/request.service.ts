@@ -1,6 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
+import { environment } from "src/environments/environment";
 import { Request } from "../model/request.model";
 
 @Injectable({
@@ -11,8 +12,8 @@ export class RequestService {
  getPostApi:string;
 
  constructor(private http:HttpClient) {
-    this.getRequestsApi = 'http://localhost:8989/requests';
-    this.getPostApi = 'http://localhost:8989/request';
+    this.getRequestsApi = environment.serverUrl + '/requests';
+    this.getPostApi = environment.serverUrl + '/request';
  }
 
  fetchRequests():Observable<Request[]> {

@@ -1,11 +1,11 @@
 <mat-vertical-stepper [linear]="true" #stepper [animationDuration]="this.animationDuration">
     <mat-step [stepControl]="vendorFormGroup">
       <form [formGroup]="vendorFormGroup">
-        <ng-template matStepLabel>Vendor<span *ngIf="vendorFormControl.value != ''">: {{vendorFormControl.value}}</span></ng-template>
+        <ng-template matStepLabel>Vendor<span *ngIf="vendorFormControl.value != ''">: {{vendorFormControl.value["name"]}}</span></ng-template>
         <mat-form-field>
             <mat-select [formControl]="vendorFormControl" required="true">
                 <mat-option *ngFor="let vendor of vendors" [value]="vendor">
-                  {{vendor}}
+                  {{vendor.name}}
                 </mat-option>
             </mat-select>
             <mat-error *ngIf="vendorFormControl.hasError('required')">Please choose a vendor</mat-error>
