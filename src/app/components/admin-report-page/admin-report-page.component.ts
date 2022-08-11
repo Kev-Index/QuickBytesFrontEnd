@@ -12,28 +12,43 @@ import { ChartConfiguration, ChartOptions, ChartType } from 'chart.js';
 })
 export class AdminReportPageComponent implements OnInit {
 
+  TOTAL_PROFIT = "Total Profit";
+  ORDERS_COMPLETED = "Orders Completed";
+  MOST_POPULAR_ITEMS = "Most Popular Items";
+
   vendorFormGroup: FormGroup = this.formBuilder.group({vendorControl: ['']});
   vendorFormControl = new FormControl('', Validators.required);
   typeFormGroup: FormGroup = this.formBuilder.group({typeControl: ['']});
   typeFormControl = new FormControl('', Validators.required);
   animationDuration = "1000";
 
-  vendors: Vendor[];
-  reportTypes: String[] = ["Total Profit", "Orders Completed", "Most Popular Items"];
+  displayProfit = false;
+  displayPopular = false;
+  displayOrders = false;
 
-  //needs real data
-  // Pie
+  vendors: Vendor[];
+  reportTypes: String[] = [this.TOTAL_PROFIT, this.MOST_POPULAR_ITEMS, this.ORDERS_COMPLETED,
+                          this.TOTAL_PROFIT + " + " + this.MOST_POPULAR_ITEMS, this.MOST_POPULAR_ITEMS + " + " + this.ORDERS_COMPLETED,
+                          this.TOTAL_PROFIT + " + " + this.MOST_POPULAR_ITEMS + " + " + this.ORDERS_COMPLETED];
+
+  /**
+   * 1. Instantiate global label/data variables
+   * 2. Fetch data on generateReport()
+   * 3. populate variables after fetching data
+   */
+  
+  //  Total Profit Per Item | Pie Chart 
   public pieChartOptions: ChartOptions<'pie'> = {
     responsive: false,
   };
-  public pieChartLabels = [ [ 'Download', 'Sales' ], [ 'In', 'Store', 'Sales' ], 'Mail Sales' ];
+  public pieChartLabels = [ 'Download Sales',  'In Store Sales', 'Mail Sales' ];
   public pieChartDatasets = [ {
     data: [ 300, 500, 100 ]
   } ];
   public pieChartLegend = true;
   public pieChartPlugins = [];
 
-  // Doughnut
+  // Most Popular Items | Doughnut Chart
   public doughnutChartLabels: string[] = [ 'Download Sales', 'In-Store Sales', 'Mail-Order Sales' ];
   public doughnutChartDatasets: ChartConfiguration<'doughnut'>['data']['datasets'] = [
       { data: [ 350, 450, 100 ], label: 'Series A' },
@@ -45,7 +60,7 @@ export class AdminReportPageComponent implements OnInit {
     responsive: false
   };
 
-  // Bar
+  // Orders Completed Per Day | Bar Chart
   public barChartLegend = true;
   public barChartPlugins = [];
 
@@ -76,8 +91,27 @@ export class AdminReportPageComponent implements OnInit {
 
   generateReport(stepper:MatStepper): void {
     if (this.vendorFormControl.value !== "" && this.typeFormControl.value !== "") {
-      console.log(this.vendorFormControl.value, this.typeFormControl.value);
       //report logic
+      console.log(this.vendorFormControl.value, this.typeFormControl.value);
+      let chartTypes = this.typeFormControl.value.split(" + ");
+
+      if(chartTypes.includes(this.TOTAL_PROFIT)) {
+        this.displayProfit = true;
+      } else {
+        this.displayProfit = false;
+      }
+
+      if(chartTypes.includes(this.MOST_POPULAR_ITEMS)) {
+        this.displayPopular = true;
+      } else {
+        this.displayPopular = false;
+      }
+
+      if(chartTypes.includes(this.ORDERS_COMPLETED)) {
+        this.displayOrders = true;
+      } else {
+        this.displayOrders = false;
+      }
     } else {
       stepper.reset();
     }

@@ -44,7 +44,7 @@
 <div id="reportBlock">
 
   <!-- Total Profit Per Item | Pie Chart -->
-  <canvas baseChart class="report"
+  <canvas baseChart class="report" *ngIf="displayProfit == true"
     [type]="'pie'"
     [datasets]="pieChartDatasets"
     [labels]="pieChartLabels"
@@ -54,7 +54,7 @@
   </canvas>
 
   <!-- Most Popular Items | Doughnut Chart -->
-  <canvas baseChart class="report"
+  <canvas baseChart class="report" *ngIf="displayPopular == true"
     [labels]="doughnutChartLabels"
     [datasets]="doughnutChartDatasets"
     [options]="doughnutChartOptions"
@@ -63,7 +63,7 @@
   </canvas>
 
   <!-- Orders Completed Per Day | Bar Chart -->
-  <canvas baseChart class="report"
+  <canvas baseChart class="report" *ngIf="displayOrders == true"
     [data]="barChartData"
     [options]="barChartOptions"
     [plugins]="barChartPlugins"
