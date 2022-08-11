@@ -1,8 +1,13 @@
 <h2>Items</h2>
 
 <div *ngFor="let i of items">
-    Name: {{i.name}} <br>
-    Price: {{i.price}}<br>
+    Name: <strong>{{i.name}}</strong> &nbsp;&nbsp;
+    Price: {{i.price}}&nbsp;&nbsp;
     Quantity: {{i.quantity}}
   <hr>
+</div>
+<br><br>
+<div>
+<a href="Javascript:void" (click)="prev()">Prev </a> &nbsp;&nbsp;&nbsp;&nbsp;
+<a href="Javascript:void" (click)="next()">Next </a>
 </div>

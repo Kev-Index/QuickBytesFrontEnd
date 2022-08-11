@@ -1,4 +1,4 @@
 export class Vendor {
-    vendorId: number;
+    vendorId: string;
     name: string;
 }

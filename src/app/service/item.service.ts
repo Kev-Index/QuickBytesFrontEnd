@@ -8,19 +8,31 @@ import { Item, ItemDto } from '../model/item.model';
 })
 export class ItemService {
   getVendorItemsApi: string;
-  addItemApi:string;
+  singleItemApi:string;
+  page$ = new BehaviorSubject<number>(0);
   message$ = new BehaviorSubject<string>('');
   constructor(private http:HttpClient) { 
     this.getVendorItemsApi = "http://localhost:8989/item/vendor/";
-    this.addItemApi="http://localhost:8989/item/"
+    this.singleItemApi="http://localhost:8989/item/"
   }
 
-  getItemsByVendor(vendorId:string):Observable<Item[]>{
-    return this.http.get<Item[]>(this.getVendorItemsApi+vendorId);
+  getItemsByVendor(vendorId:string, page:number, size:number):Observable<Item[]>{
+
+    return this.http.get<Item[]>(this.getVendorItemsApi+vendorId +'?page='+page+'&size='+size);
+  }
+
+  getItem(itemId:string):Observable<Item>{
+    return this.http.get<Item>(this.singleItemApi+itemId);
   }
 
   addItem(itemDto:ItemDto):Observable<any>{
-    return this.http.post(this.addItemApi+itemDto.vendorId,itemDto);
+    return this.http.post(this.singleItemApi+itemDto.vendorId,itemDto);
   }
-  
+
+  editItem(itemDto:ItemDto):Observable<any>{
+    return this.http.put(this.singleItemApi+itemDto.itemId,itemDto);
+  }
+  testFunc(){
+    console.log("test");
+  }
 }

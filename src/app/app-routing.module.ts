@@ -36,6 +36,7 @@ const routes: Routes = [
   {path:'password-reset' , component: PasswordResetComponent}, 
   {path:'items/:vendorId', component:ItemComponent},
   {path:'item/:vendorId', component:AddItemComponent},
+  {path:'item/edit/:itemId', component:AddItemComponent},
   {path:'vendors', component:VendorListComponent},
 
 ];
