@@ -1,1 +1,43 @@
-<p>admin-report-page works!</p>
+<mat-vertical-stepper [linear]="true" #stepper [animationDuration]="this.animationDuration">
+    <mat-step [stepControl]="vendorFormGroup">
+      <form [formGroup]="vendorFormGroup">
+        <ng-template matStepLabel>Vendor<span *ngIf="vendorFormControl.value != ''">: {{vendorFormControl.value}}</span></ng-template>
+        <mat-form-field>
+            <mat-select [formControl]="vendorFormControl" required="true">
+                <mat-option *ngFor="let vendor of vendors" [value]="vendor">
+                  {{vendor}}
+                </mat-option>
+            </mat-select>
+            <mat-error *ngIf="vendorFormControl.hasError('required')">Please choose a vendor</mat-error>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="typeFormGroup">
+      <form [formGroup]="typeFormGroup">
+        <ng-template matStepLabel>Type<span *ngIf="typeFormControl.value != ''">: {{typeFormControl.value}}</span></ng-template>
+        <mat-form-field>
+            <mat-select [formControl]="typeFormControl" required="true">
+                <mat-option *ngFor="let vendor of vendors" [value]="vendor">
+                  {{vendor}}
+                </mat-option>
+            </mat-select>
+            <mat-error *ngIf="vendorFormControl.hasError('required')">Please choose a type</mat-error>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      You are now done.
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)="generateReport()">Generate Report</button>
+      </div>
+    </mat-step>
+</mat-vertical-stepper>

@@ -17,6 +17,8 @@ import { RequestComponent } from './components/request/request.component';
 import { VendorComponent } from './components/vendor/vendor.component';
 import { VendorListComponent } from './components/vendor-list/vendor-list.component';
 import { CustomerCartPageComponent } from './components/customer-cart-page/customer-cart-page.component';
+import { AdminReportPageComponent } from './components/admin-report-page/admin-report-page.component';
+import { VendorOrderApprovalPageComponent } from './components/vendor-order-approval-page/vendor-order-approval-page.component';
 
 const routes: Routes = [
   {path:'' , component: DashboardComponent},
@@ -36,7 +38,9 @@ const routes: Routes = [
   {path:'password-reset' , component: PasswordResetComponent}, 
   {path:'items/:vendorId', component:ItemComponent},
   {path:'vendors', component:VendorListComponent},
-  {path:'cart/:customerId', component:CustomerCartPageComponent}
+  {path:'cart', component:CustomerCartPageComponent},
+  {path:'approval', component:VendorOrderApprovalPageComponent},
+  {path:'report', component:AdminReportPageComponent}
 ];
 
 @NgModule({
