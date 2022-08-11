@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { MatStepper } from '@angular/material/stepper';
 import { Vendor } from 'src/app/model/vendor.model';
 import { VendorService } from 'src/app/service/vendor.service';
 
@@ -18,6 +19,7 @@ export class AdminReportPageComponent implements OnInit {
 
   //needs real data
   vendors: Vendor[];
+  reportTypes: String[] = ["Total Profit", "Orders Completed", "Most Popular Items"];
 
   constructor(private formBuilder: FormBuilder, private vendorService: VendorService) {}
 
@@ -32,12 +34,12 @@ export class AdminReportPageComponent implements OnInit {
     })
   }
 
-  generateReport(): void {
+  generateReport(stepper:MatStepper): void {
     if (this.vendorFormControl.value !== "" && this.typeFormControl.value !== "") {
-      console.log(this.vendorFormControl.value);
+      console.log(this.vendorFormControl.value, this.typeFormControl.value);
       //report logic
     } else {
-      console.log("try again");
+      stepper.reset();
     }
   }
 }

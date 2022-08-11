@@ -17,14 +17,14 @@
     </mat-step>
     <mat-step [stepControl]="typeFormGroup">
       <form [formGroup]="typeFormGroup">
-        <ng-template matStepLabel>Type<span *ngIf="typeFormControl.value != ''">: {{typeFormControl.value}}</span></ng-template>
+        <ng-template matStepLabel>Report Type<span *ngIf="typeFormControl.value != ''">: {{typeFormControl.value}}</span></ng-template>
         <mat-form-field>
             <mat-select [formControl]="typeFormControl" required="true">
-                <mat-option *ngFor="let vendor of vendors" [value]="vendor">
-                  {{vendor}}
+                <mat-option *ngFor="let reportType of reportTypes" [value]="reportType">
+                  {{reportType}}
                 </mat-option>
             </mat-select>
-            <mat-error *ngIf="vendorFormControl.hasError('required')">Please choose a type</mat-error>
+            <mat-error *ngIf="vendorFormControl.hasError('required')">Please choose a report type</mat-error>
         </mat-form-field>
         <div>
           <button mat-button matStepperPrevious>Back</button>
@@ -34,10 +34,10 @@
     </mat-step>
     <mat-step>
       <ng-template matStepLabel>Done</ng-template>
-      You can now proceed to generate your report.
+      You can now proceed with generating your report.
       <div>
         <button mat-button matStepperPrevious>Back</button>
-        <button mat-button (click)="generateReport()">Generate Report</button>
+        <button mat-button (click)="generateReport(stepper)">Generate Report</button>
       </div>
     </mat-step>
 </mat-vertical-stepper>
