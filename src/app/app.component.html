@@ -3,7 +3,7 @@
     <p><button mat-button (click)="sidenav.close()">Close X</button></p> 
     <br />
     <p><a routerLink="/dashboard" (click)="close('QuickBytes')">Dashboard</a></p>
-    <p><a routerLink="/customer" (click)="close('Customer')">Customer</a></p>
+    <!-- <p><a routerLink="/customer" (click)="close('Customer')">Customer</a></p>
     <p><a routerLink="/vendor" (click)="close('Vendor')">Vendor</a></p>
     <p><a routerLink="/admin" (click)="close('Admin')">Admin</a></p>
     <p><a routerLink="/items/1" (click)="close('Item')">Item</a></p>
@@ -12,11 +12,12 @@
     <p><a routerLink="/request" (click)="close('Request')">Request</a></p>
     <p><a routerLink="/request-item" (click)="close('Request Item')">Request Item</a></p>
     <p><a routerLink="/item-combo" (click)="close('Request Combo')">Request Combo</a></p>
+    <p><a routerLink="/signup" (click)="close('Sign Up')">Sign Up</a> <br />
+    <p><a routerLink="/username-verify" (click)="close('Verify Username')">Verify Username</a></p> -->
     <p><a routerLink="/cart" (click)="close('Your Cart')">Your Cart</a></p>
     <p><a routerLink="/approval" (click)="close('Accept/Deny Orders')">Accept/Deny Orders</a></p>
     <p><a routerLink="/report" (click)="close('Generate Report')">Generate Report</a></p>
-    <p><a routerLink="/signup" (click)="close('Sign Up')">Sign Up</a> <br />
-    <p><a routerLink="/username-verify" (click)="close('Verify Username')">Verify Username</a></p>
+    
   </mat-sidenav>
 
   <mat-sidenav-content>
@@ -24,6 +25,7 @@
     <mat-toolbar id="header">
         <button mat-button (click)="sidenav.open()">&#9776;</button>
         <p id="title" class="mat-h1">{{title}}</p>
+        <p id="login"><a routerLink="/login" (click)="close('Login')">Login</a></p>
     </mat-toolbar>
 
     <div id="body">
