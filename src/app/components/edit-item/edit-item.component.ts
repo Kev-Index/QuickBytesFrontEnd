@@ -46,7 +46,7 @@ export class EditItemComponent implements OnInit {
       next:(d)=>{
         this.itemService.message$.next('SignUp Success, Please Login')
         //the redirect is not made yet, make it James
-        this.router.navigateByUrl('/items/1');
+        this.router.navigateByUrl('/items/9');
       }
     })
   }
