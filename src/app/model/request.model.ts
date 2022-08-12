@@ -5,8 +5,8 @@ export class Request {
     requestId?:number;
     totalPrice:number;
     status:string;
-    orderTime:Date;
-    endTime:Date;
+    orderTime:string;
+    endTime:string;
     customer?:Customer;
     vendor?:Vendor;
 }
