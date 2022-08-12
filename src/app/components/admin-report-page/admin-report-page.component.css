@@ -14,7 +14,7 @@
 #reportBlock {
     display: flex;
     flex-direction: row;
-    width: 100%;
+    width: 95%;
     padding: 25px;
     align-items: center;
     justify-content: space-around;
