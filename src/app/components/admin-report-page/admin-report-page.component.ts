@@ -44,20 +44,20 @@ export class AdminReportPageComponent implements OnInit {
   public pieChartOptions: ChartOptions<'pie'> = {
     responsive: false,
   };
-  public pieChartLabels: String[] = [];
+  public pieChartLabels: String[] = [ ];
   public pieChartDatasets = [ {
     data: []
   } ];
   public pieChartLegend = true;
-  public pieChartPlugins = [];
+  public pieChartPlugins = [ ];
 
   // Most Popular Items | Doughnut Chart
   public doughnutChartOptions: ChartConfiguration<'doughnut'>['options'] = {
     responsive: false
   };
-  public doughnutChartLabels: string[] = [ 'Hot Dog', 'Pizza', 'Pie' ];
+  public doughnutChartLabels: string[] = [ ];
   public doughnutChartDatasets: ChartConfiguration<'doughnut'>['data']['datasets'] = [
-    { data: [ 350, 450, 100 ], label: 'Most Popular Items' },
+    { data: [ ], label: 'Most Popular Items' }
   ];
 
   // Orders Completed Per Day | Bar Chart
@@ -65,13 +65,14 @@ export class AdminReportPageComponent implements OnInit {
     responsive: false,
   };
   public barChartData: ChartConfiguration<'bar'>['data'] = {
-    labels: [ '2006', '2007', '2008', '2009', '2010', '2011', '2012' ],
+    labels: [ ],
     datasets: [
-      { data: [ 65, 59, 80, 81, 56, 55, 40 ], label: 'Orders Completed Per Day' },
+      { data: [ ], label: 'Orders Completed Per Day' },
+      { data: [ ], label: 'Revenue Per Day' }
     ]
   };
   public barChartLegend = true;
-  public barChartPlugins = [];
+  public barChartPlugins = [ ];
 
   constructor(private formBuilder: FormBuilder, private vendorService: VendorService, 
               private requestService: RequestService, private requestItemService: RequestItemService) { }
@@ -106,6 +107,7 @@ export class AdminReportPageComponent implements OnInit {
 
           // MOST POPULAR ITEM REPORT
           if(chartTypes.includes(this.MOST_POPULAR_ITEMS)) {
+            this.generateMostPopularReport(requests);
             this.displayPopular = true;
           } else {
             this.displayPopular = false;
@@ -113,6 +115,7 @@ export class AdminReportPageComponent implements OnInit {
 
           // ORDERS COMPLETED BY DATE REPORT
           if(chartTypes.includes(this.ORDERS_COMPLETED)) {
+            this.generateOrdersCompletedReport(requests);
             this.displayOrders = true;
           } else {
             this.displayOrders = false;
@@ -169,5 +172,82 @@ export class AdminReportPageComponent implements OnInit {
         this.pieChartDatasets[0].data.splice(labelIndex, 1, currentRequestItemTotal);
       }
     });
+  }
+
+  /**
+   * Fetch all request items for each request & populate donut chart with fetched data
+   * @param requests 
+   */
+  generateMostPopularReport(requests: Request[]) {
+    this.displayProfit = true;
+    requests.forEach((request) => {
+      if (request.status == "APPROVED") {
+          this.requestItemService.fetchRequestItemsByRequestId(request.requestId).subscribe({
+            next: (requestItems) => {
+              this.populateDonutChartLabels(requestItems);
+              this.populateDonutChartData(requestItems);
+            },
+            error: (e) => { }
+          });
+      }
+    });
+  }
+
+  /**
+   * Populate doughnut chart's labels for most popular item report
+   * @param requestItems 
+   */
+  populateDonutChartLabels(requestItems: RequestItem[]) {
+    requestItems.forEach((requestItem) => {
+      this.doughnutChartLabels.push(requestItem.item.name);
+    });
+    this.doughnutChartLabels = [...new Set(this.doughnutChartLabels)];
+  }
+
+  /**
+   * Populate doughnut chart's data for most popular item report
+   * @param requestItems 
+   */
+  private populateDonutChartData(requestItems: RequestItem[]) {
+    requestItems.forEach((requestItem) => {
+      let labelIndex = this.doughnutChartLabels.indexOf(requestItem.item.name);
+      if (!this.doughnutChartDatasets[0].data[labelIndex]) {
+        this.doughnutChartDatasets[0].data.splice(labelIndex, 0, 1);
+      } else {
+        let currentRequestItemTotal = this.doughnutChartDatasets[0].data[labelIndex] + 1;
+        this.doughnutChartDatasets[0].data.splice(labelIndex, 1, currentRequestItemTotal);
+      }
+    });
+  }
+
+  generateOrdersCompletedReport(requests: Request[]) {
+    this.displayProfit = true;
+    requests.forEach((request) => {
+      if (request.status == "APPROVED") {
+          this.requestItemService.fetchRequestItemsByRequestId(request.requestId).subscribe({
+            next: (requestItems) => {
+              this.populateBarChartLabels(requestItems);
+              this.populateBarChartData(requestItems);
+            },
+            error: (e) => { }
+          });
+      }
+    });
+  }
+
+  /**
+   * Populate bar chart's data for orders completed per day report
+   * @param requestItems 
+   */
+  populateBarChartLabels(requestItems: RequestItem[]) {
+    throw new Error('Method not implemented.');
+  }
+
+  /**
+   * Populate bar chart's data for orders completed per day report
+   * @param requestItems 
+   */
+  populateBarChartData(requestItems: RequestItem[]) {
+    throw new Error('Method not implemented.');
   }
 }
