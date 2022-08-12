@@ -17,6 +17,7 @@ import { RequestComponent } from './components/request/request.component';
 import { VendorComponent } from './components/vendor/vendor.component';
 import { VendorListComponent } from './components/vendor-list/vendor-list.component';
 import { AddItemComponent } from './components/add-item/add-item.component';
+import { EditItemComponent } from './components/edit-item/edit-item.component';
 
 const routes: Routes = [
   {path:'' , component: DashboardComponent},
@@ -36,7 +37,7 @@ const routes: Routes = [
   {path:'password-reset' , component: PasswordResetComponent}, 
   {path:'items/:vendorId', component:ItemComponent},
   {path:'item/:vendorId', component:AddItemComponent},
-  {path:'item/edit/:itemId', component:AddItemComponent},
+  {path:'item/edit/:itemId', component:EditItemComponent},
   {path:'vendors', component:VendorListComponent},
 
 ];
