@@ -18,8 +18,8 @@ export class AdminReportPageComponent implements OnInit {
 
   // CONSTANTS
   TOTAL_PROFIT = "Total Profit";
-  ORDERS_COMPLETED = "Orders Completed";
   MOST_POPULAR_ITEMS = "Most Popular Items";
+  DAILY_REPORT = "Daily Report";
 
   // Form Variables
   vendorFormGroup: FormGroup = this.formBuilder.group({vendorControl: ['']});
@@ -35,10 +35,10 @@ export class AdminReportPageComponent implements OnInit {
 
   // Form Selections
   vendors: Vendor[];
-  reportTypes: String[] = [this.TOTAL_PROFIT, this.MOST_POPULAR_ITEMS, this.ORDERS_COMPLETED,
+  reportTypes: String[] = [this.TOTAL_PROFIT, this.MOST_POPULAR_ITEMS, this.DAILY_REPORT,
                           this.TOTAL_PROFIT + " + " + this.MOST_POPULAR_ITEMS, 
-                          this.MOST_POPULAR_ITEMS + " + " + this.ORDERS_COMPLETED,
-                          this.TOTAL_PROFIT + " + " + this.MOST_POPULAR_ITEMS + " + " + this.ORDERS_COMPLETED];
+                          this.MOST_POPULAR_ITEMS + " + " + this.DAILY_REPORT,
+                          this.TOTAL_PROFIT + " + " + this.MOST_POPULAR_ITEMS + " + " + this.DAILY_REPORT];
   
   //  Total Profit Per Item | Pie Chart 
   public pieChartOptions: ChartOptions<'pie'> = {
@@ -60,7 +60,7 @@ export class AdminReportPageComponent implements OnInit {
     { data: [ ], label: 'Most Popular Items' }
   ];
 
-  // Orders Completed Per Day | Bar Chart
+  // Daily Report | Bar Chart
   public barChartOptions: ChartConfiguration<'bar'>['options'] = {
     responsive: false,
   };
@@ -94,13 +94,14 @@ export class AdminReportPageComponent implements OnInit {
    */
   generateReport(stepper:MatStepper): void {
     if (this.vendorFormControl.value !== "" && this.typeFormControl.value !== "") {
+      let chartTypes = this.typeFormControl.value.split(" + ");
+
       this.requestService.fetchRequestsByVendorId(this.vendorFormControl.value['vendorId']).subscribe({
         next: (requests) => {
-          let chartTypes = this.typeFormControl.value.split(" + ");
-
           // TOTAL PROFIT REPORT
           if(chartTypes.includes(this.TOTAL_PROFIT)) {
             this.generateTotalProfitReport(requests);
+            this.displayProfit = true;
           } else {
             this.displayProfit = false;
           }
@@ -113,8 +114,8 @@ export class AdminReportPageComponent implements OnInit {
             this.displayPopular = false;
           }
 
-          // ORDERS COMPLETED BY DATE REPORT
-          if(chartTypes.includes(this.ORDERS_COMPLETED)) {
+          // DAILY REPORT
+          if(chartTypes.includes(this.DAILY_REPORT)) {
             this.generateOrdersCompletedReport(requests);
             this.displayOrders = true;
           } else {
@@ -133,7 +134,6 @@ export class AdminReportPageComponent implements OnInit {
    * @param requests 
    */
   generateTotalProfitReport(requests: Request[]) {
-    this.displayProfit = true;
     requests.forEach((request) => {
       if (request.status == "APPROVED") {
           this.requestItemService.fetchRequestItemsByRequestId(request.requestId).subscribe({
@@ -179,7 +179,6 @@ export class AdminReportPageComponent implements OnInit {
    * @param requests 
    */
   generateMostPopularReport(requests: Request[]) {
-    this.displayProfit = true;
     requests.forEach((request) => {
       if (request.status == "APPROVED") {
           this.requestItemService.fetchRequestItemsByRequestId(request.requestId).subscribe({
@@ -225,13 +224,12 @@ export class AdminReportPageComponent implements OnInit {
    * @param requests 
    */
   generateOrdersCompletedReport(requests: Request[]) {
-    this.displayProfit = true;
     this.populateBarChartLabels(requests);
     this.populateBarChartData(requests);
   }
 
   /**
-   * Populate bar chart's labels for orders completed per day report
+   * Populate bar chart's labels for daily report
    * @param requests 
    */
   populateBarChartLabels(requests: Request[]) {
@@ -245,27 +243,25 @@ export class AdminReportPageComponent implements OnInit {
   }
 
   /**
-   * Populate bar chart's data for orders completed per day report
+   * Populate bar chart's data for daily report
    * @param requests 
    */
   populateBarChartData(requests: Request[]) {
     requests.forEach((request) => {
-      let labelIndex = this.doughnutChartLabels.indexOf(request.endTime);
-      requests.forEach((request) => {
-        if (request.status == "APPROVED") {
-          this.barChartData.labels.push(request.endTime);
-        }
+      let labelIndex = this.barChartData.labels.indexOf(request.endTime);
+      if (!this.barChartData.datasets[0].data[labelIndex]) {
+        this.barChartData.datasets[0].data.splice(labelIndex, 0, 1);
+      } else {
+        let currentRequestTotal = this.barChartData.datasets[0].data[labelIndex] + 1;
+        this.barChartData.datasets[0].data.splice(labelIndex, 1, currentRequestTotal);
+      }
 
-        if (!this.barChartData.datasets[0].data[labelIndex]) {
-          this.barChartData.datasets[0].data.splice(labelIndex, 0, 1);
-          this.barChartData.datasets[1].data.splice(labelIndex, 0, request.totalPrice);
-        } else {
-          let currentRequestTotal = this.barChartData.datasets[0].data[labelIndex] + 1;
-          let currentRequestProfitTotal = this.barChartData.datasets[1].data[labelIndex] + request.totalPrice;
-          this.barChartData.datasets[0].data.splice(labelIndex, 1, currentRequestTotal);
-          this.barChartData.datasets[1].data.splice(labelIndex, 1, currentRequestProfitTotal);
-        }
-      });
+      if (!this.barChartData.datasets[1].data[labelIndex]) {
+        this.barChartData.datasets[1].data.splice(labelIndex, 0, request.totalPrice);
+      } else {
+        let currentRequestProfitTotal = this.barChartData.datasets[1].data[labelIndex] + request.totalPrice;
+        this.barChartData.datasets[1].data.splice(labelIndex, 1, currentRequestProfitTotal);
+      }
     });
   }
 }
