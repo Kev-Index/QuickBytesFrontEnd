@@ -44,31 +44,40 @@
 <div id="reportBlock">
 
   <!-- Total Profit Per Item | Pie Chart -->
-  <canvas baseChart class="report" *ngIf="displayProfit == true"
-    [type]="'pie'"
-    [datasets]="pieChartDatasets"
-    [labels]="pieChartLabels"
-    [options]="pieChartOptions"
-    [plugins]="pieChartPlugins"
-    [legend]="pieChartLegend">
-  </canvas>
+  <div class="report" *ngIf="displayProfit == true">
+    Total Profit Per Item
+    <canvas baseChart
+      [type]="'pie'"
+      [datasets]="pieChartDatasets"
+      [labels]="pieChartLabels"
+      [options]="pieChartOptions"
+      [plugins]="pieChartPlugins"
+      [legend]="pieChartLegend">
+    </canvas>
+  </div>
 
   <!-- Most Popular Items | Doughnut Chart -->
-  <canvas baseChart class="report" *ngIf="displayPopular == true"
+  <div class="report" *ngIf="displayPopular == true">
+    Most Popular Items
+  <canvas baseChart
     [labels]="doughnutChartLabels"
     [datasets]="doughnutChartDatasets"
     [options]="doughnutChartOptions"
     [legend]="true"
     [type]="'doughnut'">
   </canvas>
+</div>
 
   <!-- Orders Completed Per Day | Bar Chart -->
-  <canvas baseChart class="report" *ngIf="displayOrders == true"
-    [data]="barChartData"
-    [options]="barChartOptions"
-    [plugins]="barChartPlugins"
-    [legend]="barChartLegend"
-    [type]="'bar'">
-  </canvas>
+  <div class="report" *ngIf="displayOrders == true">
+    Orders Completed Per Day
+    <canvas baseChart
+      [data]="barChartData"
+      [options]="barChartOptions"
+      [plugins]="barChartPlugins"
+      [legend]="barChartLegend"
+      [type]="'bar'">
+    </canvas>
+  </div>
 
 </div>
