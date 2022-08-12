@@ -220,34 +220,52 @@ export class AdminReportPageComponent implements OnInit {
     });
   }
 
+  /**
+   * Fetch all requests & populate bar chart with fetched data
+   * @param requests 
+   */
   generateOrdersCompletedReport(requests: Request[]) {
     this.displayProfit = true;
+    this.populateBarChartLabels(requests);
+    this.populateBarChartData(requests);
+  }
+
+  /**
+   * Populate bar chart's labels for orders completed per day report
+   * @param requests 
+   */
+  populateBarChartLabels(requests: Request[]) {
     requests.forEach((request) => {
       if (request.status == "APPROVED") {
-          this.requestItemService.fetchRequestItemsByRequestId(request.requestId).subscribe({
-            next: (requestItems) => {
-              this.populateBarChartLabels(requestItems);
-              this.populateBarChartData(requestItems);
-            },
-            error: (e) => { }
-          });
+        this.barChartData.labels.push(request.endTime);
       }
     });
+    this.barChartData.labels = [...new Set(this.barChartData.labels)];
+    console.log(this.barChartData.labels);
   }
 
   /**
    * Populate bar chart's data for orders completed per day report
-   * @param requestItems 
+   * @param requests 
    */
-  populateBarChartLabels(requestItems: RequestItem[]) {
-    throw new Error('Method not implemented.');
-  }
+  populateBarChartData(requests: Request[]) {
+    requests.forEach((request) => {
+      let labelIndex = this.doughnutChartLabels.indexOf(request.endTime);
+      requests.forEach((request) => {
+        if (request.status == "APPROVED") {
+          this.barChartData.labels.push(request.endTime);
+        }
 
-  /**
-   * Populate bar chart's data for orders completed per day report
-   * @param requestItems 
-   */
-  populateBarChartData(requestItems: RequestItem[]) {
-    throw new Error('Method not implemented.');
+        if (!this.barChartData.datasets[0].data[labelIndex]) {
+          this.barChartData.datasets[0].data.splice(labelIndex, 0, 1);
+          this.barChartData.datasets[1].data.splice(labelIndex, 0, request.totalPrice);
+        } else {
+          let currentRequestTotal = this.barChartData.datasets[0].data[labelIndex] + 1;
+          let currentRequestProfitTotal = this.barChartData.datasets[1].data[labelIndex] + request.totalPrice;
+          this.barChartData.datasets[0].data.splice(labelIndex, 1, currentRequestTotal);
+          this.barChartData.datasets[1].data.splice(labelIndex, 1, currentRequestProfitTotal);
+        }
+      });
+    });
   }
 }
