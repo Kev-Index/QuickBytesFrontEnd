@@ -17,7 +17,7 @@ export class ItemComponent implements OnInit {
 
   ngOnInit(): void {
     this.vendorId= this.actRoute.snapshot.paramMap.get('vendorId');
-    this.size = 12;
+    this.size = 5;
     this.itemService.getItemsByVendor(this.vendorId, 0,this.size).subscribe(data=>{
       this.items= data;
     });

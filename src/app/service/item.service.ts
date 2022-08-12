@@ -21,8 +21,8 @@ export class ItemService {
     return this.http.get<Item[]>(this.getVendorItemsApi+vendorId +'?page='+page+'&size='+size);
   }
 
-  getItem(itemId:string):Observable<Item>{
-    return this.http.get<Item>(this.singleItemApi+itemId);
+  getItem(itemId:string):Observable<ItemDto>{
+    return this.http.get<ItemDto>(this.singleItemApi+itemId);
   }
 
   addItem(itemDto:ItemDto):Observable<any>{
