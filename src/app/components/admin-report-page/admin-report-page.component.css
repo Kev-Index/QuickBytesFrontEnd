@@ -23,6 +23,6 @@
     flex-direction: row;
     width: 95%;
     padding: 25px;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-around;
 }
