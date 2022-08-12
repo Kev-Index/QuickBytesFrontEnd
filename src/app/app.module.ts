@@ -36,6 +36,8 @@ import { SignupComponent } from './auth/component/signup/signup.component';
 import { CustomerCartPageComponent } from './components/customer-cart-page/customer-cart-page.component';
 import { AdminReportPageComponent } from './components/admin-report-page/admin-report-page.component';
 import { VendorOrderApprovalPageComponent } from './components/vendor-order-approval-page/vendor-order-approval-page.component';
+import { AddItemComponent } from './components/add-item/add-item.component';
+import { EditItemComponent } from './components/edit-item/edit-item.component';
 
 
 @NgModule({
@@ -59,7 +61,9 @@ import { VendorOrderApprovalPageComponent } from './components/vendor-order-appr
     SignupComponent,
     CustomerCartPageComponent,
     AdminReportPageComponent,
-    VendorOrderApprovalPageComponent
+    VendorOrderApprovalPageComponent,
+    AddItemComponent,
+    EditItemComponent
   ],
   imports: [
     BrowserModule,
