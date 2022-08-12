@@ -3,11 +3,12 @@
 <div *ngFor="let i of items">
     Name: <strong>{{i.name}}</strong> &nbsp;&nbsp;
     Price: {{i.price}}&nbsp;&nbsp;
-    Quantity: {{i.quantity}}
+    Quantity: {{i.quantity}}&nbsp;&nbsp;
+    <a href="item/edit/{{i.itemId}}">Edit Item</a>
   <hr>
 </div>
 <br><br>
 <div>
-<a href="Javascript:void" (click)="prev()">Prev </a> &nbsp;&nbsp;&nbsp;&nbsp;
-<a href="Javascript:void" (click)="next()">Next </a>
+  <a href="Javascript:void" (click)="prev()">Prev </a> &nbsp;&nbsp;&nbsp;&nbsp;
+  <a href="Javascript:void" (click)="next()">Next </a>
 </div>
