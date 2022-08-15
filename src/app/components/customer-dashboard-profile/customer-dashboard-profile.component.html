@@ -1,5 +1,5 @@
 <p>Customer Dashboard Profile</p>
-<h2> Hello, {{customer.firstName}} </h2>
+<h2> Hello, {{customer?.firstName}} </h2>
 <form class="example-form" (submit)="onFormSubmit()" [formGroup]="customerProfile">
     <div>
         <h2>Infomation: </h2>

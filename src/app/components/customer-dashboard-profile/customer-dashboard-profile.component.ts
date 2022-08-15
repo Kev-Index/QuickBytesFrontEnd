@@ -20,6 +20,32 @@ export class CustomerDashboardProfileComponent implements OnInit {
   // calling API do enxt error
   // Subscribe to subject, not need for next
   ngOnInit(): void {
+    this.customerProfile = new FormGroup ({ 
+      employeeId: new FormControl(''),
+      firstName: new FormControl(''),
+      lastName: new FormControl(''),
+      username: new FormControl(''),
+      password: new FormControl(''),
+      balance: new FormControl(''),
+
+      middleName: new FormControl(''),
+      email: new FormControl(''),
+      phoneNumber: new FormControl(''),
+      birthday: new FormControl(''),
+      preferedName: new FormControl(''),
+
+      addressLine1: new FormControl(''),
+      addressLine2: new FormControl(''),
+      suite: new FormControl(''),
+      country: new FormControl(''),
+      state: new FormControl(''),
+      city: new FormControl(''),
+      postalCode: new FormControl(''),
+      termAccepted: new FormControl(''),
+      emailVerified: new FormControl(''),
+      twoFactorAuth: new FormControl(''),
+      phoneVerified: new FormControl('')
+    });
     this.customerService.getCustomerById().subscribe({
       next: (data)=>{
         this.customer = data;
@@ -52,10 +78,11 @@ export class CustomerDashboardProfileComponent implements OnInit {
         });
       }
     })
+    /*
     this.customerService.customer$.subscribe(data=>{
-      this.customer=data;  
-
+      this.customer=data;
     });
+    */ 
   }
   onFormSubmit(){
     console.log(this.customer);
