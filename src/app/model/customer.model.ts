@@ -2,6 +2,7 @@ import { UserInfo } from "../auth/model/userInfo.model";
 
 
 export class Customer {
+
     customerId?:number;
     employeeId?:number;
     firstName:string;
@@ -26,4 +27,6 @@ export class Customer {
     emailVerified:boolean;
     twoFactorAuth:boolean;
     phoneVerified:boolean;
+
 }
+

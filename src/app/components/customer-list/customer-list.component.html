@@ -1,0 +1,14 @@
+<h1>List of Customers</h1>
+
+<div *ngFor="let c of customers">
+    EmployeeId: <strong>{{c.employeeId}}</strong> <br>
+    First Name: {{c.firstName}}<br>
+    Last Name: {{c.lastName}}<br>
+    Balance: {{c.balance}}<br>
+  <hr>
+</div>
+<br><br>
+<div>
+  <a href="Javascript:void" (click)="prev()">Prev </a> &nbsp;&nbsp;&nbsp;&nbsp;
+  <a href="Javascript:void" (click)="next()">Next </a>
+</div>

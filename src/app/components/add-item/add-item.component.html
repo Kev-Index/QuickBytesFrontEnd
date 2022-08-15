@@ -1,0 +1,21 @@
+<h1>Add an Item to Your Menu:</h1>
+<form (submit)="onFormSubmit()"
+[formGroup]="itemForm">
+
+  <label>Enter Name: </label>
+  <input type="text" name="name"
+        formControlName="name">
+  <br /><br />
+  <label>Enter Price: </label>
+  <input type="text" name="price"
+        formControlName="price">
+  <br /><br />
+
+  <label>Enter Quantity: </label>
+  <input type="text" name="quantity"
+        formControlName="quantity">
+  <br /><br />
+
+  <input type="submit" value="Add Item"
+        [disabled]="!itemForm.valid">
+</form>

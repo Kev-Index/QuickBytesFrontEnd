@@ -9,8 +9,10 @@ export class Item {
 }
 
 export class ItemDto{
-    itemId: number;
+    itemId?:string;
+    vendorId?:string;
     name:string;
     price:number;
     quantity:number;
+
 }
