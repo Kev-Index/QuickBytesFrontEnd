@@ -1,0 +1,37 @@
+.tab-body {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 15px;
+    padding-left: 15px;
+    width: 75%;
+    justify-content: space-between;
+}
+
+.card {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 15px;
+    width: 75%;
+    justify-content: space-between;
+}
+
+.mat-card-subtitle {
+    margin: 5px 0px 5px 0px; 
+}
+
+.mat-card-actions {
+    align-self: center;
+    padding: 0px;
+}
+
+.pending-items-container {
+    padding-top: 15px;
+}

@@ -1,0 +1,28 @@
+.tab-icon {
+    margin-left: 15px;
+}
+
+.tab-content {
+    margin-top: 25px;
+}
+
+.report {
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    align-items: center;
+}
+.report > canvas {
+    display: flex;
+    padding-top: 15px;
+    width: 100%;
+}
+
+#reportBlock {
+    display: flex;
+    flex-direction: row;
+    width: 95%;
+    padding: 25px;
+    align-items: flex-start;
+    justify-content: space-around;
+}

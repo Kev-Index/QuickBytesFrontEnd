@@ -2,6 +2,12 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+a { color: blueviolet; }
 a:visited { color: mediumslateblue; }
 a:hover { color: orange }
 a:active { color: crimson; }
+
+.mat-tab-label {
+    min-width: 50% !important;
+    padding-bottom: 25px;
+}

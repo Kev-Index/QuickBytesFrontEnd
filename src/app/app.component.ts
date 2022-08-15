@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component,  OnInit, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { UserInfo, UserSecurityDto } from './auth/model/user.model';
 import { AuthService } from './auth/service/auth.service';
@@ -8,7 +8,7 @@ import { AuthService } from './auth/service/auth.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit,OnDestroy{
+export class AppComponent implements OnInit{
   @ViewChild('sidenav') sidenav: MatSidenav;
   title = 'QuickBytes';
   user:UserSecurityDto;
@@ -16,25 +16,19 @@ export class AppComponent implements OnInit,OnDestroy{
   role:string;
   roleId:number;
   userId:number;
-  
   constructor (private authService: AuthService){
-
+  this.role = localStorage.getItem("role");
+  this.username = localStorage.getItem("username");
   }
 
   ngOnInit(): void {
-    this.username = localStorage.getItem("username");
+    
     if(this.username != null){
       this.role = localStorage.getItem("role");
       this.userId = parseInt(localStorage.getItem('userId'));
       this.roleId = parseInt(localStorage.getItem('roleId'));
     }
   }
-  ngOnDestroy(): void {
-    this.authService.roleId$.unsubscribe();
-    this.authService.userId$.unsubscribe();
-  }
-
- 
 
   close(page:string) {
     this.title=page;
