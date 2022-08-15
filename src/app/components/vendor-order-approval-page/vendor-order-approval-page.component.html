@@ -3,7 +3,7 @@
         <mat-card-header>
             <mat-card-title>Order #{{request.requestId}}</mat-card-title>
             <mat-card-subtitle>Order Placed: {{request.orderTime}}</mat-card-subtitle>
-            <mat-card-subtitle>Total Price: {{request.totalPrice}}</mat-card-subtitle>
+            <mat-card-subtitle>Total Price: ${{request.totalPrice}}</mat-card-subtitle>
             <mat-card-subtitle class="pending-items-container">
                 <mat-card-subtitle *ngFor="let requestItem of pendingRequestItems[pendingRequests.indexOf(request)+1]">
                     {{requestItem.item.name}}
