@@ -52,8 +52,7 @@ export class LoginComponent implements OnInit {
             this.authService.role$.next(data.role);
             this.authService.userId$.next(data.id);
             this.uid = data.id;
-            console.log(this.uid);
-            this.roleChoose(this.uid);
+            this.setRoleId();
             this.router.navigateByUrl("/"+ data.role);
             
             this.setRoleId();
