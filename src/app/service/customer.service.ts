@@ -9,11 +9,19 @@ import { Customer } from '../model/customer.model';
 export class CustomerService {
   getCustomerApi:string;
   putCustomerApi:string;
+  getCustomersApi:string;
+  page$ = new BehaviorSubject<number>(0);
+  message$ = new BehaviorSubject<string>('');
   customer$ = new ReplaySubject<Customer>(1);
   constructor(private http:HttpClient) {
     this.getCustomerApi="http://localhost:8989/customer/10";
     this.putCustomerApi="http://localhost:8989/customer/10";
+    this.getCustomersApi = "http://localhost:8989/customer";
    }
+   getCustomers(page:number, size:number):Observable<Customer[]>{
+
+    return this.http.get<Customer[]>(this.getCustomersApi +'?page='+page+'&size='+size);
+  }
    getCustomerById():Observable<Customer>{
     return this.http.get<Customer>(this.getCustomerApi);
   }
