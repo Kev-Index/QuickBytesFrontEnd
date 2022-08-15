@@ -31,7 +31,7 @@ export class CustomerCartPageComponent implements OnInit {
               private requestComboService: RequestComboService, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
-    this.requestService.fetchRequestByCustomerId(this.authService.roleId$.value).subscribe({
+    this.requestService.fetchRequestByCustomerId(parseInt(localStorage.getItem('roleId'))).subscribe({
       next: (data) => {
         this.requests = data;
         this.fetchActiveRequest();

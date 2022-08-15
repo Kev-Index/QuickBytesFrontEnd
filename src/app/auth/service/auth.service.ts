@@ -14,7 +14,6 @@ export class AuthService {
   username: string;
   username$ = new BehaviorSubject<string>('');
   user$ = new BehaviorSubject<string>('');
-  roleId$ = new BehaviorSubject<number>(null);
 
   message$ = new BehaviorSubject<string>('');
   loginApi: string;

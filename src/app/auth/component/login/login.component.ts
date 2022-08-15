@@ -46,7 +46,6 @@ export class LoginComponent implements OnInit {
             this.router.navigateByUrl("/"+ data.role);
             
             this.setRoleId();
-            console.log(this.authService.roleId$);
         },
         error: (e)=> {
           this.authService.message$.next("Invalid Credentials");
@@ -58,7 +57,7 @@ export class LoginComponent implements OnInit {
     if (this.user.role == this.ROLES[0]) {
       this.authService.getCustomerByUserId(this.user.id).subscribe({
         next: (data) => {
-          this.authService.roleId$.next(data.customerId);
+          localStorage.setItem('roleId',data.customerId.toString());
         },
         error: (e) => { }
       });
@@ -66,7 +65,7 @@ export class LoginComponent implements OnInit {
     if (this.user.role == this.ROLES[1]) {
       this.authService.getVendorByUserId(this.user.id).subscribe({
         next: (data) => {
-          this.authService.roleId$.next(data.vendorId);
+          localStorage.setItem('roleId',data.vendorId.toString());
         },
         error: (e) => { }
       });
@@ -74,7 +73,7 @@ export class LoginComponent implements OnInit {
     if (this.user.role == this.ROLES[2]) {
       this.authService.getAdminByUserId(this.user.id).subscribe({
         next: (data) => {
-          this.authService.roleId$.next(data.id);
+          localStorage.setItem('roleId',data.id.toString());
         },
         error: (e) => { }
       });
