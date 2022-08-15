@@ -15,6 +15,7 @@ export class RequestService {
    approveRequestApi:string;
    denyRequestApi:string;
    getPostApi:string;
+   updateRequestPriceApi:string;
 
    constructor(private http:HttpClient) {
       this.getRequestsApi = environment.serverUrl + '/requests';
@@ -24,6 +25,7 @@ export class RequestService {
       this.approveRequestApi = environment.serverUrl + '/request/approve';
       this.denyRequestApi = environment.serverUrl + '/request/deny';
       this.getPostApi = environment.serverUrl + '/request';
+      this.updateRequestPriceApi = environment.serverUrl + '/request/price';
    }
 
    fetchRequests():Observable<Request[]> {
@@ -52,5 +54,9 @@ export class RequestService {
 
    postRequest(request:Request,vendorId:number,customerId:number):Observable<any> {
       return this.http.post<any>(this.getPostApi+"/"+vendorId+"/"+customerId,request);
+   }
+
+   updateRequestPrice(requestId:number,price:number):Observable<any> {
+      return this.http.put<any>(this.updateRequestPriceApi+"/"+requestId+"/"+price, { });
    }
 }

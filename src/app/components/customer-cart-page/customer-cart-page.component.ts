@@ -80,11 +80,16 @@ export class CustomerCartPageComponent implements OnInit {
     });
   }
 
-  removeItem(requestItemId: number): void {
-    this.requestItemService.deleteRequestItemById(requestItemId).subscribe({
+  removeItem(requestItem: RequestItem): void {
+    this.requestItemService.deleteRequestItemById(requestItem.requestItemId).subscribe({
       next: (data) => { 
-        location.reload();
-        
+        let newRequestItemPrice = requestItem.request.totalPrice - requestItem.item.price;
+        this.requestService.updateRequestPrice(requestItem.request.requestId,newRequestItemPrice).subscribe({
+          next: (data) => { 
+            location.reload();
+          },
+          error: (e) => { }
+        });
       },
       error: (e) => { }
     });
