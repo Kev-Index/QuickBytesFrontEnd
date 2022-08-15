@@ -12,6 +12,8 @@ export class RequestService {
    getRequestsByCustomerIdApi:string;
    getRequestsByVendorIdApi:string;
    pendRequestApi:string;
+   approveRequestApi:string;
+   denyRequestApi:string;
    getPostApi:string;
 
    constructor(private http:HttpClient) {
@@ -19,6 +21,8 @@ export class RequestService {
       this.getRequestsByCustomerIdApi = environment.serverUrl + '/request/cid';
       this.getRequestsByVendorIdApi = environment.serverUrl + '/request/vid';
       this.pendRequestApi = environment.serverUrl + '/request/send';
+      this.approveRequestApi = environment.serverUrl + '/request/approve';
+      this.denyRequestApi = environment.serverUrl + '/request/deny';
       this.getPostApi = environment.serverUrl + '/request';
    }
 
@@ -36,6 +40,14 @@ export class RequestService {
 
    pendRequest(requestId:number):Observable<any> {
       return this.http.put<any>(this.pendRequestApi+"/"+requestId, { });
+   }
+
+   approveRequest(requestId:number):Observable<any> {
+      return this.http.put<any>(this.approveRequestApi+"/"+requestId, { });
+   }
+
+   denyRequest(requestId:number):Observable<any> {
+      return this.http.put<any>(this.denyRequestApi+"/"+requestId, { });
    }
 
    postRequest(request:Request,vendorId:number,customerId:number):Observable<any> {
