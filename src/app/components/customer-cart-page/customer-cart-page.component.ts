@@ -80,4 +80,14 @@ export class CustomerCartPageComponent implements OnInit {
     });
   }
 
+  removeItem(requestItemId: number): void {
+    this.requestItemService.deleteRequestItemById(requestItemId).subscribe({
+      next: (data) => { 
+        location.reload();
+        
+      },
+      error: (e) => { }
+    });
+  }
+
 }
