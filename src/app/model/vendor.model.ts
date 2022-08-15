@@ -1,7 +1,7 @@
 import { UserInfo } from "../auth/model/user.model";
 
 export class Vendor {
-    vendorId: string;
+    vendorId: number;
     name: string;
     user: UserInfo;
 }

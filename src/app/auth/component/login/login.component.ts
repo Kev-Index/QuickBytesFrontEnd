@@ -58,7 +58,7 @@ export class LoginComponent implements OnInit {
     if (this.user.role == this.ROLES[0]) {
       this.authService.getCustomerByUserId(this.user.id).subscribe({
         next: (data) => {
-          this.authService.roleId$.next(data.userId.id);
+          this.authService.roleId$.next(data.customerId);
         },
         error: (e) => { }
       });
@@ -66,7 +66,7 @@ export class LoginComponent implements OnInit {
     if (this.user.role == this.ROLES[1]) {
       this.authService.getVendorByUserId(this.user.id).subscribe({
         next: (data) => {
-          this.authService.roleId$.next(data.user.id);
+          this.authService.roleId$.next(data.vendorId);
         },
         error: (e) => { }
       });
@@ -74,7 +74,7 @@ export class LoginComponent implements OnInit {
     if (this.user.role == this.ROLES[2]) {
       this.authService.getAdminByUserId(this.user.id).subscribe({
         next: (data) => {
-          this.authService.roleId$.next(data.userId.id);
+          this.authService.roleId$.next(data.id);
         },
         error: (e) => { }
       });
