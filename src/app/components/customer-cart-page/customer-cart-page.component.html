@@ -1,0 +1,85 @@
+<mat-tab-group [(selectedIndex)]="matTabIndex">
+    <mat-tab>
+      <ng-template mat-tab-label>
+        Order Confirmation
+        <mat-icon class="tab-icon">receipt</mat-icon>
+      </ng-template>
+      <!--order items as cards, subtotal, preparation time = item#*3min, -->
+      <div class="tab-content">
+        <div class="tab-body" *ngIf="requestItems != null">
+          <div class="mat-h1">Your Items</div>
+
+          <mat-card class="card" *ngFor="let requestItem of requestItems">
+            <mat-card-header>
+              <div mat-card-avatar></div>
+              <div class="header">
+                <mat-card-title>{{requestItem.item.name}}</mat-card-title>
+              <mat-card-subtitle>{{requestItem.item.price}}</mat-card-subtitle>
+              </div>
+            </mat-card-header>
+            <mat-card-actions>
+              <button mat-button (click)="removeItem(requestItem)"><mat-icon>remove_circle_outline</mat-icon></button>
+            </mat-card-actions>
+          </mat-card>
+
+          <mat-card class="card" *ngFor="let requestCombo of requestCombos">
+            <mat-card-header>
+              <div mat-card-avatar></div>
+              <div class="header">
+                <mat-card-title>{{requestCombo.comboId.name}}</mat-card-title>
+              <mat-card-subtitle>{{requestCombo.comboId.price}}</mat-card-subtitle>
+              </div>
+            </mat-card-header>
+            <mat-card-actions>
+              <button mat-button><mat-icon>remove_circle_outline</mat-icon></button>
+            </mat-card-actions>
+          </mat-card>
+
+          <div class="price-body">
+            <div class="mat-h2">Total: {{activeRequest.totalPrice}}</div>
+            <button mat-raised-button color="primary" (click)="confirmOrder()">
+              Next
+            </button>
+          </div>
+        </div>
+      </div>
+    </mat-tab>
+  
+    <mat-tab>
+      <ng-template mat-tab-label>
+        Checkout
+        <mat-icon class="tab-icon">check_circle_outline</mat-icon>
+      </ng-template>
+      <!--expected taxes + balance, checkout button->receipt dialog-->
+      <div class="tab-content">
+        <div class="tab-body" *ngIf="requestItems != null">
+          <div class="mat-h1">Your Order</div>
+
+          <mat-card class="order">
+            <mat-card-header>
+              <div class="header">
+                <mat-card-title>Order #: {{activeRequest.requestId}}</mat-card-title>
+                <mat-card-subtitle class="mat-h3">From: {{activeRequest.vendor.name}}</mat-card-subtitle>
+              </div>
+            </mat-card-header>
+            <div class="order-items" *ngFor="let requestItem of requestItems">
+              <div>
+                {{requestItem.item.name}}
+              </div>
+              <div>
+                {{requestItem.item.price}}
+              </div>
+            </div>
+            <div class="order-checkout">
+              <div class="mat-h3">Total: {{activeRequest.totalPrice}}</div>
+              <button mat-raised-button color="primary" (click)="placeOrder()">
+                Place Order
+              </button>
+            </div>
+          </mat-card>
+        </div>
+      </div>
+    </mat-tab>
+
+    <!--receipt as a dialog -->
+  </mat-tab-group>

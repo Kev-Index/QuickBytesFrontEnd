@@ -11,6 +11,8 @@ import { AuthService } from '../../service/auth.service';
 })
 export class LoginComponent implements OnInit {
 
+  ROLES = ['customer', 'vendor', 'admin'];
+
   message: string;
   loginForm: FormGroup;
   username: string;
@@ -39,8 +41,11 @@ export class LoginComponent implements OnInit {
             this.user = data;
             localStorage.setItem('username',this.user.username);
             localStorage.setItem('credentials', btoa(this.username + ':' + this.password));
+            localStorage.setItem('role',this.user.role);
             this.authService.username$.next(this.user.username);
             this.router.navigateByUrl("/"+ data.role);
+            
+            this.setRoleId();
         },
         error: (e)=> {
           this.authService.message$.next("Invalid Credentials");
@@ -48,5 +53,31 @@ export class LoginComponent implements OnInit {
       });
   }
 
+  setRoleId() {
+    if (this.user.role == this.ROLES[0]) {
+      this.authService.getCustomerByUserId(this.user.id).subscribe({
+        next: (data) => {
+          localStorage.setItem('roleId',data.customerId.toString());
+        },
+        error: (e) => { }
+      });
+    } 
+    if (this.user.role == this.ROLES[1]) {
+      this.authService.getVendorByUserId(this.user.id).subscribe({
+        next: (data) => {
+          localStorage.setItem('roleId',data.vendorId.toString());
+        },
+        error: (e) => { }
+      });
+    }
+    if (this.user.role == this.ROLES[2]) {
+      this.authService.getAdminByUserId(this.user.id).subscribe({
+        next: (data) => {
+          localStorage.setItem('roleId',data.id.toString());
+        },
+        error: (e) => { }
+      });
+    }
+  }
 }
 

@@ -1,6 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { Customer } from 'src/app/model/customer.model';
+import { Vendor } from 'src/app/model/vendor.model';
+import { Admin } from 'src/app/model/admin.model';
 import { environment } from 'src/environments/environment';
 import { UserInfo, UserSecurityDto } from '../model/user.model';
 
@@ -8,7 +11,6 @@ import { UserInfo, UserSecurityDto } from '../model/user.model';
   providedIn: 'root'
 })
 export class AuthService {
-
   username: string;
   username$ = new BehaviorSubject<string>('');
   user$ = new BehaviorSubject<string>('');
@@ -21,6 +23,9 @@ export class AuthService {
   userSecurityInfoApi: string;
   securityAnswerValidationApi:string;
   passwordResetAPi: string;
+  customerByUserIdApi: string;
+  vendorByUserIdApi: string;
+  adminByUserIdApi: string;
 
   constructor(private http: HttpClient) {
     this.username='';
@@ -31,6 +36,9 @@ export class AuthService {
     this.userSecurityInfoApi= environment.serverUrl + '/user/security/info/';
     this.securityAnswerValidationApi= environment.serverUrl + '/validate-security-answer/';
     this.passwordResetAPi= environment.serverUrl +'/user/reset-password/';
+    this.customerByUserIdApi= environment.serverUrl + '/customer/single/user/';
+    this.vendorByUserIdApi= environment.serverUrl + '/vendor/single/user/';
+    this.adminByUserIdApi= environment.serverUrl + '/admin/single/user/';
   }
 
   isLoggedIn(): boolean{
@@ -68,4 +76,17 @@ export class AuthService {
     let encodedText= btoa(username + '--'+password);
      return this.http.put(this.passwordResetAPi + encodedText,{});
  }
+
+ getCustomerByUserId(userId:number):Observable<Customer> {
+    return this.http.get<Customer>(this.customerByUserIdApi + userId);
+ }
+
+ getVendorByUserId(userId:number):Observable<Vendor> {
+  return this.http.get<Vendor>(this.vendorByUserIdApi + userId);
+}
+
+getAdminByUserId(userId:number):Observable<Admin> {
+  return this.http.get<Admin>(this.adminByUserIdApi + userId);
+}
+
 }

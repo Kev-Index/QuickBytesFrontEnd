@@ -9,6 +9,7 @@ import { MatSidenav } from '@angular/material/sidenav';
 export class AppComponent {
   @ViewChild('sidenav') sidenav: MatSidenav;
   title = 'QuickBytes';
+  role = localStorage.getItem('role');
 
   close(page:string) {
     this.title=page;
