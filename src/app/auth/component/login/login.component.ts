@@ -54,8 +54,9 @@ export class LoginComponent implements OnInit {
             this.authService.userId$.next(data.id);
             this.uid = data.id;
             this.setRoleId();
-            location.reload();
-            this.router.navigateByUrl("/"+ data.role);
+            
+            this.router.navigateByUrl("/"+ data.role).then((value)=>{location.reload()});
+            
         },
         error: (e)=> {
           this.authService.message$.next("Invalid Credentials");

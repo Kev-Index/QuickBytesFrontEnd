@@ -17,12 +17,12 @@ export class AppComponent implements OnInit{
   roleId:number;
   userId:number;
   constructor (private authService: AuthService){
-  this.role = localStorage.getItem("role");
-  this.username = localStorage.getItem("username");
+
   }
 
   ngOnInit(): void {
-    
+    this.username = localStorage.getItem("username");
+
     if(this.username != null){
       this.role = localStorage.getItem("role");
       this.userId = parseInt(localStorage.getItem('userId'));

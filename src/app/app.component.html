@@ -5,26 +5,36 @@
  
     <p><a routerLink="/dashboard" (click)="close('QuickBytes')">Dashboard</a></p>
 
-    <p><a routerLink="/customers" (click)="close('CustomerList')">Customers</a></p>
+    
     <!-- <p><a routerLink="/customer" (click)="close('Customer')">Customer</a></p>
 
     <p><a routerLink="/vendor" (click)="close('Vendor')">Vendor</a></p>
-    <p><a routerLink="/admin" (click)="close('Admin')">Admin</a></p>
+    <p><a routerLink="/admin" (click)="close('Admin')">Admin</a></p> -->
 
     <span *ngIf="this.role == 'vendor' "> 
       <p><a routerLink="/menu/{{this.roleId}}" (click)="close('Menu')">Your Menu</a></p>
       <p><a routerLink="/item/{{this.roleId}}" (click)="close('Add Item')"> Add Item</a></p>
+          <p ><a routerLink="/approval" (click)="close('Approve/Deny Customer Orders')">Approve/Deny Orders</a></p>
     </span>
 
-    <p><a routerLink="/item-combo" (click)="close('Item Combo')">Item Combo</a></p>
+    <span *ngIf="this.role == 'customer' "> 
+      <p ><a routerLink="/cart" (click)="close('Your Cart')">Your Cart</a></p>
+    </span>
+
+    <span *ngIf="this.role == 'admin' "> 
+      <p ><a routerLink="/report" (click)="close('Generate Vendor Report')">Generate Report</a></p>
+      <p><a routerLink="/customers" (click)="close('CustomerList')">Customers</a></p>
+    </span>
+
+    <!-- <p><a routerLink="/item-combo" (click)="close('Item Combo')">Item Combo</a></p>
     <p><a routerLink="/request" (click)="close('Request')">Request</a></p>
     <p><a routerLink="/request-item" (click)="close('Request Item')">Request Item</a></p>
     <p><a routerLink="/item-combo" (click)="close('Request Combo')">Request Combo</a></p>
     <p><a routerLink="/signup" (click)="close('Sign Up')">Sign Up</a> <br />
-    <p><a routerLink="/username-verify" (click)="close('Verify Username')">Verify Username</a></p> -->
-    <p *ngIf="role == 'customer'"><a routerLink="/cart" (click)="close('Your Cart')">Your Cart</a></p>
-    <p *ngIf="role == 'vendor'"><a routerLink="/approval" (click)="close('Approve/Deny Customer Orders')">Approve/Deny Orders</a></p>
-    <p *ngIf="role == 'admin'"><a routerLink="/report" (click)="close('Generate Vendor Report')">Generate Report</a></p>
+    <p><a routerLink="/username-verify" (click)="close('Verify Username')">Verify Username</a></p>
+     -->
+    
+    
     
   </mat-sidenav>
 
@@ -33,7 +43,7 @@
     <mat-toolbar id="header">
         <button mat-button (click)="sidenav.open()">&#9776;</button>
         <p id="title" class="mat-h1">{{title}}</p>
-        <p id="login" *ngIf="role == ''"><a routerLink="/login" (click)="close('Login')">Login</a></p>
+        <p id="login" *ngIf="role == null"><a routerLink="/login" (click)="close('Login')">Login</a></p>
     </mat-toolbar>
 
     <div id="body">
