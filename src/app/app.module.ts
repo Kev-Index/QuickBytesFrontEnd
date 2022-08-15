@@ -26,6 +26,18 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatButtonModule} from '@angular/material/button';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {MatCardModule} from '@angular/material/card';
+import {MatTableModule} from '@angular/material/table';
+import {MatIconModule} from '@angular/material/icon';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import { DashboardCustomerComponent } from './auth/component/dashboard-customer/dashboard-customer.component';
+import { CustomerDashboardProfileComponent } from './components/customer-dashboard-profile/customer-dashboard-profile.component';
+import { CustomerDashboardShoppingcartComponent } from './components/customer-dashboard-shoppingcart/customer-dashboard-shoppingcart.component';
+import { CustomerDashboardShoppingcartProductlistComponent } from './components/customer-dashboard-shoppingcart-productlist/customer-dashboard-shoppingcart-productlist.component';
+import { CustomerDashboardShoppingcartCartComponent } from './components/customer-dashboard-shoppingcart-cart/customer-dashboard-shoppingcart-cart.component';
+
 
 
 @NgModule({
@@ -46,7 +58,12 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
     LogoutComponent,
     UsernameVerifyComponent,
     PasswordResetComponent,
-    SignupComponent
+    SignupComponent,
+    DashboardCustomerComponent,
+    CustomerDashboardProfileComponent,
+    CustomerDashboardShoppingcartComponent,
+    CustomerDashboardShoppingcartProductlistComponent,
+    CustomerDashboardShoppingcartCartComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,7 +75,13 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
     MatToolbarModule,
     MatSidenavModule,
     MatButtonModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatCardModule,
+    MatTableModule,
+    MatIconModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]
