@@ -11,10 +11,9 @@ export class RequestItemService {
 
   getRequestItemsByRequestIdApi:string;
 
- constructor(private http:HttpClient) {
+  constructor(private http:HttpClient) {
     this.getRequestItemsByRequestIdApi = environment.serverUrl + '/requestitem/rid';
- }
-
+  }
 
   fetchRequestItemsByRequestId(requestId: number):Observable<RequestItem[]> {
     return this.http.get<RequestItem[]>(this.getRequestItemsByRequestIdApi+"/"+requestId);
