@@ -14,6 +14,8 @@ import { AuthService } from '../../service/auth.service';
 })
 export class LoginComponent implements OnInit {
 
+  ROLES = ['customer', 'vendor', 'admin'];
+
   message: string;
   loginForm: FormGroup;
   username: string;
@@ -45,6 +47,7 @@ export class LoginComponent implements OnInit {
             localStorage.setItem('username',this.user.username);
             localStorage.setItem('credentials', btoa(this.username + ':' + this.password));
             localStorage.setItem('role',this.user.role);
+
             this.authService.username$.next(data.username);
             this.authService.role$.next(data.role);
             this.authService.userId$.next(data.id);
@@ -52,6 +55,8 @@ export class LoginComponent implements OnInit {
             console.log(this.uid);
             this.roleChoose(this.uid);
             this.router.navigateByUrl("/"+ data.role);
+            
+            this.setRoleId();
         },
         error: (e)=> {
           this.authService.message$.next("Invalid Credentials");
@@ -59,21 +64,31 @@ export class LoginComponent implements OnInit {
       });
       
   }
-  async roleChoose(uid:number){
-    let r = localStorage.getItem("role");
-    if (r == "vendor"){
-      this.vendorService.getVendorByUserId(this.uid).subscribe({next:data=>{
-        this.authService.roleId$.next(data.vendorId);
-      }})
-    }
-    else if (r == "customer"){
-      
-    }
-    else if (r == "admin"){
-      
-    }
-    else{
 
+  setRoleId() {
+    if (this.user.role == this.ROLES[0]) {
+      this.authService.getCustomerByUserId(this.user.id).subscribe({
+        next: (data) => {
+          localStorage.setItem('roleId',data.customerId.toString());
+        },
+        error: (e) => { }
+      });
+    } 
+    if (this.user.role == this.ROLES[1]) {
+      this.authService.getVendorByUserId(this.user.id).subscribe({
+        next: (data) => {
+          localStorage.setItem('roleId',data.vendorId.toString());
+        },
+        error: (e) => { }
+      });
+    }
+    if (this.user.role == this.ROLES[2]) {
+      this.authService.getAdminByUserId(this.user.id).subscribe({
+        next: (data) => {
+          localStorage.setItem('roleId',data.id.toString());
+        },
+        error: (e) => { }
+      });
     }
   }
 }

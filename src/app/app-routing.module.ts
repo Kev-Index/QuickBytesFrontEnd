@@ -14,6 +14,9 @@ import { RequestItemComponent } from './components/request-item/request-item.com
 import { RequestComponent } from './components/request/request.component';
 import { VendorComponent } from './components/vendor/vendor.component';
 import { VendorListComponent } from './components/vendor-list/vendor-list.component';
+import { CustomerCartPageComponent } from './components/customer-cart-page/customer-cart-page.component';
+import { AdminReportPageComponent } from './components/admin-report-page/admin-report-page.component';
+import { VendorOrderApprovalPageComponent } from './components/vendor-order-approval-page/vendor-order-approval-page.component';
 import { AddItemComponent } from './components/add-item/add-item.component';
 import { EditItemComponent } from './components/edit-item/edit-item.component';
 import { MenuComponent } from './components/menu/menu.component';
@@ -39,8 +42,9 @@ const routes: Routes = [
   {path:'item/edit/:itemId', component:EditItemComponent},
   {path:'vendors', component:VendorListComponent},
   {path:'customers' , component: CustomerListComponent},
-
-
+  {path:'cart', component:CustomerCartPageComponent},
+  {path:'approval', component:VendorOrderApprovalPageComponent},
+  {path:'report', component:AdminReportPageComponent}
 ];
 
 @NgModule({

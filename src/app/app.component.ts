@@ -22,14 +22,13 @@ export class AppComponent implements OnInit,OnDestroy{
   role:string;
   roleId:number;
   userId:number;
-  
   constructor (private authService: AuthService){
-
+  this.role = localStorage.getItem("role");
+  this.username = localStorage.getItem("username");
   }
   ngOnInit(): void {
-    this.username = localStorage.getItem("username");
+    
     if(this.username != null){
-      this.role = localStorage.getItem("role");
       this.authService.getUserSecurityDetailsByUsername(this.username).subscribe({
         next:(data)=>{
         this.userId = data.id;
