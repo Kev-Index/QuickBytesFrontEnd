@@ -2,17 +2,21 @@
   <mat-sidenav id="sidenav-slider" class="navbar" #sidenav (keydown.escape)="sidenav.close()" disableClose>
     <p><button mat-button (click)="sidenav.close()">Close X</button></p> 
     <br />
+ 
     <p><a routerLink="/dashboard" (click)="close('QuickBytes')">Dashboard</a></p>
-    <!--<p><a routerLink="/customer" (click)="close('Customer')">Customer</a></p>
+    <p><a routerLink="/customer" (click)="close('Customer')">Customer</a></p>
     <p><a routerLink="/vendor" (click)="close('Vendor')">Vendor</a></p>
     <p><a routerLink="/admin" (click)="close('Admin')">Admin</a></p>
-    <p><a routerLink="/items/9" (click)="close('Item')">Item</a></p>
-    <p><a routerLink="/item/9" (click)="close('Add Item')"> Add Item</a></p>
-    <p><a routerLink="/combo" (click)="close('Combo')">Combo</a></p>
+
+    <span *ngIf="role == 'vendor' "> 
+      <p><a routerLink="/menu/{{this.roleId}}" (click)="close('Menu')">Your Menu</a></p>
+      <p><a routerLink="/item/{{this.roleId}}" (click)="close('Add Item')"> Add Item</a></p>
+    </span>
+
     <p><a routerLink="/item-combo" (click)="close('Item Combo')">Item Combo</a></p>
     <p><a routerLink="/request" (click)="close('Request')">Request</a></p>
     <p><a routerLink="/request-item" (click)="close('Request Item')">Request Item</a></p>
-    <p><a routerLink="/item-combo" (click)="close('Request Combo')">Request Combo</a></p>-->
+    <p><a routerLink="/item-combo" (click)="close('Request Combo')">Request Combo</a></p>
     <p><a routerLink="/signup" (click)="close('Sign Up')">Sign Up</a> <br />
     <p><a routerLink="/username-verify" (click)="close('Verify Username')">Verify Username</a></p>
     

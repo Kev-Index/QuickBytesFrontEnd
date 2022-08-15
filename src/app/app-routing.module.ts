@@ -18,12 +18,14 @@ import { VendorComponent } from './components/vendor/vendor.component';
 import { VendorListComponent } from './components/vendor-list/vendor-list.component';
 import { AddItemComponent } from './components/add-item/add-item.component';
 import { EditItemComponent } from './components/edit-item/edit-item.component';
+import { MenuComponent } from './components/menu/menu.component';
 
 const routes: Routes = [
   {path:'' , component: DashboardComponent},
   {path:'dashboard' , component: DashboardComponent},
   {path:'admin' , component: AdminComponent},
-  {path:'combo' , component: ComboComponent},
+  {path:'combos/:vendorId' , component: ComboComponent},
+  {path:'menu/:vendorId' , component: MenuComponent},
   {path:'customer' , component: CustomerComponent},
   {path:'item-combo' , component: ItemComboComponent},
   {path:'request' , component: RequestComponent},

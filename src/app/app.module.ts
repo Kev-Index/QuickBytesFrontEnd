@@ -27,6 +27,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import { AddItemComponent } from './components/add-item/add-item.component';
 import { EditItemComponent } from './components/edit-item/edit-item.component';
+import { MenuComponent } from './components/menu/menu.component';
 
 
 @NgModule({
@@ -49,7 +50,8 @@ import { EditItemComponent } from './components/edit-item/edit-item.component';
     PasswordResetComponent,
     SignupComponent,
     AddItemComponent,
-    EditItemComponent
+    EditItemComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,

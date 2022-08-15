@@ -12,7 +12,9 @@ export class AuthService {
   username: string;
   username$ = new BehaviorSubject<string>('');
   user$ = new BehaviorSubject<string>('');
-
+  role$ = new BehaviorSubject<string>('')
+  roleId$ = new BehaviorSubject<number>(0);
+  userId$ = new BehaviorSubject<number>(0);
   message$ = new BehaviorSubject<string>('');
   loginApi: string;
   signUpApi: string;

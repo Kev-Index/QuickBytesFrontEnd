@@ -1,3 +1,3 @@
-export class Model {
+export class Admin {
     
 }
