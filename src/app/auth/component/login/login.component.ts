@@ -45,12 +45,13 @@ export class LoginComponent implements OnInit {
             localStorage.setItem('username',this.user.username);
             localStorage.setItem('credentials', btoa(this.username + ':' + this.password));
             localStorage.setItem('role',this.user.role);
+            localStorage.setItem('userId',  this.user.id.toString())
             this.authService.username$.next(data.username);
             this.authService.role$.next(data.role);
             this.authService.userId$.next(data.id);
-            this.uid = data.id;
-            console.log(this.uid);
+            this.uid = parseInt(localStorage.getItem('userId'));
             this.roleChoose(this.uid);
+            location.reload();
             this.router.navigateByUrl("/"+ data.role);
         },
         error: (e)=> {
@@ -64,6 +65,7 @@ export class LoginComponent implements OnInit {
     if (r == "vendor"){
       this.vendorService.getVendorByUserId(this.uid).subscribe({next:data=>{
         this.authService.roleId$.next(data.vendorId);
+        localStorage.setItem('roleId',data.vendorId.toString());
       }})
     }
     else if (r == "customer"){

@@ -2,12 +2,6 @@ import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular
 import { MatSidenav } from '@angular/material/sidenav';
 import { UserInfo, UserSecurityDto } from './auth/model/user.model';
 import { AuthService } from './auth/service/auth.service';
-import { Admin} from './model/admin.model'
-import { Customer } from './model/customer.model';
-import { Vendor } from './model/vendor.model';
-import { AdminService } from './service/admin.service';
-import { CustomerService } from './service/customer.service';
-import { VendorService } from './service/vendor.service';
 
 @Component({
   selector: 'app-root',
@@ -26,21 +20,13 @@ export class AppComponent implements OnInit,OnDestroy{
   constructor (private authService: AuthService){
 
   }
+
   ngOnInit(): void {
     this.username = localStorage.getItem("username");
     if(this.username != null){
       this.role = localStorage.getItem("role");
-      this.authService.getUserSecurityDetailsByUsername(this.username).subscribe({
-        next:(data)=>{
-        this.userId = data.id;
-        }
-      })
-      this.authService.userId$.subscribe({next: data=>{
-        this.userId = data;
-      }});
-      this.authService.roleId$.subscribe({next: data=>{
-        this.roleId = data;
-      }});
+      this.userId = parseInt(localStorage.getItem('userId'));
+      this.roleId = parseInt(localStorage.getItem('roleId'));
     }
   }
   ngOnDestroy(): void {
