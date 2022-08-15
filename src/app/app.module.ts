@@ -40,6 +40,8 @@ import { AdminReportPageComponent } from './components/admin-report-page/admin-r
 import { VendorOrderApprovalPageComponent } from './components/vendor-order-approval-page/vendor-order-approval-page.component';
 import { AddItemComponent } from './components/add-item/add-item.component';
 import { EditItemComponent } from './components/edit-item/edit-item.component';
+import { MenuComponent } from './components/menu/menu.component';
+import { CustomerListComponent } from './components/customer-list/customer-list.component';
 
 
 @NgModule({
@@ -65,7 +67,9 @@ import { EditItemComponent } from './components/edit-item/edit-item.component';
     AdminReportPageComponent,
     VendorOrderApprovalPageComponent,
     AddItemComponent,
-    EditItemComponent
+    EditItemComponent,
+    MenuComponent,
+    CustomerListComponent
   ],
   imports: [
     BrowserModule,
