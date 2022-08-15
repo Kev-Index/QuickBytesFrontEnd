@@ -32,6 +32,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 import { DashboardCustomerComponent } from './auth/component/dashboard-customer/dashboard-customer.component';
 import { CustomerDashboardProfileComponent } from './components/customer-dashboard-profile/customer-dashboard-profile.component';
 import { CustomerDashboardShoppingcartComponent } from './components/customer-dashboard-shoppingcart/customer-dashboard-shoppingcart.component';
@@ -81,7 +82,8 @@ import { CustomerDashboardShoppingcartCartComponent } from './components/custome
     MatIconModule,
     MatFormFieldModule,
     MatInputModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatCheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]

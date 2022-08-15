@@ -1,128 +1,108 @@
 <p>Customer Dashboard Profile</p>
-<h2> {{customer.firstName}} </h2>
-<form (submit)="onFormSubmit()" [formGroup]="customerProfile">
+<h2> Hello, {{customer.firstName}} </h2>
+<form class="example-form" (submit)="onFormSubmit()" [formGroup]="customerProfile">
     <div>
-        <h2>Personal Infomation: </h2>
-        <label>Employee ID: </label>
-        <input type="text" name="employeeId" formControlName="employeeId">
-        &nbsp;
-        <label>Email: </label>
-        <input type="text" name="email" formControlName="email">
-        <br> <br>
-        
-        <label>Username: </label>
-        <input type="text" name="username" formControlName="username">
-        &nbsp;
-        <label>Password: </label>
-        <input type="text" name="password" formControlName="password">
-        <br> <br>
-
-        <label>First Name: </label>
-        <input type="text" name="firstName" formControlName="firstName">
-        &nbsp;
-        <label>Middle Name: </label>
-        <input type="text" name="middleName" formControlName="middleName">
-        &nbsp;
-        <label>Last Name: </label>
-        <input type="text" name="lastName" formControlName="lastName">
-        <br> <br>
-
-        <label>Phone Number: </label>
-        <input type="text" name="phoneNumber" formControlName="phoneNumber">
-        &nbsp;
-        <label>Birthday: </label>
-        <input type="text" name="birthday" formControlName="birthday">
-        &nbsp;
-        <label>Prefered Name: </label>
-        <input type="text" name="preferedName" formControlName="preferedName">
+        <h2>Infomation: </h2>
+        <table class="example-full-width" cellspacing="0"><tr>
+            <td><mat-form-field class="example-full-width" appearance="fill" >
+                <mat-label>Employee ID (Disabled)</mat-label>
+                <input matInput formControlName="employeeId">
+                </mat-form-field></td>
+                
+            <td><mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Email</mat-label>
+              <input matInput formControlName="email">
+            </mat-form-field></td>
+    
+            <td><mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Username</mat-label>
+                <input matInput formControlName="username">
+              </mat-form-field></td>
+        </table>
+    
+        <table class="example-full-width" cellspacing="0"><tr>
+            <td><mat-form-field class="example-full-width" appearance="fill">
+              <mat-label >First Name</mat-label>
+              <input matInput formControlName="firstName">
+            </mat-form-field></td>
+            <td><mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Middle Name</mat-label>
+              <input matInput formControlName="middleName">
+            </mat-form-field></td>
+            <td><mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Last Name</mat-label>
+                <input matInput  formControlName="lastName">
+              </mat-form-field></td>
+          </tr>
+        </table>
+    
+        <table class="example-full-width" cellspacing="0"><tr>
+            <td><mat-form-field class="example-full-width" appearance="fill">
+              <mat-label >Prefered Name</mat-label>
+              <input matInput formControlName="preferedName">
+            </mat-form-field></td>
+            <td><mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Birthday MM/DD/YYYY</mat-label>
+              <input matInput formControlName="birthday">
+            </mat-form-field></td>
+            <td><mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Phone Number</mat-label>
+                <input matInput  formControlName="phoneNumber">
+              </mat-form-field></td>
+          </tr>
+        </table>
     </div>
 
     <div>
         <h2>Billing Address: </h2>
-        <label>Address Line 1: </label>
-        <input type="text" name="addressLine1" formControlName="addressLine1">
-        &nbsp;
-        <label>Address Line 2: </label>
-        <input type="text" name="addressLine2" formControlName="addressLine2">
-        &nbsp;
-        <label>Suite#: </label>
-        <input type="text" name="suite" formControlName="suite">
-        <br> <br>
-
-        <label>Country$ Material Drop Down: </label>
-        <input type="text" name="country" formControlName="country">
-        &nbsp;
-        <label>State$ Material Drop Down: </label>
-        <input type="text" name="state" formControlName="state">
-        &nbsp;
-        <label>City: </label>
-        <input type="text" name="city" formControlName="city">
-        &nbsp;
-        <label>Zip Code: </label>
-        <input type="text" name="postalCode" formControlName="postalCode">
+        <table class="example-full-width" cellspacing="0"><tr>
+            <td><mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Address 1</mat-label>
+                <input matInput placeholder="Ex. 100 Main St" formControlName="addressLine1">
+              </mat-form-field></td>
+            <td><mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Address 2</mat-label>
+                <input matInput placeholder="Ex. 100 Main St" formControlName="addressLine2">
+              </mat-form-field></td>
+          </tr>
+        </table>
+          <table class="example-full-width" cellspacing="0"><tr>
+            <td><mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Country $ Material Drop Down</mat-label>
+              <input matInput formControlName="country">
+            </mat-form-field></td>
+            <td><mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>State $ Material Drop Down</mat-label>
+                <input matInput formControlName="state" placeholder="Ex. California">
+              </mat-form-field></td>
+              <td><mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>City</mat-label>
+                <input matInput formControlName="city" placeholder="Ex. San Francisco">
+              </mat-form-field></td>
+              <td><mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Postal Code</mat-label>
+                <input matInput #postalCode maxlength="5" placeholder="Ex. 94105" formControlName="postalCode">
+                <mat-hint align="end">{{postalCode.value.length}} / 5</mat-hint>
+              </mat-form-field></td>
+          </tr></table>
     </div>
-    <hr>
-    <div>
-        <label>Terms Accepted - Disabled - Materials Checkbox - Boolean: </label>
-        <input type="text" name="termAccepted" formControlName="termAccepted">
-        <br> <br>
-        <label>Email Verified - Disabled - Materials Checkbox - Boolean: </label>
-        <input type="text" name="emailVerified" formControlName="emailVerified">
-        <br> <br>
-        <label>Two Factor Auth - Disabled - Materials Checkbox - Boolean: </label>
-        <input type="text" name="twoFactorAuth" formControlName="twoFactorAuth">
-        <br> <br>
-        <label>Phone Verified - Disabled - Materials Checkbox - Boolean: </label>
-        <input type="text" name="phoneVerified" formControlName="phoneVerified">
-    </div>
-
-    <br> <br>
-    <input type="submit" value="Update Profile"> <!--[disabled]="!customerProfile.valid"-->
-</form>
-
-<form class="example-form">
-
-    <mat-form-field class="example-full-width" appearance="fill">
-      <mat-label>Employee ID (Disabled)</mat-label>
-      <input matInput disabled value="Google">
-    </mat-form-field>
-  
-    <table class="example-full-width" cellspacing="0"><tr>
-      <td><mat-form-field class="example-full-width" appearance="fill">
-        <mat-label>First name</mat-label>
-        <input matInput>
-      </mat-form-field></td>
-      <td><mat-form-field class="example-full-width" appearance="fill">
-        <mat-label>Long Last Name That Will Be Truncated</mat-label>
-        <input matInput>
-      </mat-form-field></td>
-    </tr></table>
-  
-    <p>
-      <mat-form-field class="example-full-width" appearance="fill">
-        <mat-label>Address</mat-label>
-        <textarea matInput placeholder="Ex. 100 Main St">1600 Amphitheatre Pkwy</textarea>
-      </mat-form-field>
-      <mat-form-field class="example-full-width" appearance="fill">
-        <mat-label>Address 2</mat-label>
-        <textarea matInput></textarea>
-      </mat-form-field>
-    </p>
-  
-    <table class="example-full-width" cellspacing="0"><tr>
-      <td><mat-form-field class="example-full-width" appearance="fill">
-        <mat-label>City</mat-label>
-        <input matInput placeholder="Ex. San Francisco">
-      </mat-form-field></td>
-      <td><mat-form-field class="example-full-width" appearance="fill">
-        <mat-label>State</mat-label>
-        <input matInput placeholder="Ex. California">
-      </mat-form-field></td>
-      <td><mat-form-field class="example-full-width" appearance="fill">
-        <mat-label>Postal Code</mat-label>
-        <input matInput #postalCode maxlength="5" placeholder="Ex. 94105" value="94043">
-        <mat-hint align="end">{{postalCode.value.length}} / 5</mat-hint>
-      </mat-form-field></td>
-    </tr></table>
+  <div>
+    <mat-card>
+        <mat-card-content>
+          <h2 class="example-h2">Verification Check</h2>
+      
+          <section class="example-section">
+            <mat-checkbox (click)="$event.preventDefault()" [disableRipple]="true" class="example-margin" formControlName="termAccepted">Accepted Terms and Conditions</mat-checkbox>
+            <mat-checkbox (click)="$event.preventDefault()" [disableRipple]="true" class="example-margin" formControlName="emailVerified">Verified Email</mat-checkbox>
+          </section>
+          <section class="example-section">
+            <mat-checkbox (click)="$event.preventDefault()" [disableRipple]="true" class="example-margin" formControlName="twoFactorAuth">Two Factor Authentication Enabled</mat-checkbox>
+            <mat-checkbox (click)="$event.preventDefault()" [disableRipple]="true" class="example-margin" formControlName="phoneVerified">Verified Phone Number</mat-checkbox>
+          </section>
+        </mat-card-content>
+    </mat-card>
+  </div>
+  <br> <br>
+  <input type="submit" value="Update Profile"> <!--[disabled]="!customerProfile.valid"-->
   </form>
   
