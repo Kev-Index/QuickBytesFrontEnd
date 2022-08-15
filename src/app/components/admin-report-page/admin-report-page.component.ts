@@ -82,7 +82,6 @@ export class AdminReportPageComponent implements OnInit {
     this.vendorService.getVendors().subscribe({
       next: (data) => {
         this.vendors = data;
-        console.log(this.vendors);
       },
       error: (e) => { }
     })
