@@ -38,11 +38,9 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ### Kevin
 
-- []
-- []
-- []
-- []
-- [] 
+- [x] Customer Order Confirmation & Checkout Page
+- [x] Vendor Order Approve/Deny Page
+- [x] Admin Generate Reports Page
 
 ### James
 
