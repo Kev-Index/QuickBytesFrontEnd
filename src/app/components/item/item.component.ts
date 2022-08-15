@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Item } from 'src/app/model/item.model';
 import { ItemService } from 'src/app/service/item.service';
@@ -8,12 +8,13 @@ import { ItemService } from 'src/app/service/item.service';
   templateUrl: './item.component.html',
   styleUrls: ['./item.component.css']
 })
-export class ItemComponent implements OnInit {
+export class ItemComponent implements OnInit,OnDestroy {
   vendorId: string;
   items: Item[];
   size: number;
   constructor(private actRoute: ActivatedRoute,
     private itemService: ItemService) {}
+ 
 
   ngOnInit(): void {
     this.vendorId= this.actRoute.snapshot.paramMap.get('vendorId');
@@ -41,7 +42,7 @@ export class ItemComponent implements OnInit {
   next(): void {
     let currentPage = this.itemService.page$.getValue();
     //update the value of page
-    if (currentPage < this.items.length/5){
+    if (currentPage < this.items.length/this.size){
     currentPage = currentPage+1;
     //attach the updated value to the subject
       this.itemService.page$.next(currentPage);
@@ -49,5 +50,8 @@ export class ItemComponent implements OnInit {
         this.items= data;
      });
     }
+  }
+  ngOnDestroy(): void {
+    this.itemService.page$.unsubscribe();
   }
 }

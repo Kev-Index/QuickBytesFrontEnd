@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Combo } from 'src/app/model/combo.model';
 import { ComboService } from 'src/app/service/combo.service';
@@ -8,7 +8,7 @@ import { ComboService } from 'src/app/service/combo.service';
   templateUrl: './combo.component.html',
   styleUrls: ['./combo.component.css']
 })
-export class ComboComponent implements OnInit {
+export class ComboComponent implements OnInit,OnDestroy{
 
   vendorId: string;
   combos: Combo[];
@@ -16,14 +16,15 @@ export class ComboComponent implements OnInit {
   constructor(private actRoute: ActivatedRoute,
     private comboService: ComboService) {}
 
+
   ngOnInit(): void {
     this.vendorId= this.actRoute.snapshot.paramMap.get('vendorId');
     this.size = 5;
     this.comboService.getCombosByVendor(this.vendorId, 0,this.size).subscribe(data=>{
       this.combos= data;
     });
-
   }
+
   prev(): void {
     //read the value of page from subject
 
@@ -42,7 +43,7 @@ export class ComboComponent implements OnInit {
   next(): void {
     let currentPage = this.comboService.page$.getValue();
     //update the value of page
-    if (currentPage < this.combos.length/5){
+    if (currentPage < this.combos.length/this.size){
     currentPage = currentPage+1;
     //attach the updated value to the subject
       this.comboService.page$.next(currentPage);
@@ -50,5 +51,8 @@ export class ComboComponent implements OnInit {
         this.combos= data;
      });
     }
+  }
+  ngOnDestroy(): void {
+    this.comboService.page$.unsubscribe();
   }
 }
