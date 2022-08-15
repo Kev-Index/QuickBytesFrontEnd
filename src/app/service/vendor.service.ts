@@ -13,6 +13,7 @@ export class VendorService {
   getVendorApi: string;
   getUserApi: string;
   vendor: Vendor;
+  myurl: string;
   
   constructor(private http:HttpClient) { 
     this.getVendorsApi = "http://localhost:8989/vendors";
@@ -29,8 +30,10 @@ export class VendorService {
       next : (data)=>{
           this.user = data;  
           console.log(localStorage.getItem('username'))
-          console.log(this.user.id)}})
-          return this.http.get<Vendor>(this.getVendorApi+ this.user.id);
+          console.log(this.user.id)
+        this.myurl=this.getVendorApi+ this.user.id;
+        }})
+          return this.http.get<Vendor>(this.myurl);
   }
 }
 
