@@ -238,7 +238,6 @@ export class AdminReportPageComponent implements OnInit {
       }
     });
     this.barChartData.labels = [...new Set(this.barChartData.labels)];
-    console.log(this.barChartData.labels);
   }
 
   /**
