@@ -21,11 +21,14 @@ import { LogoutComponent } from './auth/component/logout/logout.component';
 import { PasswordResetComponent } from './auth/component/password-reset/password-reset.component';
 import { UsernameVerifyComponent } from './auth/component/username-verify/username-verify.component';
 import { SignupComponent } from './auth/component/signup/signup.component';
+import { CreateComboComponent } from './components/create-combo/create-combo.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatButtonModule} from '@angular/material/button';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import { EditComboComponent } from './components/edit-combo/edit-combo.component';
+import { EditInfoComponent } from './components/edit-info/edit-info.component';
 
 
 @NgModule({
@@ -46,7 +49,10 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
     LogoutComponent,
     UsernameVerifyComponent,
     PasswordResetComponent,
-    SignupComponent
+    SignupComponent,
+    CreateComboComponent,
+    EditComboComponent,
+    EditInfoComponent
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ComboService } from 'src/app/service/combo.service';
 import { UserInfo } from '../../model/user.model';
 import { AuthService } from '../../service/auth.service';
 
@@ -17,7 +18,7 @@ export class LoginComponent implements OnInit {
   password: string;
   user: UserInfo;
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router, private comboService: ComboService) { }
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
@@ -41,6 +42,7 @@ export class LoginComponent implements OnInit {
             localStorage.setItem('credentials', btoa(this.username + ':' + this.password));
             this.authService.username$.next(this.user.username);
             this.router.navigateByUrl("/"+ data.role);
+            this.comboService.getUser();
         },
         error: (e)=> {
           this.authService.message$.next("Invalid Credentials");

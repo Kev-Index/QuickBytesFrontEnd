@@ -1,0 +1,39 @@
+
+<div *ngFor="let item of items; let i=index">
+   Name: <label>{{item.name}}</label>
+    &nbsp;&nbsp;
+    Price: {{item.price}}
+    &nbsp;&nbsp;
+    <input type="submit" (click)="onAdd($event)" value="Add" id={{item.name}} >
+    <hr>
+</div>
+<span *ngIf="names.length!=0">
+<div *ngFor="let comboItem of comboItems">
+  <label>{{comboItem.name}}</label>
+  &nbsp;&nbsp;
+  <label>{{comboItem.price}}</label>
+  &nbsp;&nbsp;
+</div>
+</span>
+<br/>
+<form (submit)="onFormSubmit()" [formGroup]="addForm">
+<label>Enter Combo Name: </label>
+<input type="text" name="formname" formControlName="name">
+<br/>
+<label>Enter Price: </label>
+<input type="number" name="formprice" formControlName="price">
+<br/>
+<input type="submit" value="Create Combo" >
+</form>
+<br/>
+<label>Combos</label>
+<br/><br/>
+<div *ngFor="let combo of combos">
+  <div>
+  <label>{{combo.name}}</label>
+  &nbsp;&nbsp;
+  <label>{{combo.price}}</label>
+  &nbsp;&nbsp;
+  <input type="submit" (click)="onEdit($event)" value="Edit" id={{combo.name}} >
+  <input type="submit" (click)="onDelete($event)" value="Delete" id={{combo.name}} >
+</div>

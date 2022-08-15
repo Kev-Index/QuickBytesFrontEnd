@@ -24,11 +24,11 @@ export class AuthService {
 
   constructor(private http: HttpClient) {
     this.username='';
-    this.loginApi = 'http://localhost:8389/login';
-    this.signUpApi='http://localhost:8389/user';
-    this.userAPi = 'http://localhost:8389/user/username';
-    this.profileEditAPi='http://localhost:8389/user/profile';
-    this.userSecurityInfoApi='http://localhost:8389/user/security/info/';
+    this.loginApi = 'http://localhost:8489/login';
+    this.signUpApi='http://localhost:8989/user';
+    this.userAPi = 'http://localhost:8989/user/username';
+    this.profileEditAPi='http://localhost:8989/user/profile';
+    this.userSecurityInfoApi='http://localhost:8989/user/security/info/';
     this.securityAnswerValidationApi=environment.serverUrl + '/validate-security-answer/';
     this.passwordResetAPi=environment.serverUrl +'/user/reset-password/';
   }

@@ -15,6 +15,7 @@ import { RequestComboComponent } from './components/request-combo/request-combo.
 import { RequestItemComponent } from './components/request-item/request-item.component';
 import { RequestComponent } from './components/request/request.component';
 import { VendorComponent } from './components/vendor/vendor.component';
+import {CreateComboComponent } from './components/create-combo/create-combo.component';
 import { VendorListComponent } from './components/vendor-list/vendor-list.component';
 
 const routes: Routes = [
@@ -35,6 +36,7 @@ const routes: Routes = [
   {path:'password-reset' , component: PasswordResetComponent}, 
   {path:'items/:vendorId', component:ItemComponent},
   {path:'vendors', component:VendorListComponent},
+  {path:'create-combo' , component: CreateComboComponent}
 
 ];
 
