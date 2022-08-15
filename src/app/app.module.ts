@@ -35,6 +35,16 @@ import { LogoutComponent } from './auth/component/logout/logout.component';
 import { PasswordResetComponent } from './auth/component/password-reset/password-reset.component';
 import { UsernameVerifyComponent } from './auth/component/username-verify/username-verify.component';
 import { SignupComponent } from './auth/component/signup/signup.component';
+
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import { DashboardCustomerComponent } from './auth/component/dashboard-customer/dashboard-customer.component';
+import { CustomerDashboardProfileComponent } from './components/customer-dashboard-profile/customer-dashboard-profile.component';
+import { CustomerDashboardShoppingcartComponent } from './components/customer-dashboard-shoppingcart/customer-dashboard-shoppingcart.component';
+import { CustomerDashboardShoppingcartProductlistComponent } from './components/customer-dashboard-shoppingcart-productlist/customer-dashboard-shoppingcart-productlist.component';
+import { CustomerDashboardShoppingcartCartComponent } from './components/customer-dashboard-shoppingcart-cart/customer-dashboard-shoppingcart-cart.component';
+
 import { CustomerCartPageComponent } from './components/customer-cart-page/customer-cart-page.component';
 import { AdminReportPageComponent } from './components/admin-report-page/admin-report-page.component';
 import { VendorOrderApprovalPageComponent } from './components/vendor-order-approval-page/vendor-order-approval-page.component';
@@ -42,6 +52,7 @@ import { AddItemComponent } from './components/add-item/add-item.component';
 import { EditItemComponent } from './components/edit-item/edit-item.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { CustomerListComponent } from './components/customer-list/customer-list.component';
+
 
 
 @NgModule({
@@ -63,6 +74,13 @@ import { CustomerListComponent } from './components/customer-list/customer-list.
     UsernameVerifyComponent,
     PasswordResetComponent,
     SignupComponent,
+
+    DashboardCustomerComponent,
+    CustomerDashboardProfileComponent,
+    CustomerDashboardShoppingcartComponent,
+    CustomerDashboardShoppingcartProductlistComponent,
+    CustomerDashboardShoppingcartCartComponent,
+
     CustomerCartPageComponent,
     AdminReportPageComponent,
     VendorOrderApprovalPageComponent,
@@ -82,6 +100,13 @@ import { CustomerListComponent } from './components/customer-list/customer-list.
     MatSidenavModule,
     MatButtonModule,
     MatButtonToggleModule,
+    MatCardModule,
+    MatTableModule,
+    MatIconModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatPaginatorModule,
+    MatCheckboxModule,
     MatIconModule,
     MatTabsModule,
     MatStepperModule,

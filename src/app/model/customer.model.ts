@@ -1,4 +1,5 @@
-import { UserInfo } from "../auth/model/user.model";
+import { UserInfo } from "../auth/model/userInfo.model";
+
 
 export class Customer {
 
@@ -26,5 +27,6 @@ export class Customer {
     emailVerified:boolean;
     twoFactorAuth:boolean;
     phoneVerified:boolean;
+
 }
 
