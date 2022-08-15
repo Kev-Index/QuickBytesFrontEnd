@@ -14,7 +14,7 @@
               <div mat-card-avatar></div>
               <div class="header">
                 <mat-card-title>{{requestItem.item.name}}</mat-card-title>
-              <mat-card-subtitle>{{requestItem.item.price}}</mat-card-subtitle>
+              <mat-card-subtitle>${{requestItem.item.price}}</mat-card-subtitle>
               </div>
             </mat-card-header>
             <mat-card-actions>
@@ -27,7 +27,7 @@
               <div mat-card-avatar></div>
               <div class="header">
                 <mat-card-title>{{requestCombo.comboId.name}}</mat-card-title>
-              <mat-card-subtitle>{{requestCombo.comboId.price}}</mat-card-subtitle>
+              <mat-card-subtitle>${{requestCombo.comboId.price}}</mat-card-subtitle>
               </div>
             </mat-card-header>
             <mat-card-actions>
@@ -36,7 +36,7 @@
           </mat-card>
 
           <div class="price-body">
-            <div class="mat-h2">Total: {{activeRequest.totalPrice}}</div>
+            <div class="mat-h2">Total: ${{activeRequest.totalPrice}}</div>
             <button mat-raised-button color="primary" (click)="confirmOrder()">
               Next
             </button>
@@ -67,11 +67,11 @@
                 {{requestItem.item.name}}
               </div>
               <div>
-                {{requestItem.item.price}}
+                ${{requestItem.item.price}}
               </div>
             </div>
             <div class="order-checkout">
-              <div class="mat-h3">Total: {{activeRequest.totalPrice}}</div>
+              <div class="mat-h3">Total: ${{activeRequest.totalPrice}}</div>
               <button mat-raised-button color="primary" (click)="placeOrder()">
                 Place Order
               </button>
