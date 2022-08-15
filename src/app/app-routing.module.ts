@@ -17,6 +17,8 @@ import { RequestComponent } from './components/request/request.component';
 import { VendorComponent } from './components/vendor/vendor.component';
 import {CreateComboComponent } from './components/create-combo/create-combo.component';
 import { VendorListComponent } from './components/vendor-list/vendor-list.component';
+import { EditComboComponent } from './components/edit-combo/edit-combo.component';
+import { EditInfoComponent } from './components/edit-info/edit-info.component';
 
 const routes: Routes = [
   {path:'' , component: DashboardComponent},
@@ -36,7 +38,9 @@ const routes: Routes = [
   {path:'password-reset' , component: PasswordResetComponent}, 
   {path:'items/:vendorId', component:ItemComponent},
   {path:'vendors', component:VendorListComponent},
-  {path:'create-combo' , component: CreateComboComponent}
+  {path:'create-combo' , component: CreateComboComponent},
+  {path:'edit-combo' , component: EditComboComponent},
+  {path:'edit-info' , component: EditInfoComponent}
 
 ];
 

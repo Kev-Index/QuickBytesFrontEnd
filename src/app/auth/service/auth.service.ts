@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { UserInfo, UserSecurityDto } from '../model/user.model';
+import { UserEditDto, UserInfo, UserSecurityDto } from '../model/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -68,4 +68,13 @@ export class AuthService {
     let encodedText= btoa(username + '--'+password);
      return this.http.put(this.passwordResetAPi + encodedText,{});
  }
+ editProfile(userEditDto: UserEditDto) :Observable<UserEditDto>{
+  let httpOptions={
+    headers : new HttpHeaders({
+      'Content-type': 'application/json',
+      'Authorization' : 'basic ' + localStorage.getItem('credentials')
+    })
+  };
+   return this.http.put<UserEditDto>(this.profileEditAPi,userEditDto,httpOptions);
+}
 }

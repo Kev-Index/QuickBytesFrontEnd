@@ -1,1 +1,15 @@
-<p>edit-info works!</p>
+<h1>Edit Info</h1>
+<h2>Fill In What You Want to Edit. Otherwise Leave Blank</h2>
+<form (submit)="onFormSubmit()"
+[formGroup]="profileForm">
+<label>Enter Name: </label>
+<input type="text" formControlName="name" >
+<br/><br/>
+<label>Enter BusinessId: </label>
+<input type="number" formControlName="businessId">
+<br /><br />
+<label>Enter Username: </label>
+<input type="text" formControlName="username" >
+<br /><br />
+<input type="submit" value="Update Profile"
+        [disabled]="!profileForm.valid">

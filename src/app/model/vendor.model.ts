@@ -1,6 +1,13 @@
+import { UserInfo } from "../auth/model/user.model";
+
 export class Vendor {
     vendorId: number;
     businessId: number;
     name: string;
-    userid: number;
+    user: UserInfo;
+}
+
+export class VendorEditDto{
+    name: string;
+    businessId: number;
 }
