@@ -11,12 +11,14 @@ export class RequestService {
    getRequestsApi:string;
    getRequestsByCustomerIdApi:string;
    getRequestsByVendorIdApi:string;
+   pendRequestApi:string;
    getPostApi:string;
 
    constructor(private http:HttpClient) {
       this.getRequestsApi = environment.serverUrl + '/requests';
       this.getRequestsByCustomerIdApi = environment.serverUrl + '/request/cid';
       this.getRequestsByVendorIdApi = environment.serverUrl + '/request/vid';
+      this.pendRequestApi = environment.serverUrl + '/request/send';
       this.getPostApi = environment.serverUrl + '/request';
    }
 
@@ -30,6 +32,10 @@ export class RequestService {
 
    fetchRequestsByVendorId(vendorId:number):Observable<Request[]> {
       return this.http.get<Request[]>(this.getRequestsByVendorIdApi+"/"+vendorId);
+   }
+
+   pendRequest(requestId:number):Observable<any> {
+      return this.http.put<any>(this.pendRequestApi+"/"+requestId, { });
    }
 
    postRequest(request:Request,vendorId:number,customerId:number):Observable<any> {

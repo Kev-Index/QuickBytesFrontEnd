@@ -6,7 +6,7 @@
       </ng-template>
       <!--order items as cards, subtotal, preparation time = item#*3min, -->
       <div class="tab-content">
-        <div class="tab-body">
+        <div class="tab-body" *ngIf="requestItems != null">
           <div class="mat-h1">Your Items</div>
 
           <mat-card class="card" *ngFor="let requestItem of requestItems">
@@ -52,7 +52,32 @@
       </ng-template>
       <!--expected taxes + balance, checkout button->receipt dialog-->
       <div class="tab-content">
-        Content
+        <div class="tab-body" *ngIf="requestItems != null">
+          <div class="mat-h1">Your Order</div>
+
+          <mat-card class="order">
+            <mat-card-header>
+              <div class="header">
+                <mat-card-title>Order #: {{activeRequest.requestId}}</mat-card-title>
+                <mat-card-subtitle class="mat-h3">From: {{activeRequest.vendor.name}}</mat-card-subtitle>
+              </div>
+            </mat-card-header>
+            <div class="order-items" *ngFor="let requestItem of requestItems">
+              <div>
+                {{requestItem.item.name}}
+              </div>
+              <div>
+                {{requestItem.item.price}}
+              </div>
+            </div>
+            <div class="order-checkout">
+              <div class="mat-h3">Total: {{activeRequest.totalPrice}}</div>
+              <button mat-raised-button color="primary" (click)="placeOrder()">
+                Place Order
+              </button>
+            </div>
+          </mat-card>
+        </div>
       </div>
     </mat-tab>
 

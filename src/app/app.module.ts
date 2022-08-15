@@ -14,6 +14,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {MatCardModule} from '@angular/material/card';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { NgChartsModule } from 'ng2-charts';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -84,6 +85,7 @@ import { EditItemComponent } from './components/edit-item/edit-item.component';
     MatInputModule,
     MatSelectModule,
     MatCardModule,
+    MatSnackBarModule,
     NgChartsModule
   ],
   providers: [],

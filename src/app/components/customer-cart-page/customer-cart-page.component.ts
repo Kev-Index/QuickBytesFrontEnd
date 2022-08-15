@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTabGroup } from '@angular/material/tabs';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/service/auth.service';
 import { RequestCombo } from 'src/app/model/requestCombo.model';
 import { RequestItem } from 'src/app/model/requestItem.model';
@@ -24,11 +26,12 @@ export class CustomerCartPageComponent implements OnInit {
 
   public matTabIndex = 0;
 
-  constructor(private authService: AuthService, private requestService: RequestService, private requestItemService: RequestItemService, private requestComboService: RequestComboService) { }
+  constructor(private router: Router, private authService: AuthService, 
+              private requestService: RequestService, private requestItemService: RequestItemService, 
+              private requestComboService: RequestComboService, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
-    //this.requestService.fetchRequestByCustomerId(this.authService.roleId$.value).subscribe({
-    this.requestService.fetchRequestByCustomerId(25).subscribe({
+    this.requestService.fetchRequestByCustomerId(this.authService.roleId$.value).subscribe({
       next: (data) => {
         this.requests = data;
         this.fetchActiveRequest();
@@ -64,6 +67,17 @@ export class CustomerCartPageComponent implements OnInit {
 
   confirmOrder(): void {
     this.matTabIndex = this.matTabIndex+1;
+  }
+  
+  placeOrder(): void {
+    this.requestService.pendRequest(this.activeRequest.requestId).subscribe({
+      next: (data) => { 
+        this.router.navigateByUrl("/dashboard");
+        this.snackBar.open("Your order has been placed!", "OK");
+        
+      },
+      error: (e) => { }
+    });
   }
 
 }

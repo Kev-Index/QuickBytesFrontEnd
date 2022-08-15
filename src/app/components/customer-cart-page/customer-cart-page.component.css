@@ -23,6 +23,12 @@
     align-items: center;
 }
 
+.order {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
 .mat-card-header {
     align-items: center;
 }
@@ -59,4 +65,19 @@
     flex-direction: column;
     align-items: flex-end;
     margin-right: -30px;
+}
+
+.order-items {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0px 15px 15px 30px;
+}
+
+.order-checkout {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding: 15px 15px 15px 0px;
+    border-top: 1px white solid;
 }
