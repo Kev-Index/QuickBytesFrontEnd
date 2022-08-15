@@ -24,7 +24,7 @@ export class AuthService {
 
   constructor(private http: HttpClient) {
     this.username='';
-    this.loginApi = 'http://localhost:8489/login';
+    this.loginApi = 'http://localhost:8989/login';
     this.signUpApi='http://localhost:8989/user';
     this.userAPi = 'http://localhost:8989/user/username';
     this.profileEditAPi='http://localhost:8989/user/profile';

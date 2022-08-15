@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
   username: string;
   password: string;
   user: UserInfo;
+  vendorService: any;
 
   constructor(private authService: AuthService, private router: Router, private comboService: ComboService) { }
 
@@ -43,6 +44,7 @@ export class LoginComponent implements OnInit {
             this.authService.username$.next(this.user.username);
             this.router.navigateByUrl("/"+ data.role);
             this.comboService.getUser();
+            this.vendorService.setVendor();
         },
         error: (e)=> {
           this.authService.message$.next("Invalid Credentials");

@@ -17,23 +17,34 @@ export class VendorService {
   
   constructor(private http:HttpClient) { 
     this.getVendorsApi = "http://localhost:8989/vendors";
-    this.getVendorApi='http://localhost:8489/vendor/single/user/';
-    this.getUserApi='http://localhost:8489/user/single/';
+    this.getVendorApi='http://localhost:8989/vendor/single/user/';
+    this.getUserApi='http://localhost:8989/user/single/';
   }
 
   getVendors():Observable<Vendor[]> {
     return this.http.get<Vendor[]>(this.getVendorsApi);
   }
 
-  getVendor() : Observable<Vendor>{
+  setVendor() {
     this.http.get<UserInfo>(this.getUserApi+ localStorage.getItem('username')).subscribe({
       next : (data)=>{
           this.user = data;  
           console.log(localStorage.getItem('username'))
           console.log(this.user.id)
         this.myurl=this.getVendorApi+ this.user.id;
+        this.http.get<Vendor>(this.myurl)
+        .subscribe({
+          next : (data)=>{
+            this.vendor = data;  
+            console.log(this.vendor.vendorId);
+}
+})
         }})
-          return this.http.get<Vendor>(this.myurl);
   }
+
+  getVendor(): Vendor{
+    return this.vendor;
+  }
+
 }
 

@@ -26,12 +26,12 @@ export class ComboService implements OnInit{
   getCombosApi: string;
 
   constructor(private http: HttpClient) {
-    this.getAllApi='http://localhost:8489/item/vendor/';
-    this.getVendorApi='http://localhost:8489/vendor/single/user/';
-    this.getUserApi='http://localhost:8489/user/single/';
-    this.postComboApi='http://localhost:8489/combo/';
-    this.getComboIdApi='http://localhost:8489/combo/';
-    this.getCombosApi='http://localhost:8489/combos/vendorId/';
+    this.getAllApi='http://localhost:8989/item/vendor/';
+    this.getVendorApi='http://localhost:8989/vendor/single/user/';
+    this.getUserApi='http://localhost:8989/user/single/';
+    this.postComboApi='http://localhost:8989/combo/';
+    this.getComboIdApi='http://localhost:8989/combo/';
+    this.getCombosApi='http://localhost:8989/combos/vendorId/';
    }
   ngOnInit(): void {
   }
