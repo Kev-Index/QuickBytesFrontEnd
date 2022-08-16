@@ -25,7 +25,6 @@ export class VendorComponent implements OnInit {
 
   ngOnInit(): void {
     this.comboService.getUser();
-        this.vendorService.setVendor();
         this.vendor=this.vendorService.getVendor();
     
   }

@@ -7,10 +7,8 @@ import { PasswordResetComponent } from './auth/component/password-reset/password
 import { SignupComponent } from './auth/component/signup/signup.component';
 import { UsernameVerifyComponent } from './auth/component/username-verify/username-verify.component';
 import { AdminComponent } from './components/admin/admin.component';
-import { ComboComponent } from './components/combo/combo.component';
 import { CustomerComponent } from './components/customer/customer.component';
 import { ItemComboComponent } from './components/item-combo/item-combo.component';
-import { ItemComponent } from './components/item/item.component';
 import { RequestComboComponent } from './components/request-combo/request-combo.component';
 import { RequestItemComponent } from './components/request-item/request-item.component';
 import { RequestComponent } from './components/request/request.component';
@@ -20,11 +18,19 @@ import { VendorListComponent } from './components/vendor-list/vendor-list.compon
 import { EditComboComponent } from './components/edit-combo/edit-combo.component';
 import { EditInfoComponent } from './components/edit-info/edit-info.component';
 
+import { CustomerCartPageComponent } from './components/customer-cart-page/customer-cart-page.component';
+import { AdminReportPageComponent } from './components/admin-report-page/admin-report-page.component';
+import { VendorOrderApprovalPageComponent } from './components/vendor-order-approval-page/vendor-order-approval-page.component';
+import { AddItemComponent } from './components/add-item/add-item.component';
+import { EditItemComponent } from './components/edit-item/edit-item.component';
+import { MenuComponent } from './components/menu/menu.component';
+import { CustomerListComponent } from './components/customer-list/customer-list.component';
+
 const routes: Routes = [
   {path:'' , component: DashboardComponent},
   {path:'dashboard' , component: DashboardComponent},
   {path:'admin' , component: AdminComponent},
-  {path:'combo' , component: ComboComponent},
+  {path:'menu/:vendorId' , component: MenuComponent},
   {path:'customer' , component: CustomerComponent},
   {path:'item-combo' , component: ItemComboComponent},
   {path:'request' , component: RequestComponent},
@@ -36,12 +42,19 @@ const routes: Routes = [
   {path:'signup' , component: SignupComponent},
   {path:'username-verify' , component: UsernameVerifyComponent},
   {path:'password-reset' , component: PasswordResetComponent}, 
-  {path:'items/:vendorId', component:ItemComponent},
+  {path:'item/:vendorId', component:AddItemComponent},
+  {path:'item/edit/:itemId', component:EditItemComponent},
   {path:'vendors', component:VendorListComponent},
+
   {path:'create-combo' , component: CreateComboComponent},
   {path:'edit-combo' , component: EditComboComponent},
-  {path:'edit-info' , component: EditInfoComponent}
+  {path:'edit-info' , component: EditInfoComponent},
 
+
+  {path:'customers' , component: CustomerListComponent},
+  {path:'cart', component:CustomerCartPageComponent},
+  {path:'approval', component:VendorOrderApprovalPageComponent},
+  {path:'report', component:AdminReportPageComponent}
 ];
 
 @NgModule({

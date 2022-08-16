@@ -1,0 +1,20 @@
+.mat-card{
+    display:inline-block;
+    margin:5px 5px 5px 5px;
+}
+.cultureFood-card, .bigByteBurger-card, .busyDonuts-card{
+    max-width: 250px;
+  }
+  
+  .cultureFood-image {
+    background-image: url('src/assets/Culture-Foods-Header.jpg');
+    background-size: cover;
+  }
+.bigByteBurger-image{
+    background-image: url('src/assets/BBB-Big-Byte-Burger-Header-Img.jpg');
+    background-size: cover;
+}
+.busyDonuts-image{
+    background-image: url('src/assets/BusyDonuts-Header-Img.jpg');
+    background-size: cover;
+}

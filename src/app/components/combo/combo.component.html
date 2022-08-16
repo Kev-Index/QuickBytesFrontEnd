@@ -1,1 +1,14 @@
-<p>combo works!</p>
+<h2>Combos</h2>
+
+<div *ngFor="let c of combos">
+    Name: <strong>{{c.name}}</strong> &nbsp;&nbsp;
+    Price: {{c.price}}&nbsp;&nbsp;
+    Number Available: {{c.available}}&nbsp;&nbsp;
+    <!--<a href="item/edit/{{c.itemId}}">Edit Item</a>-->
+  <hr>
+</div>
+<br><br>
+<div>
+  <a href="Javascript:void" (click)="prev()">Prev </a> &nbsp;&nbsp;&nbsp;&nbsp;
+  <a href="Javascript:void" (click)="next()">Next </a>
+</div>

@@ -5,4 +5,5 @@ export class Combo {
     name: string;
     price: number;
     vendor?: Vendor;
+
 }

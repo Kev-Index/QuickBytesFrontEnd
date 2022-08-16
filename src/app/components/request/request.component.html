@@ -1,1 +1,65 @@
-<p>request works!</p>
+<h1>Requests</h1>
+<span *ngIf="!(errorMsg == '')">{{errorMsg}}</span>
+<div *ngFor="let r of requests">
+    ID: {{r.requestId}} <br />
+    Status: {{r.status}} <br />
+    Order Time: {{r.orderTime}} <br />
+    End Time: {{r.endTime}} <br />
+    Total Price: {{r.totalPrice}} <br />
+    Customer: {{r.customer}} <br />
+    Vendor: {{r.vendor}} <br />
+    <hr />
+</div>
+
+<span *ngIf="message != ''">{{message}}</span>
+<form (submit)="onFormSubmit()" [formGroup]="requestForm">
+    <label>Enter Vendor ID: </label>
+    <input type="text" name="vendorId" formControlName="vendorId">
+    <span *ngIf="requestForm.controls['vendorId'].invalid && requestForm.controls['vendorId'].touched">
+        <span *ngIf="requestForm.controls['vendorId'].errors['required']">Vendor ID is required</span>
+        <span *ngIf="requestForm.controls['vendorId'].errors['pattern']">Pattern allowed: [0-9]+</span>
+    </span>
+    <br /><br />
+
+    <label>Enter Customer ID: </label>
+    <input type="text" name="customerId" formControlName="customerId">
+    <span *ngIf="requestForm.controls['customerId'].invalid && requestForm.controls['customerId'].touched">
+        <span *ngIf="requestForm.controls['customerId'].errors['required']">Customer ID is required</span>
+        <span *ngIf="requestForm.controls['customerId'].errors['pattern']">Pattern allowed: [0-9]+</span>
+    </span>
+    <br /><br />
+
+    <label>Enter Request Price: </label>
+    <input type="text" name="totalPrice" formControlName="totalPrice">
+    <span *ngIf="requestForm.controls['totalPrice'].invalid && requestForm.controls['totalPrice'].touched">
+        <span *ngIf="requestForm.controls['totalPrice'].errors['required']">Total Price is required</span>
+        <span *ngIf="requestForm.controls['totalPrice'].errors['pattern']">Pattern allowed: [0-9.]+</span>
+    </span>
+    <br /><br />
+
+    <label>Enter Request Status: </label>
+    <input type="text" name="status" formControlName="status">
+    <span *ngIf="requestForm.controls['status'].invalid && requestForm.controls['status'].touched">
+        <span *ngIf="requestForm.controls['status'].errors['required']">Status is required</span>
+        <span *ngIf="requestForm.controls['status'].errors['pattern']">Pattern allowed: [a-zA-Z_ ]+</span>
+    </span>
+    <br /><br />
+
+    <label>Enter Request Order Time: </label>
+    <input type="text" name="orderTime" formControlName="orderTime">
+    <span *ngIf="requestForm.controls['orderTime'].invalid && requestForm.controls['orderTime'].touched">
+        <span *ngIf="requestForm.controls['orderTime'].errors['required']">Order Time is required</span>
+        <span *ngIf="requestForm.controls['orderTime'].errors['pattern']">Pattern allowed: [0-9-]+</span>
+    </span>
+    <br /><br />
+
+    <label>Enter Request End Time: </label>
+    <input type="text" name="endTime" formControlName="endTime">
+    <span *ngIf="requestForm.controls['endTime'].invalid && requestForm.controls['endTime'].touched">
+        <span *ngIf="requestForm.controls['endTime'].errors['required']">End Time is required</span>
+        <span *ngIf="requestForm.controls['endTime'].errors['pattern']">Pattern allowed: [0-9-]+</span>
+    </span>
+    <br /><br />
+
+    <input type="submit" value="Add Request" [disabled]="!requestForm.valid">
+</form> 

@@ -10,4 +10,5 @@ export class Vendor {
 export class VendorEditDto{
     name: string;
     businessId: number;
+
 }
