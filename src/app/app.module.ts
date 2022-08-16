@@ -15,7 +15,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {MatCardModule} from '@angular/material/card';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
-//import { NgChartsModule } from 'ng2-charts';
+import { NgChartsModule } from 'ng2-charts';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -123,7 +123,7 @@ import { CustomerListComponent } from './components/customer-list/customer-list.
     MatSelectModule,
     MatCardModule,
     MatSnackBarModule,
-//    NgChartsModule
+    NgChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

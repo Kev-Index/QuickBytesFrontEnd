@@ -24,6 +24,7 @@ export class ComboService implements OnInit{
   postComboApi: string;
   getComboIdApi: string;
   getCombosApi: string;
+  getVendorItemsApi: string;
 
   constructor(private http: HttpClient) {
     this.getAllApi='http://localhost:8989/item/vendor/';
@@ -32,6 +33,7 @@ export class ComboService implements OnInit{
     this.postComboApi='http://localhost:8989/combo/';
     this.getComboIdApi='http://localhost:8989/combo/';
     this.getCombosApi='http://localhost:8989/combos/vendorId/';
+    this.getVendorItemsApi = "http://localhost:8989/combos/vendorId/"
    }
   ngOnInit(): void {
   }
@@ -43,6 +45,11 @@ export class ComboService implements OnInit{
     return  this.http.get<Item[]>
     (this.getAllApi+this.vendor.vendorId);
   }
+}
+
+getCombosByVendor(vendorId:string, page:number, size:number):Observable<Combo[]>{
+
+  return this.http.get<Combo[]>(this.getVendorItemsApi+vendorId +'?page='+page+'&size='+size);
 }
 
 getCombos(page: number,size: number) : Observable<Combo[]>{
