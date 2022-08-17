@@ -45,7 +45,7 @@ export class RequestComponent implements OnInit {
       endTime:this.requestForm.value.endTime
     };
 
-    this.requestService.postRequest(request,this.requestForm.value.vendorId,this.requestForm.value.customerId).subscribe({
+    this.requestService.postRequest(request,this.requestForm.value.customerId,this.requestForm.value.vendorId).subscribe({
       next: (data) => {
         this.message="Category added successfully...";
       },

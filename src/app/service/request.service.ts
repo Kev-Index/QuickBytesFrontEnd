@@ -52,8 +52,8 @@ export class RequestService {
       return this.http.put<any>(this.denyRequestApi+"/"+requestId, { });
    }
 
-   postRequest(request:Request,vendorId:number,customerId:number):Observable<any> {
-      return this.http.post<any>(this.getPostApi+"/"+vendorId+"/"+customerId,request);
+   postRequest(request:Request,customerId:number,vendorId:number):Observable<any> {
+      return this.http.post<any>(this.getPostApi+"/"+customerId+"/"+vendorId,request);
    }
 
    updateRequestPrice(requestId:number,price:number):Observable<any> {
