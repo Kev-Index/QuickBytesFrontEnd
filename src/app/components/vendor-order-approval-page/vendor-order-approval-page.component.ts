@@ -39,6 +39,9 @@ export class VendorOrderApprovalPageComponent implements OnInit {
     });
   }
 
+  /**
+   * Fetch all currently pending requests for this vendor
+   */
   fetchPendingRequests() {
     this.requests.forEach((request) => {
       if (request.status === this.REQUEST_STATUSES[1]) {
@@ -49,6 +52,9 @@ export class VendorOrderApprovalPageComponent implements OnInit {
     this.fetchPendingRequestCombos();
   }
  
+  /**
+   * Fetch all pending request items for the fetched requests
+   */
   fetchPendingRequestItems() {
     this.pendingRequestItems = [ ];
     this.pendingRequests.forEach((pendingRequest) => {
@@ -61,6 +67,9 @@ export class VendorOrderApprovalPageComponent implements OnInit {
     });
   }
 
+  /**
+   * Fetch all pending request combos for the fetched requests
+   */
   fetchPendingRequestCombos() {
     this.pendingRequestCombos = [ ];
     this.pendingRequests.forEach((pendingRequest) => {
@@ -73,6 +82,11 @@ export class VendorOrderApprovalPageComponent implements OnInit {
     });
   }
 
+  /**
+   * Update status of Request and RequestItems after APPROVED
+   * @param request 
+   * @param requestItems 
+   */
   approveRequest(request: Request,requestItems: RequestItem[]) {
     if (request.customer.balance > request.totalPrice) {
       this.requestService.approveRequest(request.requestId).subscribe({
@@ -89,6 +103,10 @@ export class VendorOrderApprovalPageComponent implements OnInit {
     }
   }
 
+  /**
+   * Update status of Request to DENIED
+   * @param request 
+   */
   denyRequest(request: Request) {
     this.requestService.denyRequest(request.requestId).subscribe({
       next: (data) => { 
@@ -98,6 +116,10 @@ export class VendorOrderApprovalPageComponent implements OnInit {
     });
   }
 
+  /**
+   * Update Item quantities after approving a Request
+   * @param requestItems 
+   */
   decreaseItemQuantitiesFromRequestItems(requestItems: RequestItem[]) {
     requestItems.forEach((requestItem) => {
       requestItem.item.quantity = requestItem.item.quantity - 1;
@@ -108,6 +130,11 @@ export class VendorOrderApprovalPageComponent implements OnInit {
     });
   }
 
+  /**
+   * Update Customer balance after approving their Request
+   * @param customer 
+   * @param newCustomerBalance 
+   */
   decreaseCustomerBalance(customer:Customer, newCustomerBalance:number) {
     customer.balance = newCustomerBalance;
     this.customerService.putCustomer(customer);

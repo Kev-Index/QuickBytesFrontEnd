@@ -31,6 +31,8 @@ export class CustomerDashboardShoppingcartProductlistComponent {
   vendorId: string;
 
   // START OF ADD ITEM
+  activeRequestExists:boolean = false;
+  vendorRequestExists:boolean = false;
   request:Request;
   requests:Request[];
   activeRequest: Request;
@@ -41,8 +43,8 @@ export class CustomerDashboardShoppingcartProductlistComponent {
   requestTemplate: Request={
     totalPrice:0,
     status:"0",
-    orderTime: "2022-08-15",
-    endTime:"2022-08-15"
+    orderTime: "2022-08-17",
+    endTime:"2022-08-17"
   };
   // END OF ADD ITEM
   
@@ -85,36 +87,45 @@ export class CustomerDashboardShoppingcartProductlistComponent {
           next:(data)=>{
             this.requests = data;
 
+            //REDIRECT IF ACTIVE REQUEST EXISTS FOR ANOTHER VENDOR
             this.requests.forEach((request) => {
               if (request.status === this.REQUEST_STATUSES[0] && request.vendor.vendorId != item.vendor.vendorId){
-                this.router.navigateByUrl('/dashboard')
-              }
-                
-            });
-            this.requests.forEach((request) => {
-              if (request.status === this.REQUEST_STATUSES[0] && request.vendor.vendorId == item.vendor.vendorId) {
-                this.activeRequest = request;
-                this.requestService.updateRequestPrice(this.activeRequest.requestId,item.price).subscribe({
-                  next:(data)=>{
-                    this.requestItem = data;
-                    this.requestItemService.postRequestItem(this.requestItem.requestItemId,this.requestItem.item.itemId).subscribe({
-                      next:(data)=>{
-                      }
-                    });
-                  }
-                });
+                this.activeRequestExists = true;
+                localStorage.setItem('vendorId',request.vendor.vendorId.toString());
+                this.router.navigateByUrl('/customer/menu').then(()=>location.reload());
               }
             });
 
-            this.requestService.postRequest(this.requestTemplate,parseInt(localStorage.getItem('roleId')),item.vendor.vendorId).subscribe({
-              next:(data)=>{
-                this.request = data;
-                this.requestItemService.postRequestItem(this.request.requestId,item.itemId).subscribe({
-                  next:(data)=>{
-                  }
-                })
-              }
-            });
+            if (this.activeRequestExists == false) {
+              //IF ACTIVE REQUEST EXISTS
+              this.requests.forEach((request) => {
+                if (request.status === this.REQUEST_STATUSES[0] && request.vendor.vendorId == item.vendor.vendorId) {
+                  this.vendorRequestExists = true;
+                  this.activeRequest = request;
+                  let newTotalPrice = this.activeRequest.totalPrice + item.price;
+                  this.requestService.updateRequestPrice(this.activeRequest.requestId,newTotalPrice).subscribe({
+                    next:(data)=>{
+                      this.requestItemService.postRequestItem(this.activeRequest.requestId,item.itemId).subscribe({
+                        next:(data)=>{ }
+                      });
+                    }
+                  });
+                }
+              });
+            }
+
+            //IF NO CURRENTLY ACTIVE REQUEST FOR SELECTED VENDOR
+            if (!this.vendorRequestExists) {
+              this.requestTemplate.totalPrice = item.price;
+              this.requestService.postRequest(this.requestTemplate,parseInt(localStorage.getItem('roleId')),item.vendor.vendorId).subscribe({
+                next:(data)=>{
+                  this.request = data;
+                  this.requestItemService.postRequestItem(this.request.requestId,item.itemId).subscribe({
+                    next:(data)=>{ }
+                  })
+                }
+              });
+            }
           }
         })
       }

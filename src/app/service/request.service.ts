@@ -16,6 +16,7 @@ export class RequestService {
    denyRequestApi:string;
    getPostApi:string;
    updateRequestPriceApi:string;
+   deleteRequestApi:string;
 
    constructor(private http:HttpClient) {
       this.getRequestsApi = environment.serverUrl + '/requests';
@@ -26,6 +27,7 @@ export class RequestService {
       this.denyRequestApi = environment.serverUrl + '/request/deny';
       this.getPostApi = environment.serverUrl + '/request';
       this.updateRequestPriceApi = environment.serverUrl + '/request/price';
+      this.deleteRequestApi = environment.serverUrl + '/request';
    }
 
    fetchRequests():Observable<Request[]> {
@@ -52,11 +54,15 @@ export class RequestService {
       return this.http.put<any>(this.denyRequestApi+"/"+requestId, { });
    }
 
-   postRequest(request:Request,vendorId:number,customerId:number):Observable<any> {
-      return this.http.post<any>(this.getPostApi+"/"+vendorId+"/"+customerId,request);
+   postRequest(request:Request,customerId:number,vendorId:number):Observable<any> {
+      return this.http.post<any>(this.getPostApi+"/"+customerId+"/"+vendorId,request);
    }
 
    updateRequestPrice(requestId:number,price:number):Observable<any> {
       return this.http.put<any>(this.updateRequestPriceApi+"/"+requestId+"/"+price, { });
+   }
+
+   deleteRequest(requestId:number):Observable<any> {
+      return this.http.delete<any>(this.getPostApi+"/"+requestId);
    }
 }
