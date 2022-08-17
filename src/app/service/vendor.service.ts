@@ -8,10 +8,12 @@ import { Vendor } from '../model/vendor.model';
   providedIn: 'root'
 })
 export class VendorService {
-  getVendorsApi:string
+  getVendorsApi:string;
+  getMenuVendorsApi:string;
   getSingleVendorApi: string;
   constructor(private http:HttpClient) { 
     this.getVendorsApi = "http://localhost:8989/vendors";
+    this.getMenuVendorsApi = "http://localhost:8989/vendors";
     this.getSingleVendorApi = "http://localhost:8989/vendor/single/user/";
   }
 
@@ -25,7 +27,9 @@ export class VendorService {
 
     return this.http.get<Vendor[]>(this.getVendorsApi,httpOptions);
   }
-
+  getVendorsMenu():Observable<Vendor[]>{
+    return this.http.get<Vendor[]>(this.getMenuVendorsApi);
+  }
   getVendorByUserId(userId: number):Observable<Vendor>{
     return this.http.get<Vendor>(this.getSingleVendorApi+userId)
   }

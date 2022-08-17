@@ -3,23 +3,6 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 
-
-/*
-@Component({
-  selector: 'app-customer-dashboard-shoppingcart-productlist',
-  templateUrl: './customer-dashboard-shoppingcart-productlist.component.html',
-  styleUrls: ['./customer-dashboard-shoppingcart-productlist.component.css']
-})
-export class CustomerDashboardShoppingcartProductlistComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
-}
-*/
-
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import { Item } from 'src/app/model/item.model';
 import { ItemService } from 'src/app/service/item.service';
@@ -76,15 +59,6 @@ export class CustomerDashboardShoppingcartProductlistComponent {
     // Assign the data to the data source for the table to render
   }
   ngOnInit(): void {
-    console.log(this.var);
-    // START OF ADD ITEM
-    this.requestService.fetchRequests().subscribe({
-      next: (data) => {
-        //console.log(data);
-      }
-      });
-    // END OF ADD ITEM
-
 
     this.itemsService.getItemsByVendorId(this.vendorId).subscribe({
       next:(data)=>{
