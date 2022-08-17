@@ -53,6 +53,7 @@ export class LoginComponent implements OnInit {
             this.authService.role$.next(data.role);
             this.authService.userId$.next(data.id);
             this.uid = data.id;
+            console.log("I got here 1");
             this.setRoleId();
             
             this.router.navigateByUrl("/"+ data.role).then((value)=>{location.reload()});
@@ -86,6 +87,7 @@ export class LoginComponent implements OnInit {
     if (this.user.role == this.ROLES[2]) {
       this.authService.getAdminByUserId(this.user.id).subscribe({
         next: (data) => {
+          console.log("I got here 2");
           localStorage.setItem('roleId',data.id.toString());
         },
         error: (e) => { }

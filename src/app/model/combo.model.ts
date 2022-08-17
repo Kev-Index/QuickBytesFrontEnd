@@ -4,6 +4,6 @@ export class Combo {
     comboId: number;
     name: string;
     price: number;
-    available: boolean;
+    available?: number;
     vendor: Vendor;
 }

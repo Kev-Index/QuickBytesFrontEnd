@@ -51,6 +51,10 @@ import { AddItemComponent } from './components/add-item/add-item.component';
 import { EditItemComponent } from './components/edit-item/edit-item.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { CustomerListComponent } from './components/customer-list/customer-list.component';
+
+import { AdminDashboardViewUsersComponent } from './components/admin-dashboard-view-users/admin-dashboard-view-users.component';
+import { AdminProfileEditComponent } from './components/admin-profile-edit/admin-profile-edit.component';
+import { AddUserComponent } from './components/add-user/add-user.component';
 import { CustomerProfilePageComponent } from './components/customer-profile-page/customer-profile-page.component';
 import { CustomerMenuPageComponent } from './components/customer-menu-page/customer-menu-page.component';
 
@@ -75,12 +79,10 @@ import { CustomerMenuPageComponent } from './components/customer-menu-page/custo
     UsernameVerifyComponent,
     PasswordResetComponent,
     SignupComponent,
-
     CustomerDashboardProfileComponent,
     CustomerDashboardShoppingcartComponent,
     CustomerDashboardShoppingcartProductlistComponent,
     CustomerDashboardShoppingcartCartComponent,
-
     CustomerCartPageComponent,
     AdminReportPageComponent,
     VendorOrderApprovalPageComponent,
@@ -88,6 +90,9 @@ import { CustomerMenuPageComponent } from './components/customer-menu-page/custo
     EditItemComponent,
     MenuComponent,
     CustomerListComponent,
+    AdminDashboardViewUsersComponent,
+    AdminProfileEditComponent,
+    AddUserComponent,
     CustomerProfilePageComponent,
     CustomerMenuPageComponent
   ],
@@ -109,7 +114,6 @@ import { CustomerMenuPageComponent } from './components/customer-menu-page/custo
     MatInputModule,
     MatPaginatorModule,
     MatCheckboxModule,
-    MatIconModule,
     MatTabsModule,
     MatStepperModule,
     MatFormFieldModule,

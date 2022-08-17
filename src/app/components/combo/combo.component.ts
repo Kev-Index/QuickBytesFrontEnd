@@ -1,4 +1,7 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
 import { Combo } from 'src/app/model/combo.model';
 import { ComboService } from 'src/app/service/combo.service';
@@ -8,51 +11,38 @@ import { ComboService } from 'src/app/service/combo.service';
   templateUrl: './combo.component.html',
   styleUrls: ['./combo.component.css']
 })
-export class ComboComponent implements OnInit,OnDestroy{
+export class ComboComponent implements OnInit{
 
   vendorId: string;
   combos: Combo[];
-  size: number;
+  dataSource: MatTableDataSource<Combo>;
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+
+
+  displayedColumns: string[] = ['name','price','available'];
   constructor(private actRoute: ActivatedRoute,
     private comboService: ComboService) {}
 
 
   ngOnInit(): void {
     this.vendorId= this.actRoute.snapshot.paramMap.get('vendorId');
-    this.size = 5;
-    this.comboService.getCombosByVendor(this.vendorId, 0,this.size).subscribe(data=>{
+    this.comboService.getCombosByVendor(this.vendorId).subscribe(data=>{
       this.combos= data;
+      this.dataSource = new MatTableDataSource(this.combos);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
     });
   }
 
-  prev(): void {
-    //read the value of page from subject
 
-     let currentPage = this.comboService.page$.getValue();
-    //update the value of page
-    if(currentPage >0){
-     currentPage = currentPage-1;
-     //attach the updated value to the subject
-      this.comboService.page$.next(currentPage);
-      this.comboService.getCombosByVendor(this.vendorId, currentPage,5).subscribe(data=>{
-        this.combos= data;
-      });
-    }
-  }
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
 
-  next(): void {
-    let currentPage = this.comboService.page$.getValue();
-    //update the value of page
-    if (currentPage < this.combos.length/this.size){
-    currentPage = currentPage+1;
-    //attach the updated value to the subject
-      this.comboService.page$.next(currentPage);
-      this.comboService.getCombosByVendor(this.vendorId, currentPage,5).subscribe(data=>{
-        this.combos= data;
-     });
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
     }
-  }
-  ngOnDestroy(): void {
-    this.comboService.page$.unsubscribe();
   }
 }
