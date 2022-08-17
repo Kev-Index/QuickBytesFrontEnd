@@ -41,6 +41,9 @@ export class CustomerCartPageComponent implements OnInit {
     });
   }
 
+  /**
+   * Fetch currently active request from list of fetched requests
+   */
   fetchActiveRequest(): void {
     this.requests.forEach((request) => {
       if (request.status === this.REQUEST_STATUSES[0]) {
@@ -49,6 +52,9 @@ export class CustomerCartPageComponent implements OnInit {
     });
   }
 
+  /**
+   * Fetch request items & combos from currently active request
+   */
   fetchRequestItemsAndCombos(): void {
     this.requestItemService.fetchRequestItemsByRequestId(this.activeRequest.requestId).subscribe({
       next: (data) => {
@@ -73,10 +79,16 @@ export class CustomerCartPageComponent implements OnInit {
     });
   }
 
+  /**
+   * Navigate to final tab
+   */
   confirmOrder(): void {
     this.matTabIndex = this.matTabIndex+1;
   }
   
+  /**
+   * Contact API to put request status
+   */
   placeOrder(): void {
     this.requestService.pendRequest(this.activeRequest.requestId).subscribe({
       next: (data) => { 
@@ -88,6 +100,10 @@ export class CustomerCartPageComponent implements OnInit {
     });
   }
 
+  /**
+   * Remove requestItem from DB and update UI
+   * @param requestItem 
+   */
   removeItem(requestItem: RequestItem): void {
     this.requestItemService.deleteRequestItemById(requestItem.requestItemId).subscribe({
       next: (data) => { 
@@ -103,6 +119,10 @@ export class CustomerCartPageComponent implements OnInit {
     });
   }
 
+  /**
+   * Remove requestCombo from DB and update UI
+   * @param requestCombo 
+   */
   removeCombo(requestCombo: RequestCombo): void {
     this.requestComboService.deleteRequestComboById(requestCombo.requestComboId).subscribe({
       next: (data) => { 
