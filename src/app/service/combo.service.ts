@@ -25,6 +25,7 @@ export class ComboService implements OnInit{
   getComboIdApi: string;
   getCombosApi: string;
   getVendorItemsApi: string;
+  deleteComboApi: string;
 
   constructor(private http: HttpClient) {
     this.getAllApi='http://localhost:8989/item/vendor/';
@@ -32,6 +33,7 @@ export class ComboService implements OnInit{
     this.getUserApi='http://localhost:8989/user/single/';
     this.postComboApi='http://localhost:8989/combo/';
     this.getComboIdApi='http://localhost:8989/combo/';
+    this.deleteComboApi='http://localhost:8989/combo/';
     this.getCombosApi='http://localhost:8989/combos/vendorId/';
     this.getVendorItemsApi = "http://localhost:8989/combos/vendorId/"
    }
@@ -80,4 +82,10 @@ getCombos(page: number,size: number) : Observable<Combo[]>{
               console.log(this.vendor.vendorId);
   }
 })}
-})}}
+})}
+
+deleteCombo(comboId: number): Observable<Combo>{
+    return this.http.delete<Combo>(this.deleteComboApi+comboId);
+}
+
+}

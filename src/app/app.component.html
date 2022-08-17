@@ -14,7 +14,8 @@
     <span *ngIf="this.role == 'vendor' "> 
       <p><a routerLink="/menu/{{this.roleId}}" (click)="close('Menu')">Your Menu</a></p>
       <p><a routerLink="/item/{{this.roleId}}" (click)="close('Add Item')"> Add Item</a></p>
-          <p ><a routerLink="/approval" (click)="close('Approve/Deny Customer Orders')">Approve/Deny Orders</a></p>
+      <p ><a routerLink="/approval" (click)="close('Approve/Deny Customer Orders')">Approve/Deny Orders</a></p>
+      <p><a routerLink="/create-combo" (click)="close('Create Combo')">Create Combo</a> </p>
     </span>
 
     <span *ngIf="this.role == 'customer' "> 

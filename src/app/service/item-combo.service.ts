@@ -11,7 +11,7 @@ export class ItemComboService {
   postItemComboApi: string;
 
   constructor(private http: HttpClient) { 
-    this.postItemComboApi='http://localhost:8489/itemcombo/';
+    this.postItemComboApi='http://localhost:8989/itemcombo/';
   }
 
   postCombo(comboId: number, itemId: number): Observable<ItemCombo> {

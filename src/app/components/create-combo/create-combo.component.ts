@@ -84,6 +84,19 @@ export class CreateComboComponent implements OnInit {
 
   } 
 
+  onRemove(event){
+    var name=event.target.id;
+    this.xx=this.comboItems.length;     
+    for (let i=0; i<this.xx; i++){
+      if(name==this.comboItems[i].name){
+    this.comboItems.splice(i, 1);
+    this.names.splice(i, 1);
+    this.router.navigateByUrl('/create-combo');  
+    this.addForm.reset();  
+    }   
+  }
+}
+
   onFormSubmit(){
     this.combo=this.addForm.value;
     console.log(this.combo);
@@ -118,12 +131,27 @@ export class CreateComboComponent implements OnInit {
     
   }
   onEdit(event){
+    this.router.navigateByUrl('/edit-combo');
 
   }
 
   onDelete(event){
-
+    var name=event.target.id;
+    console.log(name);
+    this.xx=this.combos.length;   
+    for (let i=0; i<this.xx; i++){
+      if (name==this.combos[i].name){
+        this.comboService.deleteCombo(this.combos[i].comboId).subscribe({
+          next: (data)=>{
+            console.log("deleted");
+            this.combos.splice(i, 1);
+        }})}
+      }
+      this.router.navigateByUrl('/create-combo');   
+      this.addForm.reset();  
   }
+}
 
-  }
+
+
 
