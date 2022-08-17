@@ -1,8 +1,10 @@
 export class UserInfo{
-    id: number;
+    id?: number;
     username: string;
     password?: string;
-    role: string
+    role: string;
+    securityQuestion?: string;
+    securityAnswer?: string;
   }
 
   export class UserSecurityDto{

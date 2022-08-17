@@ -21,6 +21,10 @@ import { AddItemComponent } from './components/add-item/add-item.component';
 import { EditItemComponent } from './components/edit-item/edit-item.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { CustomerListComponent } from './components/customer-list/customer-list.component';
+import { RouterTestingModule } from '@angular/router/testing';
+import { AdminDashboardViewUsersComponent } from './components/admin-dashboard-view-users/admin-dashboard-view-users.component';
+import { AdminProfileEditComponent } from './components/admin-profile-edit/admin-profile-edit.component';
+import { AddUserComponent } from './components/add-user/add-user.component';
 
 const routes: Routes = [
   {path:'' , component: DashboardComponent},
@@ -44,11 +48,14 @@ const routes: Routes = [
   {path:'customers' , component: CustomerListComponent},
   {path:'cart', component:CustomerCartPageComponent},
   {path:'approval', component:VendorOrderApprovalPageComponent},
-  {path:'report', component:AdminReportPageComponent}
+  {path:'report', component:AdminReportPageComponent},
+  //{path:'users', component:AdminDashboardViewUsersComponent},
+  {path:'admin-profile/:adminId', component:AdminProfileEditComponent},
+  {path:'add-user', component:AddUserComponent},
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes),RouterTestingModule],
   exports: [RouterModule]
 })
 

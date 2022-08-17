@@ -7,10 +7,13 @@ import { Admin } from 'src/app/model/admin.model';
 import { environment } from 'src/environments/environment';
 import { UserInfo, UserSecurityDto } from '../model/user.model';
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+
+
   username: string;
   username$ = new BehaviorSubject<string>('');
   user$ = new BehaviorSubject<string>('');
@@ -28,6 +31,8 @@ export class AuthService {
   customerByUserIdApi: string;
   vendorByUserIdApi: string;
   adminByUserIdApi: string;
+  allUsersApi:string; 
+  addUserApi: string;
 
   constructor(private http: HttpClient) {
     this.username='';
@@ -41,6 +46,8 @@ export class AuthService {
     this.customerByUserIdApi= environment.serverUrl + '/customer/single/user/';
     this.vendorByUserIdApi= environment.serverUrl + '/vendor/single/user/';
     this.adminByUserIdApi= environment.serverUrl + '/admin/single/user/';
+    this.allUsersApi = environment.serverUrl + '/user';
+    this.addUserApi=environment.serverUrl + '/user';
   }
 
   isLoggedIn(): boolean{
@@ -85,10 +92,16 @@ export class AuthService {
 
  getVendorByUserId(userId:number):Observable<Vendor> {
   return this.http.get<Vendor>(this.vendorByUserIdApi + userId);
-}
+  }
 
-getAdminByUserId(userId:number):Observable<Admin> {
-  return this.http.get<Admin>(this.adminByUserIdApi + userId);
-}
+  getAdminByUserId(userId:number):Observable<Admin> {
+    return this.http.get<Admin>(this.adminByUserIdApi + userId);
+  }
 
+  getUsers():Observable<UserInfo[]> {
+    return this.http.get<UserInfo[]>(this.allUsersApi);
+  }
+  addUser(user: UserInfo):Observable<any>{
+    return this.http.post(this.addUserApi,user)
+  }
 }

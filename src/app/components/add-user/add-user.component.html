@@ -1,0 +1,42 @@
+
+<form class="example-form" (submit)="onFormSubmit()" [formGroup]="newUserForm">
+    <div>
+        <h2>Infomation: </h2>
+        <table class="example-full-width" cellspacing="10"><tr>
+            <td><mat-form-field class="example-full-width" appearance="fill" >
+                <mat-label>Username</mat-label>
+                <input matInput formControlName="username">
+                </mat-form-field></td>
+                
+            <td><mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Password</mat-label>
+              <input matInput formControlName="password">
+            </mat-form-field></td>
+            <br><br>
+        </table>
+        <table class="example-full-width" cellspacing="10"><tr>
+            <td> <mat-form-field>
+                <mat-select formControlName="role" required="true">
+                    <mat-label>Role</mat-label>
+                    <mat-option *ngFor="let r of roles" [value]="r">
+                      {{r}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field></td>
+            <br><br>
+        </table>
+        <table class="example-full-width" cellspacing="10"><tr>
+              <td><mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Security Question</mat-label>
+                <input matInput formControlName="securityQuestion">
+              </mat-form-field></td>
+      
+              <td><mat-form-field class="example-full-width" appearance="fill">
+                  <mat-label>The Answer to Security Question</mat-label>
+                  <input matInput formControlName="securityAnswer">
+                </mat-form-field></td>
+        </table>
+    </div>
+    <br> <br>
+    <input type="submit" value="Add User"> <!--[disabled]="!customerProfile.valid"-->
+</form>

@@ -17,9 +17,8 @@ export class ComboService {
     this.getVendorItemsApi = "http://localhost:8989/combos/vendorId/"
   }
 
-  getCombosByVendor(vendorId:string, page:number, size:number):Observable<Combo[]>{
-
-    return this.http.get<Combo[]>(this.getVendorItemsApi+vendorId +'?page='+page+'&size='+size);
+  getCombosByVendor(vendorId:string):Observable<Combo[]>{
+    return this.http.get<Combo[]>(this.getVendorItemsApi+vendorId);
   }
 
 }

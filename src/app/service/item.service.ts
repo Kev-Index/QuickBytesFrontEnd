@@ -16,9 +16,9 @@ export class ItemService {
     this.singleItemApi="http://localhost:8989/item/"
   }
 
-  getItemsByVendor(vendorId:string, page:number, size:number):Observable<Item[]>{
+  getItemsByVendor(vendorId:string):Observable<Item[]>{
 
-    return this.http.get<Item[]>(this.getVendorItemsApi+vendorId +'?page='+page+'&size='+size);
+    return this.http.get<Item[]>(this.getVendorItemsApi+vendorId);
   }
 
   getItem(itemId:string):Observable<ItemDto>{

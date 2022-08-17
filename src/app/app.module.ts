@@ -52,6 +52,9 @@ import { AddItemComponent } from './components/add-item/add-item.component';
 import { EditItemComponent } from './components/edit-item/edit-item.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { CustomerListComponent } from './components/customer-list/customer-list.component';
+import { AdminDashboardViewUsersComponent } from './components/admin-dashboard-view-users/admin-dashboard-view-users.component';
+import { AdminProfileEditComponent } from './components/admin-profile-edit/admin-profile-edit.component';
+import { AddUserComponent } from './components/add-user/add-user.component';
 
 
 
@@ -87,7 +90,10 @@ import { CustomerListComponent } from './components/customer-list/customer-list.
     AddItemComponent,
     EditItemComponent,
     MenuComponent,
-    CustomerListComponent
+    CustomerListComponent,
+    AdminDashboardViewUsersComponent,
+    AdminProfileEditComponent,
+    AddUserComponent
   ],
   imports: [
     BrowserModule,
@@ -107,7 +113,6 @@ import { CustomerListComponent } from './components/customer-list/customer-list.
     MatInputModule,
     MatPaginatorModule,
     MatCheckboxModule,
-    MatIconModule,
     MatTabsModule,
     MatStepperModule,
     MatFormFieldModule,
