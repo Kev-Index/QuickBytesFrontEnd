@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { RequestItem } from 'src/app/model/requestItem.model';
+import { ItemService } from 'src/app/service/item.service';
 import { RequestItemService } from 'src/app/service/request-item.service';
 import { RequestService } from 'src/app/service/request.service';
 import { Request } from '../../model/request.model';
@@ -13,15 +14,17 @@ import { Request } from '../../model/request.model';
 export class VendorOrderApprovalPageComponent implements OnInit {
 
   REQUEST_STATUSES = ['IN_PROGRESS','PENDING','APPROVED','DENIED'];
+  roleId:number;
   requests: Request[] = [ ];
   pendingRequests: Request[] = [ ];
   pendingRequestItems: RequestItem[][] = [ ];
 
   constructor(private requestService: RequestService, private requestItemService: RequestItemService,
-              private snackBar: MatSnackBar) { }
+              private itemService: ItemService) { }
 
   ngOnInit(): void {
-    this.requestService.fetchRequests().subscribe({
+    this.roleId = parseInt(localStorage.getItem('roleId'));
+    this.requestService.fetchRequestsByVendorId(this.roleId).subscribe({
       next: (data) => {
         this.requests = data;
         this.fetchPendingRequests();
@@ -50,9 +53,10 @@ export class VendorOrderApprovalPageComponent implements OnInit {
     });
   }
 
-  approveRequest(request: Request) {
+  approveRequest(request: Request,requestItems: RequestItem[]) {
     this.requestService.approveRequest(request.requestId).subscribe({
       next: (data) => { 
+        this.decreaseItemQuantitiesFromRequestItems(requestItems);
         location.reload();
       },
       error: (e) => { }
@@ -65,6 +69,16 @@ export class VendorOrderApprovalPageComponent implements OnInit {
         location.reload();
       },
       error: (e) => { }
+    });
+  }
+
+  decreaseItemQuantitiesFromRequestItems(requestItems: RequestItem[]) {
+    requestItems.forEach((requestItem) => {
+      requestItem.item.quantity = requestItem.item.quantity - 1;
+      this.itemService.putItem(requestItem.item).subscribe({
+        next: (data) => { },
+        error: (e) => { }
+      });
     });
   }
 }
