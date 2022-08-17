@@ -141,6 +141,7 @@ export class CustomerDashboardShoppingcartProductlistComponent {
 
             //IF NO CURRENTLY ACTIVE REQUEST FOR SELECTED VENDOR
             if (!this.vendorRequestExists) {
+              this.requestTemplate.totalPrice = item.price;
               this.requestService.postRequest(this.requestTemplate,parseInt(localStorage.getItem('roleId')),item.vendor.vendorId).subscribe({
                 next:(data)=>{
                   this.request = data;
