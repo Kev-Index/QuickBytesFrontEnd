@@ -11,14 +11,16 @@ export class ItemService {
   singleItemApi:string;
   page$ = new BehaviorSubject<number>(0);
   message$ = new BehaviorSubject<string>('');
+  vendorId:string;
+
+
   constructor(private http:HttpClient) { 
-    this.getVendorItemsApi = "http://localhost:8989/item/vendor/";
+    this.vendorId = localStorage.getItem('vendorId');
+    this.getVendorItemsApi = "http://localhost:8989/item/vendor/" + this.vendorId;
     this.singleItemApi="http://localhost:8989/item/"
   }
-
-  getItemsByVendor(vendorId:string, page:number, size:number):Observable<Item[]>{
-
-    return this.http.get<Item[]>(this.getVendorItemsApi+vendorId +'?page='+page+'&size='+size);
+  getItemsByVendorId(vendorId:string):Observable<Item[]>{
+    return this.http.get<Item[]>(this.getVendorItemsApi);
   }
 
   getItem(itemId:string):Observable<ItemDto>{

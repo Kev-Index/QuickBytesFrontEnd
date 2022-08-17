@@ -19,7 +19,7 @@ export class ItemComponent implements OnInit,OnDestroy {
   ngOnInit(): void {
     this.vendorId= this.actRoute.snapshot.paramMap.get('vendorId');
     this.size = 5;
-    this.itemService.getItemsByVendor(this.vendorId, 0,this.size).subscribe(data=>{
+    this.itemService.getItemsByVendorId(this.vendorId).subscribe(data=>{
       this.items= data;
     });
 
@@ -33,7 +33,7 @@ export class ItemComponent implements OnInit,OnDestroy {
      currentPage = currentPage-1;
      //attach the updated value to the subject
       this.itemService.page$.next(currentPage);
-      this.itemService.getItemsByVendor(this.vendorId, currentPage,5).subscribe(data=>{
+      this.itemService.getItemsByVendorId(this.vendorId).subscribe(data=>{
         this.items= data;
       });
     }
@@ -46,7 +46,7 @@ export class ItemComponent implements OnInit,OnDestroy {
     currentPage = currentPage+1;
     //attach the updated value to the subject
       this.itemService.page$.next(currentPage);
-      this.itemService.getItemsByVendor(this.vendorId, currentPage,5).subscribe(data=>{
+      this.itemService.getItemsByVendorId(this.vendorId).subscribe(data=>{
         this.items= data;
      });
     }
