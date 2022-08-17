@@ -21,8 +21,8 @@ export class CustomerService {
 
     this.getCustomersApi = "http://localhost:8989/customer";
    }
-   getCustomers(page:number, size:number):Observable<Customer[]>{
-    return this.http.get<Customer[]>(this.getCustomersApi +'?page='+page+'&size='+size);
+   getCustomers():Observable<Customer[]>{
+    return this.http.get<Customer[]>(this.getCustomersApi);
   }
    getCustomerById():Observable<Customer>{
     return this.http.get<Customer>(this.getCustomerApi);

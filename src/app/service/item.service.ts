@@ -18,12 +18,13 @@ export class ItemService {
 
   constructor(private http:HttpClient) { 
     this.vendorId = localStorage.getItem('vendorId');
-    this.getVendorItemsApi = "http://localhost:8989/item/vendor/" + this.vendorId;
+    this.getVendorItemsApi = "http://localhost:8989/item/vendor/";
     this.singleItemApi="http://localhost:8989/item/"
     this.putItemApi=environment.serverUrl + "/item/";
   }
+
   getItemsByVendorId(vendorId:string):Observable<Item[]>{
-    return this.http.get<Item[]>(this.getVendorItemsApi);
+    return this.http.get<Item[]>(this.getVendorItemsApi+vendorId);
   }
 
   getItem(itemId:string):Observable<ItemDto>{
