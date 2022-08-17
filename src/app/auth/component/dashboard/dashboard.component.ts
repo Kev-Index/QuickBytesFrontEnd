@@ -21,7 +21,7 @@ export class DashboardComponent implements OnInit {
       this.router.navigateByUrl("/vendor");
     }
     else if(localStorage.getItem('role')=='admin') {
-      this.router.navigateByUrl("/adminr");
+      this.router.navigateByUrl("/admin");
     }
     else{
       this.router.navigateByUrl("/login");
