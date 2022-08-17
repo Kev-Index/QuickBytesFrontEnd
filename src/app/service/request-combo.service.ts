@@ -10,12 +10,18 @@ import { RequestCombo } from '../model/requestCombo.model';
 export class RequestComboService {
 
   getRequestCombosByRequestIdApi:string;
+  deleteRequestComboByIdApi:string;
 
   constructor(private http:HttpClient) { 
     this.getRequestCombosByRequestIdApi = environment.serverUrl + '/requestcombo/rid';
+    this.deleteRequestComboByIdApi = environment.serverUrl + "/requestcombo"
   }
 
   fetchRequestCombosByRequestId(requestId: number):Observable<RequestCombo[]> {
-    return this.http.get<RequestCombo[]>(this.fetchRequestCombosByRequestId+"/"+requestId);
+    return this.http.get<RequestCombo[]>(this.getRequestCombosByRequestIdApi+"/"+requestId);
+  }
+
+  deleteRequestComboById(requestComboId: number):Observable<any> {
+    return this.http.delete<any>(this.deleteRequestComboByIdApi+"/"+requestComboId);
   }
 }
