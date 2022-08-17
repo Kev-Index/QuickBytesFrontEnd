@@ -43,13 +43,14 @@ export class VendorOrderApprovalPageComponent implements OnInit {
     this.requests.forEach((request) => {
       if (request.status === this.REQUEST_STATUSES[1]) {
         this.pendingRequests.push(request);
-        this.fetchPendingRequestItems();
-        this.fetchPendingRequestCombos();
       }
     });
+    this.fetchPendingRequestItems();
+    this.fetchPendingRequestCombos();
   }
  
   fetchPendingRequestItems() {
+    this.pendingRequestItems = [ ];
     this.pendingRequests.forEach((pendingRequest) => {
       this.requestItemService.fetchRequestItemsByRequestId(pendingRequest.requestId).subscribe({
         next: (data) => {
@@ -61,6 +62,7 @@ export class VendorOrderApprovalPageComponent implements OnInit {
   }
 
   fetchPendingRequestCombos() {
+    this.pendingRequestCombos = [ ];
     this.pendingRequests.forEach((pendingRequest) => {
       this.requestComboService.fetchRequestCombosByRequestId(pendingRequest.requestId).subscribe({
         next: (data) => {
