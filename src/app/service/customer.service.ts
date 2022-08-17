@@ -13,11 +13,9 @@ export class CustomerService {
   page$ = new BehaviorSubject<number>(0);
   message$ = new BehaviorSubject<string>('');
   customer$ = new ReplaySubject<Customer>(1);
-  roleId:string;
+  roleId:number;
   constructor(private http:HttpClient) {
-    this.roleId = localStorage.getItem('roleId');
-    console.log("CONSTRUCTOR SERVCIE");
-    console.log(this.roleId);
+    this.roleId = parseInt(localStorage.getItem('roleId'));
     this.getCustomerApi="http://localhost:8989/customer/" + this.roleId;
     this.putCustomerApi="http://localhost:8989/customer/" + this.roleId;
 

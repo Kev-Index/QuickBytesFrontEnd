@@ -27,7 +27,7 @@
     <!-- Disclaimer column -->
     <ng-container matColumnDef="disclaimer">
       <td mat-footer-cell *matFooterCellDef colspan="2">
-        Remove items in checkout to finalize purchase!
+        Remove items at checkout to finalize purchase!
       </td>
     </ng-container>
   
@@ -47,4 +47,7 @@
   
   <div class="div-dash-cart-button">
     <button mat-stroked-button class="btn-dash-cart-button" (click)="checkout()">Proceed to checkout</button>
+</div>
+<div class="div-dash-cart-button">
+  <button mat-stroked-button class="btn-dash-cart-button" routerLink="/customer">Back</button>
 </div>
