@@ -83,7 +83,7 @@ export class VendorOrderApprovalPageComponent implements OnInit {
         error: (e) => { }
       });
     } else {
-      this.snackBar.open("Your order has been placed!", "OK");
+      this.snackBar.open("Customer has an insufficient balance. Please deny order.", "OK");
     }
   }
 
