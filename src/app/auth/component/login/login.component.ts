@@ -53,7 +53,6 @@ export class LoginComponent implements OnInit {
             this.authService.username$.next(this.user.username);
             this.router.navigateByUrl("/"+ data.role);
             this.comboService.getUser();
-            this.vendorService.setVendor();
             localStorage.setItem('role',this.user.role);
             localStorage.setItem('userId',  this.user.id.toString())
 

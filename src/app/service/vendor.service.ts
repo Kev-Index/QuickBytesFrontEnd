@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { UserInfo } from '../auth/model/user.model';
-import { Vendor } from '../model/vendor.model';
+import { Vendor, VendorEditDto } from '../model/vendor.model';
 
 @Injectable({
   providedIn: 'root'
@@ -15,13 +15,17 @@ export class VendorService {
   vendor: Vendor;
   myurl: string;
   getSingleVendorApi: string;
+  getVendorByIdApi: string;
+  getUpdateVendorApi: string;
   
   constructor(private http:HttpClient) { 
     this.getVendorsApi = "http://localhost:8989/vendors";
     this.getVendorApi='http://localhost:8989/vendor/single/user/';
     this.getUserApi='http://localhost:8989/user/single/';
     this.getVendorsApi = "http://localhost:8989/vendors";
+    this.getUpdateVendorApi = "http://localhost:8989/vendor/";
     this.getSingleVendorApi = "http://localhost:8989/vendor/single/user/";
+    this.getVendorByIdApi = "http://localhost:8989/vendor/single/";
   }
 
   getVendors():Observable<Vendor[]> {
@@ -50,14 +54,20 @@ export class VendorService {
         .subscribe({
           next : (data)=>{
             this.vendor = data;  
-            console.log(this.vendor.vendorId);
+            console.log(this.vendor.vendorId+ "hey");
+            localStorage.setItem('vendorId', this.vendor.vendorId.toString());
 }
 })
         }})
   }
 
-  getVendor(): Vendor{
-    return this.vendor;
+  getVendor(): Observable<Vendor>{
+    return this.http.get<Vendor>(this.getVendorByIdApi+ localStorage.getItem('vendorId'))
+  }
+
+  updateVendor(vendor: VendorEditDto): Observable<Vendor>{
+    return this.http.put<Vendor>(this.getUpdateVendorApi+localStorage.getItem('vendorId'), vendor);
+
   }
 
 }

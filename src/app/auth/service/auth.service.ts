@@ -41,7 +41,7 @@ export class AuthService {
     this.loginApi = environment.serverUrl + '/login';
     this.signUpApi=environment.serverUrl + '/user';
     this.userAPi = environment.serverUrl + '/user/username';
-    this.profileEditAPi= environment.serverUrl + '/user/profile';
+    this.profileEditAPi= environment.serverUrl + '/user/';
     this.userSecurityInfoApi= environment.serverUrl + '/user/security/info/';
     this.securityAnswerValidationApi= environment.serverUrl + '/validate-security-answer/';
     this.passwordResetAPi= environment.serverUrl +'/user/reset-password/';
@@ -86,14 +86,14 @@ export class AuthService {
      return this.http.put(this.passwordResetAPi + encodedText,{});
  }
 
- editProfile(userEditDto: UserEditDto) :Observable<UserEditDto>{
+ editProfile(userEdit: UserInfo, userid: number) :Observable<UserEditDto>{
   let httpOptions={
     headers : new HttpHeaders({
       'Content-type': 'application/json',
       'Authorization' : 'basic ' + localStorage.getItem('credentials')
     })
   };
-   return this.http.put<UserEditDto>(this.profileEditAPi,userEditDto,httpOptions);
+   return this.http.put<UserEditDto>(this.profileEditAPi+userid,userEdit, httpOptions);
 }
 
  getCustomerByUserId(userId:number):Observable<Customer> {

@@ -25,9 +25,13 @@ export class VendorComponent implements OnInit {
 
   ngOnInit(): void {
     this.comboService.getUser();
-        this.vendor=this.vendorService.getVendor();
+    this.vendorService.setVendor();
+    this.vendorService.getVendor()
+    .subscribe({
+      next: (data)=>{
+          this.vendor = data;
     
-  }
+  }})}
   
 onEdit(event){
   this.router.navigateByUrl('/edit-info');
