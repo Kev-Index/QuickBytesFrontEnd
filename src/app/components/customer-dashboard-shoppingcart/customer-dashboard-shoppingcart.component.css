@@ -21,3 +21,9 @@
 .customer-headers{
   text-align: center;
 }
+table {
+  width: 100%;
+}
+mat-paginator{
+  width:100%;
+}

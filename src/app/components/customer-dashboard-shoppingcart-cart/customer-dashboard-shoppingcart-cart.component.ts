@@ -25,7 +25,6 @@ export class CustomerDashboardShoppingcartCartComponent implements OnInit {
   constructor(private router:Router) { }
 
   ngOnInit(): void {
-    console.log(this.transactions);
   }
 
   /** Gets the total cost of all transactions. */

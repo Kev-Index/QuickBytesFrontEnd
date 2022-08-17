@@ -13,7 +13,7 @@
       <p>Casual venue specializing in Pakistani and Indian fare with an afternoon buffet & a brightly painted interior</p>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-button (click)="viewMenu(2)">View Items</button>
+      <button mat-button (click)="viewMenuMain(2)">View Items</button>
     </mat-card-actions>
   </mat-card>
   
@@ -28,7 +28,7 @@
       <p>Chain for gourmet takes on fast-good classics like burgers and slider!</p>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-button (click)="viewMenu(4)">View Items</button>
+      <button mat-button (click)="viewMenuMain(4)">View Items</button>
     </mat-card-actions>
   </mat-card>
 
@@ -43,10 +43,49 @@
       <p>Longtime chain serving a variety of donut flavors & shapes, plus coffe!</p>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-button (click)="viewMenu(6)">View Items</button>
+      <button mat-button (click)="viewMenuMain(6)">View Items</button>
     </mat-card-actions>
   </mat-card>
 </div>
 <br>
 <h4 class="customer-headers"> All Vendors!</h4>
 <hr>
+<mat-form-field appearance="standard">
+  <mat-label>Filter</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Water" #input>
+</mat-form-field>
+
+<table mat-table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8">
+
+<ng-container matColumnDef="{{column}}" *ngFor="let column of columnsToDisplay">
+  <th mat-header-cell *matHeaderCellDef> {{column}} </th>
+  <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
+</ng-container>
+
+<ng-container matColumnDef="expand">
+  <th mat-header-cell *matHeaderCellDef aria-label="row actions">&nbsp;</th>
+  <td mat-cell *matCellDef="let element">
+      <!--
+          OLD BUTTON
+    <button mat-icon-button aria-label="expand row" (click)="(expandedElement = expandedElement === element ? null : element); $event.stopPropagation()">
+      <mat-icon *ngIf="expandedElement !== element">keyboard_arrow_down</mat-icon>
+      <mat-icon *ngIf="expandedElement === element">keyboard_arrow_up</mat-icon>
+    </button>
+      -->
+    <button mat-icon-button (click)="viewMenuMain(element)">
+      <mat-icon>shop</mat-icon>
+    </button>
+  </td>
+</ng-container>
+
+<!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+<ng-container matColumnDef="expandedDetail">
+  <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplayWithExpand.length">
+  </td>
+</ng-container>
+
+<tr mat-header-row *matHeaderRowDef="columnsToDisplayWithExpand"></tr>
+<tr mat-row *matRowDef="let element; columns: columnsToDisplayWithExpand;" class="example-element-row" [class.example-expanded-row]="expandedElement === element" (click)="expandedElement = expandedElement === element ? null : element"></tr>
+</table>
+<mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+
