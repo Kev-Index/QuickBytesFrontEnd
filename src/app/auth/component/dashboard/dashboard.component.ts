@@ -14,5 +14,18 @@ export class DashboardComponent implements OnInit {
     if(localStorage.getItem('username')==null){
       this.router.navigateByUrl("/login");
     } 
+    else if (localStorage.getItem('role')=='customer') {
+      this.router.navigateByUrl("/customer");
+    }
+    else if(localStorage.getItem('role')=='vendor') {
+      this.router.navigateByUrl("/vendor");
+    }
+    else if(localStorage.getItem('role')=='admin') {
+      this.router.navigateByUrl("/adminr");
+    }
+    else{
+      this.router.navigateByUrl("/login");
+    }
+
   }
 }
