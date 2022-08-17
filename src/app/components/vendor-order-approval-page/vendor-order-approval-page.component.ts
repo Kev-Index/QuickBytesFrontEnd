@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { RequestCombo } from 'src/app/model/requestCombo.model';
 import { RequestItem } from 'src/app/model/requestItem.model';
 import { ItemService } from 'src/app/service/item.service';
+import { RequestComboService } from 'src/app/service/request-combo.service';
 import { RequestItemService } from 'src/app/service/request-item.service';
 import { RequestService } from 'src/app/service/request.service';
 import { Request } from '../../model/request.model';
@@ -18,9 +20,10 @@ export class VendorOrderApprovalPageComponent implements OnInit {
   requests: Request[] = [ ];
   pendingRequests: Request[] = [ ];
   pendingRequestItems: RequestItem[][] = [ ];
+  pendingRequestCombos: RequestCombo[][] = [ ];
 
   constructor(private requestService: RequestService, private requestItemService: RequestItemService,
-              private itemService: ItemService) { }
+              private requestComboService: RequestComboService, private itemService: ItemService) { }
 
   ngOnInit(): void {
     this.roleId = parseInt(localStorage.getItem('roleId'));
@@ -38,6 +41,7 @@ export class VendorOrderApprovalPageComponent implements OnInit {
       if (request.status === this.REQUEST_STATUSES[1]) {
         this.pendingRequests.push(request);
         this.fetchPendingRequestItems();
+        this.fetchPendingRequestCombos();
       }
     });
   }
@@ -47,6 +51,17 @@ export class VendorOrderApprovalPageComponent implements OnInit {
       this.requestItemService.fetchRequestItemsByRequestId(pendingRequest.requestId).subscribe({
         next: (data) => {
           this.pendingRequestItems.push(data);
+        },
+        error: (e) => { }
+      });
+    });
+  }
+
+  fetchPendingRequestCombos() {
+    this.pendingRequests.forEach((pendingRequest) => {
+      this.requestComboService.fetchRequestCombosByRequestId(pendingRequest.requestId).subscribe({
+        next: (data) => {
+          this.pendingRequestCombos.push(data);
         },
         error: (e) => { }
       });
