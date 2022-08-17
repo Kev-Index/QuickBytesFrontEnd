@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Customer } from 'src/app/model/customer.model';
 import { RequestCombo } from 'src/app/model/requestCombo.model';
 import { RequestItem } from 'src/app/model/requestItem.model';
+import { CustomerService } from 'src/app/service/customer.service';
 import { ItemService } from 'src/app/service/item.service';
 import { RequestComboService } from 'src/app/service/request-combo.service';
 import { RequestItemService } from 'src/app/service/request-item.service';
@@ -23,7 +25,8 @@ export class VendorOrderApprovalPageComponent implements OnInit {
   pendingRequestCombos: RequestCombo[][] = [ ];
 
   constructor(private requestService: RequestService, private requestItemService: RequestItemService,
-              private requestComboService: RequestComboService, private itemService: ItemService) { }
+              private requestComboService: RequestComboService, private itemService: ItemService,
+              private customerService: CustomerService, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.roleId = parseInt(localStorage.getItem('roleId'));
@@ -69,13 +72,19 @@ export class VendorOrderApprovalPageComponent implements OnInit {
   }
 
   approveRequest(request: Request,requestItems: RequestItem[]) {
-    this.requestService.approveRequest(request.requestId).subscribe({
-      next: (data) => { 
-        this.decreaseItemQuantitiesFromRequestItems(requestItems);
-        location.reload();
-      },
-      error: (e) => { }
-    });
+    if (request.customer.balance > request.totalPrice) {
+      this.requestService.approveRequest(request.requestId).subscribe({
+        next: (data) => { 
+          let newCustomerBalance = request.customer.balance - request.totalPrice;
+          this.decreaseCustomerBalance(request.customer,newCustomerBalance);
+          this.decreaseItemQuantitiesFromRequestItems(requestItems);
+          location.reload();
+        },
+        error: (e) => { }
+      });
+    } else {
+      this.snackBar.open("Your order has been placed!", "OK");
+    }
   }
 
   denyRequest(request: Request) {
@@ -95,5 +104,10 @@ export class VendorOrderApprovalPageComponent implements OnInit {
         error: (e) => { }
       });
     });
+  }
+
+  decreaseCustomerBalance(customer:Customer, newCustomerBalance:number) {
+    customer.balance = newCustomerBalance;
+    this.customerService.putCustomer(customer);
   }
 }
