@@ -20,7 +20,7 @@
         <mat-icon *ngIf="expandedElement === element">keyboard_arrow_up</mat-icon>
       </button>
         -->
-      <button mat-icon-button>
+      <button mat-icon-button (click)="addItem(element)">
         <mat-icon>add_shopping_cart</mat-icon>
       </button>
     </td>

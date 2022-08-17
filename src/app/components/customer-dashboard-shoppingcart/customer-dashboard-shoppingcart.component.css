@@ -18,3 +18,6 @@
     background-image: url('src/assets/BusyDonuts-Header-Img.jpg');
     background-size: cover;
 }
+.customer-headers{
+  text-align: center;
+}

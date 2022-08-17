@@ -13,11 +13,6 @@ interface Transaction {
 })
 
 export class CustomerDashboardShoppingcartCartComponent implements OnInit {
-
-  constructor(private router:Router) { }
-
-  ngOnInit(): void {
-  }
   displayedColumns: string[] = ['item', 'cost'];
   transactions: Transaction[] = [
     {item: 'Beach ball', cost: 4},
@@ -27,6 +22,11 @@ export class CustomerDashboardShoppingcartCartComponent implements OnInit {
     {item: 'Cooler', cost: 25},
     {item: 'Swim suit', cost: 15},
   ];
+  constructor(private router:Router) { }
+
+  ngOnInit(): void {
+    console.log(this.transactions);
+  }
 
   /** Gets the total cost of all transactions. */
   getTotalCost() {

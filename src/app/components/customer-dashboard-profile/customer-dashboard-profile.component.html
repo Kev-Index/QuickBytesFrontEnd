@@ -1,8 +1,7 @@
-<p>Customer Dashboard Profile</p>
-<h2> Hello, {{customer?.firstName}} </h2>
+<h1 class="customer-profile-header">Customer Profile</h1>
 <form class="example-form" (submit)="onFormSubmit()" [formGroup]="customerProfile">
     <div>
-        <h2>Infomation: </h2>
+        <h2>Information: </h2>
         <table class="example-full-width" cellspacing="0"><tr>
             <td><mat-form-field class="example-full-width" appearance="fill" >
                 <mat-label>Employee ID (Disabled)</mat-label>
@@ -85,6 +84,16 @@
                 <mat-hint align="end">{{postalCode.value.length}} / 5</mat-hint>
               </mat-form-field></td>
           </tr></table>
+    </div>
+    <div>
+      <h2>Balance</h2>
+      <table class="example-full-width" cellspacing="0"><tr>
+          <td><mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Set Balance</mat-label>
+              <input matInput formControlName="balance">
+            </mat-form-field></td>
+        </tr>
+      </table>
     </div>
   <div>
     <mat-card>
