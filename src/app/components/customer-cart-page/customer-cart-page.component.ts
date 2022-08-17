@@ -53,6 +53,14 @@ export class CustomerCartPageComponent implements OnInit {
     this.requestItemService.fetchRequestItemsByRequestId(this.activeRequest.requestId).subscribe({
       next: (data) => {
         this.requestItems = data;
+        if(this.requestItems.length<1) {
+          this.requestService.deleteRequest(this.activeRequest.requestId).subscribe({
+            next: (data) => {
+              location.reload();
+            },
+            error: (e) => { }
+          })
+        }
       },
       error: (e) => { }
     });
