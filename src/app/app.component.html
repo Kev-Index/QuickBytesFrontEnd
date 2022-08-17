@@ -19,6 +19,7 @@
 
     <span *ngIf="this.role == 'customer' "> 
       <p ><a routerLink="/cart" (click)="close('Your Cart')">Your Cart</a></p>
+      <p ><a routerLink="/customer/profile">Your Profile</a></p>
     </span>
 
     <span *ngIf="this.role == 'admin' "> 

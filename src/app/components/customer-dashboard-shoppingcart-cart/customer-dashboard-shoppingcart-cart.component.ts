@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 interface Transaction {
   item: string;
@@ -13,7 +14,7 @@ interface Transaction {
 
 export class CustomerDashboardShoppingcartCartComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router:Router) { }
 
   ngOnInit(): void {
   }
@@ -30,5 +31,8 @@ export class CustomerDashboardShoppingcartCartComponent implements OnInit {
   /** Gets the total cost of all transactions. */
   getTotalCost() {
     return this.transactions.map(t => t.cost).reduce((acc, value) => acc + value, 0);
+  }
+  checkout(){
+    this.router.navigateByUrl('/cart');
   }
 }
