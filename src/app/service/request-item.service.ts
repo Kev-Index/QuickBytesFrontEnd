@@ -11,10 +11,16 @@ export class RequestItemService {
 
   getRequestItemsByRequestIdApi:string;
   deleteRequestItemByIdApi:string;
+  postRequestItemApi:string;
 
   constructor(private http:HttpClient) {
     this.getRequestItemsByRequestIdApi = environment.serverUrl + '/requestitem/rid';
     this.deleteRequestItemByIdApi = environment.serverUrl + '/requestitem';
+    this.postRequestItemApi = environment.serverUrl + '/requestitem';
+  }
+  
+  postRequestItem(requestId:number,itemId:number):Observable<any> {
+    return this.http.post<any>(this.postRequestItemApi+"/"+requestId+"/"+itemId,{});
   }
 
   fetchRequestItemsByRequestId(requestId: number):Observable<RequestItem[]> {
@@ -24,5 +30,4 @@ export class RequestItemService {
   deleteRequestItemById(requestItemId: number):Observable<any> {
     return this.http.delete<any>(this.deleteRequestItemByIdApi+"/"+requestItemId);
   }
-
 }
