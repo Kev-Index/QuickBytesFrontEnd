@@ -22,9 +22,10 @@ import { EditItemComponent } from './components/edit-item/edit-item.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { CustomerListComponent } from './components/customer-list/customer-list.component';
 import { RouterTestingModule } from '@angular/router/testing';
-import { AdminDashboardViewUsersComponent } from './components/admin-dashboard-view-users/admin-dashboard-view-users.component';
 import { AdminProfileEditComponent } from './components/admin-profile-edit/admin-profile-edit.component';
 import { AddUserComponent } from './components/add-user/add-user.component';
+import { CustomerProfilePageComponent} from './components/customer-profile-page/customer-profile-page.component';
+import { CustomerMenuPageComponent } from './components/customer-menu-page/customer-menu-page.component';
 
 const routes: Routes = [
   {path:'' , component: DashboardComponent},
@@ -32,6 +33,8 @@ const routes: Routes = [
   {path:'admin' , component: AdminComponent},
   {path:'menu/:vendorId' , component: MenuComponent},
   {path:'customer' , component: CustomerComponent},
+  {path:'customer/profile' , component: CustomerProfilePageComponent},
+  {path:'customer/menu' , component: CustomerMenuPageComponent},
   {path:'item-combo' , component: ItemComboComponent},
   {path:'request' , component: RequestComponent},
   {path:'request-combo' , component: RequestComboComponent},
@@ -49,7 +52,6 @@ const routes: Routes = [
   {path:'cart', component:CustomerCartPageComponent},
   {path:'approval', component:VendorOrderApprovalPageComponent},
   {path:'report', component:AdminReportPageComponent},
-  //{path:'users', component:AdminDashboardViewUsersComponent},
   {path:'admin-profile/:adminId', component:AdminProfileEditComponent},
   {path:'add-user', component:AddUserComponent},
 ];

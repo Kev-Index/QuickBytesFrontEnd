@@ -16,9 +16,11 @@ export class CustomerService {
   roleId:string;
   constructor(private http:HttpClient) {
     this.roleId = localStorage.getItem('roleId');
+    console.log("CONSTRUCTOR SERVCIE");
     console.log(this.roleId);
     this.getCustomerApi="http://localhost:8989/customer/" + this.roleId;
     this.putCustomerApi="http://localhost:8989/customer/" + this.roleId;
+
     this.getCustomersApi = "http://localhost:8989/customer";
    }
    getCustomers():Observable<Customer[]>{

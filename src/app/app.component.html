@@ -3,10 +3,10 @@
     <p><button mat-button (click)="sidenav.close()">Close X</button></p> 
     <br />
  
-    <p><a routerLink="/dashboard" (click)="close('QuickBytes')">Dashboard</a></p>
+     <!--<p><a routerLink="/dashboard" (click)="close('QuickBytes')">Dashboard</a></p>
 
     
-    <!-- <p><a routerLink="/customer" (click)="close('Customer')">Customer</a></p>
+     <p><a routerLink="/customer" (click)="close('Customer')">Customer</a></p>
 
     <p><a routerLink="/vendor" (click)="close('Vendor')">Vendor</a></p>
     <p><a routerLink="/admin" (click)="close('Admin')">Admin</a></p> -->
@@ -21,7 +21,8 @@
     <span *ngIf="this.role == 'customer' "> 
       <p><a routerLink="/customer" (click)="close('QuickBytes')">Dashboard</a></p>
       <p ><a routerLink="/cart" (click)="close('Your Cart')">Your Cart</a></p>
-      
+      <p ><a routerLink="/customer/profile">Your Profile</a></p>
+
     </span>
 
     <span *ngIf="this.role == 'admin' "> 

@@ -93,6 +93,7 @@ export class LoginComponent implements OnInit {
         error: (e) => { }
       });
     }
+    console.log(this.user);
   }
 }
 

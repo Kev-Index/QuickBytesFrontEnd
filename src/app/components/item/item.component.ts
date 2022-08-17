@@ -28,8 +28,9 @@ export class ItemComponent implements OnInit{
 
   ngOnInit(): void {
     this.vendorId= this.actRoute.snapshot.paramMap.get('vendorId');
+  console.log(this.vendorId);
+    this.itemService.getItemsByVendorId(this.vendorId).subscribe(data=>{
 
-    this.itemService.getItemsByVendor(this.vendorId).subscribe(data=>{
       this.items= data;
       this.dataSource = new MatTableDataSource(this.items);
       this.dataSource.paginator = this.paginator;
@@ -41,6 +42,7 @@ export class ItemComponent implements OnInit{
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
 
+
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
@@ -49,5 +51,6 @@ export class ItemComponent implements OnInit{
   editItem(itemId:number){
     this.router.navigateByUrl("item/edit/"+itemId);
   }
+
 
 }

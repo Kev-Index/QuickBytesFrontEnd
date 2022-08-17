@@ -21,6 +21,8 @@ export class CustomerDashboardShoppingcartProductlistComponent implements OnInit
 */
 
 import {animate, state, style, transition, trigger} from '@angular/animations';
+import { Item } from 'src/app/model/item.model';
+import { ItemService } from 'src/app/service/item.service';
 @Component({
   selector: 'app-customer-dashboard-shoppingcart-productlist',
   templateUrl: './customer-dashboard-shoppingcart-productlist.component.html',
@@ -36,24 +38,34 @@ export class CustomerDashboardShoppingcartProductlistComponent {
   expandedElement: CultureFoodsElement | null;
 }
 */
-export class CustomerDashboardShoppingcartProductlistComponent implements AfterViewInit {
+export class CustomerDashboardShoppingcartProductlistComponent {
   columnsToDisplay = ['name', 'price'];
   columnsToDisplayWithExpand = [...this.columnsToDisplay, 'expand'];
-  expandedElement: CultureFoodsElement | null;
-  dataSource: MatTableDataSource<CultureFoodsElement>;
+  expandedElement: Item | null;
+
+  dataSource: MatTableDataSource<Item>
+  items: Item[];
+  vendorId: string;
+  
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor() {
+  constructor(private itemsService:ItemService) {
+    this.vendorId = localStorage.getItem('vendorId');
     // Assign the data to the data source for the table to render
-    this.dataSource = new MatTableDataSource(ELEMENT_DATA);
-    console.log(this.dataSource);
   }
-
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+  ngOnInit(): void {
+    this.itemsService.getItemsByVendorId(this.vendorId).subscribe({
+      next:(data)=>{
+        this.items=data;
+        console.log("This is Items");
+        console.log(this.items);
+        this.dataSource = new MatTableDataSource(this.items);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+      }
+    })
   }
 
   applyFilter(event: Event) {
@@ -65,68 +77,3 @@ export class CustomerDashboardShoppingcartProductlistComponent implements AfterV
     }
   }
 }
-
-
-export interface CultureFoodsElement {
-  name: string;
-  position: number;
-  price:number;
-}
-
-const ELEMENT_DATA: CultureFoodsElement[] = [
-  {
-    position: 1,
-    name:"Masala Dosa",
-    price:6
-  },
-  {
-    position: 2,
-    name:"Dal Makhani",
-    price:10
-  },
-  {
-    position: 3,
-    name:"Dhokla",
-    price:8
-  },
-  {
-    position: 4,
-    name:"Chicken Haleem",
-    price:12.5
-  },
-  {
-    position: 5,
-    name:"Jalfrezi",
-    price:12.5
-  },
-  {
-    position: 6,
-    name:"Chicken Makhni",
-    price:12.5
-  },
-  {
-    position: 7,
-    name:"Paneer Karahi",
-    price:14
-  },
-  {
-    position: 8,
-    name:"Bhindi",
-    price:11
-  },
-  {
-    position: 9,
-    name:"Tandoori Naan Plain",
-    price:2
-  },
-  {
-    position: 10,
-    name:"Tandoori Naan Garlic",
-    price:4.5
-  },
-  {
-    position: 11,
-    name:"Tandoori Naan Peshawari Kulcha",
-    price:4.5
-  },
-];

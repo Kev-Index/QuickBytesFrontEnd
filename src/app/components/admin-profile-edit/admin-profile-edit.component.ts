@@ -18,7 +18,7 @@ export class AdminProfileEditComponent implements OnInit {
 
   ngOnInit(): void {
     this.adminProfile = new FormGroup ({ 
-      username: new FormControl(''),
+      username: new FormControl({value:'', disabled:true}),
       firstName: new FormControl(''),
       lastName: new FormControl(''),
     });

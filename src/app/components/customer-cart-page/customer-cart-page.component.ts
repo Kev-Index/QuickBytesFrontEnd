@@ -95,4 +95,19 @@ export class CustomerCartPageComponent implements OnInit {
     });
   }
 
+  removeCombo(requestCombo: RequestCombo): void {
+    this.requestComboService.deleteRequestComboById(requestCombo.requestComboId).subscribe({
+      next: (data) => { 
+        let newRequestComboPrice = requestCombo.requestId.totalPrice - requestCombo.comboId.price;
+        this.requestService.updateRequestPrice(requestCombo.requestId.requestId,newRequestComboPrice).subscribe({
+          next: (data) => { 
+            location.reload();
+          },
+          error: (e) => { }
+        });
+      },
+      error: (e) => { }
+    });
+  }
+
 }

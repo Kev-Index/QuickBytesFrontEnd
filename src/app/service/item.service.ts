@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {  BehaviorSubject, Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { Item, ItemDto } from '../model/item.model';
 
 @Injectable({
@@ -9,15 +10,20 @@ import { Item, ItemDto } from '../model/item.model';
 export class ItemService {
   getVendorItemsApi: string;
   singleItemApi:string;
+  putItemApi:string;
   page$ = new BehaviorSubject<number>(0);
   message$ = new BehaviorSubject<string>('');
+  vendorId:string;
+
+
   constructor(private http:HttpClient) { 
+    this.vendorId = localStorage.getItem('vendorId');
     this.getVendorItemsApi = "http://localhost:8989/item/vendor/";
     this.singleItemApi="http://localhost:8989/item/"
+    this.putItemApi=environment.serverUrl + "/item/";
   }
 
-  getItemsByVendor(vendorId:string):Observable<Item[]>{
-
+  getItemsByVendorId(vendorId:string):Observable<Item[]>{
     return this.http.get<Item[]>(this.getVendorItemsApi+vendorId);
   }
 
@@ -32,7 +38,8 @@ export class ItemService {
   editItem(itemDto:ItemDto):Observable<any>{
     return this.http.put(this.singleItemApi+itemDto.itemId,itemDto);
   }
-  testFunc(){
-    console.log("test");
+
+  putItem(item:Item):Observable<any>{
+    return this.http.put(this.singleItemApi+item.itemId,item);
   }
 }

@@ -39,7 +39,6 @@ import { SignupComponent } from './auth/component/signup/signup.component';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatCheckboxModule} from '@angular/material/checkbox';
-import { DashboardCustomerComponent } from './auth/component/dashboard-customer/dashboard-customer.component';
 import { CustomerDashboardProfileComponent } from './components/customer-dashboard-profile/customer-dashboard-profile.component';
 import { CustomerDashboardShoppingcartComponent } from './components/customer-dashboard-shoppingcart/customer-dashboard-shoppingcart.component';
 import { CustomerDashboardShoppingcartProductlistComponent } from './components/customer-dashboard-shoppingcart-productlist/customer-dashboard-shoppingcart-productlist.component';
@@ -52,9 +51,12 @@ import { AddItemComponent } from './components/add-item/add-item.component';
 import { EditItemComponent } from './components/edit-item/edit-item.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { CustomerListComponent } from './components/customer-list/customer-list.component';
+
 import { AdminDashboardViewUsersComponent } from './components/admin-dashboard-view-users/admin-dashboard-view-users.component';
 import { AdminProfileEditComponent } from './components/admin-profile-edit/admin-profile-edit.component';
 import { AddUserComponent } from './components/add-user/add-user.component';
+import { CustomerProfilePageComponent } from './components/customer-profile-page/customer-profile-page.component';
+import { CustomerMenuPageComponent } from './components/customer-menu-page/customer-menu-page.component';
 
 
 
@@ -77,13 +79,10 @@ import { AddUserComponent } from './components/add-user/add-user.component';
     UsernameVerifyComponent,
     PasswordResetComponent,
     SignupComponent,
-
-    DashboardCustomerComponent,
     CustomerDashboardProfileComponent,
     CustomerDashboardShoppingcartComponent,
     CustomerDashboardShoppingcartProductlistComponent,
     CustomerDashboardShoppingcartCartComponent,
-
     CustomerCartPageComponent,
     AdminReportPageComponent,
     VendorOrderApprovalPageComponent,
@@ -93,7 +92,9 @@ import { AddUserComponent } from './components/add-user/add-user.component';
     CustomerListComponent,
     AdminDashboardViewUsersComponent,
     AdminProfileEditComponent,
-    AddUserComponent
+    AddUserComponent,
+    CustomerProfilePageComponent,
+    CustomerMenuPageComponent
   ],
   imports: [
     BrowserModule,
