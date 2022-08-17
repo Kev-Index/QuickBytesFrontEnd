@@ -1,1 +1,32 @@
-<p>vendor works!</p>
+<h1>Vendor</h1>
+<div class="navbar">
+    <span>
+    <a routerLink="/view-menu" routerLinkActive="active">View Menu</a> &nbsp;&nbsp;&nbsp;
+    <a routerLink="/view-orders" routerLinkActive="active">View Orders</a> &nbsp;&nbsp;&nbsp;
+    <a routerLink="/add-item" routerLinkActive="active">Add Item</a> &nbsp;&nbsp;&nbsp;
+    <a routerLink="/create-combo" routerLinkActive="active">Create Combo</a> &nbsp;&nbsp;&nbsp;
+  
+  </span>
+</div>
+<div>
+  <router-outlet></router-outlet>
+</div>
+<br />
+<br />
+<br />
+<div>
+  Name: <label>{{vendor.name}}</label>
+   &nbsp;&nbsp;
+   <br />
+   <br />
+   BusinessId: {{vendor.businessId}}
+   &nbsp;&nbsp;
+   <br />
+   <br />
+   Username: {{vendor.user.username}}
+   &nbsp;&nbsp;
+   <br />
+   <br />
+   <input type="submit" (click)="onEdit($event)" value="Edit Info" id={{vendor.name}} >
+   <hr>
+</div>

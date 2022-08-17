@@ -36,6 +36,10 @@ import { PasswordResetComponent } from './auth/component/password-reset/password
 import { UsernameVerifyComponent } from './auth/component/username-verify/username-verify.component';
 import { SignupComponent } from './auth/component/signup/signup.component';
 
+import { CreateComboComponent } from './components/create-combo/create-combo.component';
+import { EditComboComponent } from './components/edit-combo/edit-combo.component';
+import { EditInfoComponent } from './components/edit-info/edit-info.component';
+
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatCheckboxModule} from '@angular/material/checkbox';
@@ -53,6 +57,7 @@ import { MenuComponent } from './components/menu/menu.component';
 import { CustomerListComponent } from './components/customer-list/customer-list.component';
 import { CustomerProfilePageComponent } from './components/customer-profile-page/customer-profile-page.component';
 import { CustomerMenuPageComponent } from './components/customer-menu-page/customer-menu-page.component';
+
 
 
 
@@ -75,6 +80,9 @@ import { CustomerMenuPageComponent } from './components/customer-menu-page/custo
     UsernameVerifyComponent,
     PasswordResetComponent,
     SignupComponent,
+    CreateComboComponent,
+    EditComboComponent,
+    EditInfoComponent,
 
     CustomerDashboardProfileComponent,
     CustomerDashboardShoppingcartComponent,

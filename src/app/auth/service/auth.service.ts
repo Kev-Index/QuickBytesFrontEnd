@@ -5,7 +5,7 @@ import { Customer } from 'src/app/model/customer.model';
 import { Vendor } from 'src/app/model/vendor.model';
 import { Admin } from 'src/app/model/admin.model';
 import { environment } from 'src/environments/environment';
-import { UserInfo, UserSecurityDto } from '../model/user.model';
+import { UserEditDto, UserInfo, UserSecurityDto } from '../model/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -31,6 +31,13 @@ export class AuthService {
 
   constructor(private http: HttpClient) {
     this.username='';
+    this.loginApi = 'http://localhost:8989/login';
+    this.signUpApi='http://localhost:8989/user';
+    this.userAPi = 'http://localhost:8989/user/username';
+    this.profileEditAPi='http://localhost:8989/user/profile';
+    this.userSecurityInfoApi='http://localhost:8989/user/security/info/';
+    this.securityAnswerValidationApi=environment.serverUrl + '/validate-security-answer/';
+    this.passwordResetAPi=environment.serverUrl +'/user/reset-password/';
     this.loginApi = environment.serverUrl + '/login';
     this.signUpApi=environment.serverUrl + '/user';
     this.userAPi = environment.serverUrl + '/user/username';
@@ -78,6 +85,16 @@ export class AuthService {
     let encodedText= btoa(username + '--'+password);
      return this.http.put(this.passwordResetAPi + encodedText,{});
  }
+
+ editProfile(userEditDto: UserEditDto) :Observable<UserEditDto>{
+  let httpOptions={
+    headers : new HttpHeaders({
+      'Content-type': 'application/json',
+      'Authorization' : 'basic ' + localStorage.getItem('credentials')
+    })
+  };
+   return this.http.put<UserEditDto>(this.profileEditAPi,userEditDto,httpOptions);
+}
 
  getCustomerByUserId(userId:number):Observable<Customer> {
     return this.http.get<Customer>(this.customerByUserIdApi + userId);

@@ -19,3 +19,7 @@ export class UserInfo{
     securityQuestion: string;
     securityAnswer: string;
   }
+
+  export class UserEditDto{
+    username: string;
+  }

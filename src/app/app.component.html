@@ -44,6 +44,12 @@
     <mat-toolbar id="header">
         <button mat-button (click)="sidenav.open()">&#9776;</button>
         <p id="title" class="mat-h1">{{title}}</p>
+        <span *ngIf="username != ''">
+          <p id="logout"><a routerLink="/logout" (click)="close('Logout')">Logout</a></p>
+        </span>
+      <span *ngIf="username == '' && title!='Login'" >
+        <p id="login"><a routerLink="/login" (click)="close('Login')">Login</a></p>
+      </span>
         <p id="login" *ngIf="role == null"><a routerLink="/login" (click)="close('Login')">Login</a></p>
     </mat-toolbar>
 

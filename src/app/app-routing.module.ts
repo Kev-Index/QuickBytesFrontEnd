@@ -13,7 +13,11 @@ import { RequestComboComponent } from './components/request-combo/request-combo.
 import { RequestItemComponent } from './components/request-item/request-item.component';
 import { RequestComponent } from './components/request/request.component';
 import { VendorComponent } from './components/vendor/vendor.component';
+import {CreateComboComponent } from './components/create-combo/create-combo.component';
 import { VendorListComponent } from './components/vendor-list/vendor-list.component';
+import { EditComboComponent } from './components/edit-combo/edit-combo.component';
+import { EditInfoComponent } from './components/edit-info/edit-info.component';
+
 import { CustomerCartPageComponent } from './components/customer-cart-page/customer-cart-page.component';
 import { AdminReportPageComponent } from './components/admin-report-page/admin-report-page.component';
 import { VendorOrderApprovalPageComponent } from './components/vendor-order-approval-page/vendor-order-approval-page.component';
@@ -45,6 +49,12 @@ const routes: Routes = [
   {path:'item/:vendorId', component:AddItemComponent},
   {path:'item/edit/:itemId', component:EditItemComponent},
   {path:'vendors', component:VendorListComponent},
+
+  {path:'create-combo' , component: CreateComboComponent},
+  {path:'edit-combo' , component: EditComboComponent},
+  {path:'edit-info' , component: EditInfoComponent},
+
+
   {path:'customers' , component: CustomerListComponent},
   {path:'cart', component:CustomerCartPageComponent},
   {path:'approval', component:VendorOrderApprovalPageComponent},
