@@ -25,6 +25,8 @@ import { AddItemComponent } from './components/add-item/add-item.component';
 import { EditItemComponent } from './components/edit-item/edit-item.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { CustomerListComponent } from './components/customer-list/customer-list.component';
+import { CustomerProfilePageComponent} from './components/customer-profile-page/customer-profile-page.component';
+import { CustomerMenuPageComponent } from './components/customer-menu-page/customer-menu-page.component';
 
 const routes: Routes = [
   {path:'' , component: DashboardComponent},
@@ -32,6 +34,8 @@ const routes: Routes = [
   {path:'admin' , component: AdminComponent},
   {path:'menu/:vendorId' , component: MenuComponent},
   {path:'customer' , component: CustomerComponent},
+  {path:'customer/profile' , component: CustomerProfilePageComponent},
+  {path:'customer/menu' , component: CustomerMenuPageComponent},
   {path:'item-combo' , component: ItemComboComponent},
   {path:'request' , component: RequestComponent},
   {path:'request-combo' , component: RequestComboComponent},

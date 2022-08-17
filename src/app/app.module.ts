@@ -43,7 +43,6 @@ import { EditInfoComponent } from './components/edit-info/edit-info.component';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatCheckboxModule} from '@angular/material/checkbox';
-import { DashboardCustomerComponent } from './auth/component/dashboard-customer/dashboard-customer.component';
 import { CustomerDashboardProfileComponent } from './components/customer-dashboard-profile/customer-dashboard-profile.component';
 import { CustomerDashboardShoppingcartComponent } from './components/customer-dashboard-shoppingcart/customer-dashboard-shoppingcart.component';
 import { CustomerDashboardShoppingcartProductlistComponent } from './components/customer-dashboard-shoppingcart-productlist/customer-dashboard-shoppingcart-productlist.component';
@@ -56,6 +55,8 @@ import { AddItemComponent } from './components/add-item/add-item.component';
 import { EditItemComponent } from './components/edit-item/edit-item.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { CustomerListComponent } from './components/customer-list/customer-list.component';
+import { CustomerProfilePageComponent } from './components/customer-profile-page/customer-profile-page.component';
+import { CustomerMenuPageComponent } from './components/customer-menu-page/customer-menu-page.component';
 
 
 
@@ -83,7 +84,6 @@ import { CustomerListComponent } from './components/customer-list/customer-list.
     EditComboComponent,
     EditInfoComponent,
 
-    DashboardCustomerComponent,
     CustomerDashboardProfileComponent,
     CustomerDashboardShoppingcartComponent,
     CustomerDashboardShoppingcartProductlistComponent,
@@ -95,7 +95,9 @@ import { CustomerListComponent } from './components/customer-list/customer-list.
     AddItemComponent,
     EditItemComponent,
     MenuComponent,
-    CustomerListComponent
+    CustomerListComponent,
+    CustomerProfilePageComponent,
+    CustomerMenuPageComponent
   ],
   imports: [
     BrowserModule,
