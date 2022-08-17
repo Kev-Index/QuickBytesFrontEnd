@@ -15,7 +15,9 @@ export class CustomerDashboardShoppingcartComponent implements OnInit {
   }
   viewMenu(vendor:number){
     localStorage.setItem('vendorId', vendor.toString());
-    this.router.navigateByUrl("/customer/menu");
+    this.router.navigateByUrl("/customer/menu").then((data) => {
+      location.reload();
+    });
     //+ vendor.toString).then((value)=>{location.reload()});
   }
 }
