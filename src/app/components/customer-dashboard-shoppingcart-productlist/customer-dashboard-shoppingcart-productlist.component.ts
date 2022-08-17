@@ -58,13 +58,12 @@ export class CustomerDashboardShoppingcartProductlistComponent {
     this.itemsService.getItemsByVendorId(this.vendorId).subscribe({
       next:(data)=>{
         this.items=data;
-        console.log("This is Items");
-        console.log(this.items);
         this.dataSource = new MatTableDataSource(this.items);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
       }
-    })
+    });
+    location.reload();
   }
 
   applyFilter(event: Event) {
